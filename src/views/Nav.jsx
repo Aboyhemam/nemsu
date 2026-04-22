@@ -1,5 +1,9 @@
 import React from 'react'
-import { Routes, Route } from 'react-router-dom'
+import {
+  createHashRouter,
+  RouterProvider,
+  Outlet
+} from 'react-router-dom'
 
 import Home from './Home'
 import Header from './presets/Header'
@@ -10,57 +14,36 @@ import Contact from './Contact'
 import Support from './Support'
 import ScrollToTop from './ScrollToTop'
 
-function Nav() {
+// ✅ Layout component (shared UI)
+function RootLayout() {
   return (
     <>
-      {/* ✅ MUST be outside Routes */}
+      <Header />
       <ScrollToTop />
-
-      <Routes>
-
-        <Route path='/' element={
-          <>
-            <Header/>
-            <Home/>
-            <Footer/>
-          </>
-        }/>
-
-        <Route path='/about' element={
-          <>
-            <Header/>
-            <About/>
-            <Footer/>
-          </>
-        }/>
-
-        <Route path='/events' element={
-          <>
-            <Header/>
-            <Event/>
-            <Footer/>
-          </>
-        }/>
-
-        <Route path='/contact' element={
-          <>
-            <Header/>
-            <Contact/>
-            <Footer/>
-          </>
-        }/>
-
-        <Route path='/support' element={
-          <>
-            <Header/>
-            <Support/>
-            <Footer/>
-          </>
-        }/>
-
-      </Routes>
+      <Outlet />
+      <Footer />
     </>
   )
+}
+
+// ✅ Router configuration (OUTSIDE component)
+const router = createHashRouter([
+  {
+    path: "/",
+    element: <RootLayout />,
+    children: [
+      { index: true, element: <Home /> },
+      { path: "about", element: <About /> },
+      { path: "event", element: <Event /> },
+      { path: "contact", element: <Contact /> },
+      { path: "support", element: <Support /> },
+    ],
+  },
+])
+
+// ✅ Main component
+function Nav() {
+  return <RouterProvider router={router} />
 }
 
 export default Nav

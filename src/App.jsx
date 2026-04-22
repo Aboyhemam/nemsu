@@ -12,9 +12,7 @@ function App() {
 
   return (
     <>
-    <BrowserRouter basename="/nemsu">
     <Nav />
-  </BrowserRouter>
     
     </>
   )
