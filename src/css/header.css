@@ -1,0 +1,305 @@
+/* ============================================================
+   NEMSU Header — Professional Navbar
+   Color Palette (from infographic):
+     Deep Teal    #1a6b7a
+     Sky Blue     #4db8cc
+     Warm Orange  #d4622a
+     Cream        #e8d5b0
+     Charcoal     #1e1e1e
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap');
+
+/* ---------- CSS Variables ---------- */
+:root {
+  --teal:        #1a6b7a;
+  --teal-light:  #22899c;
+  --sky:         #4db8cc;
+  --orange:      #d4622a;
+  --orange-light:#e8784a;
+  --cream:       #e8d5b0;
+  --charcoal:    #1e1e1e;
+  --white:       #ffffff;
+
+  --nav-height:  68px;
+  --transition:  0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ---------- Reset / Base ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ---------- Nav Container ---------- */
+.navContainer {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  width: 100%;
+  background: var(--charcoal);
+
+  /* Subtle top accent stripe */
+  border-top: 3px solid var(--orange);
+
+  /* Layered shadow for depth */
+  box-shadow:
+    0 1px 0 rgba(77, 184, 204, 0.15),
+    0 4px 24px rgba(0, 0, 0, 0.45);
+}
+
+/* ---------- Header Row ---------- */
+.navHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--nav-height);
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ---------- Logo ---------- */
+.logoContainer {
+  flex-shrink: 0;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo img {
+  height: 42px;
+  width: auto;
+  object-fit: contain;
+  filter: brightness(1.1) drop-shadow(0 0 8px rgba(77, 184, 204, 0.4));
+  transition: filter var(--transition), transform var(--transition);
+}
+
+.logo img:hover {
+  filter: brightness(1.25) drop-shadow(0 0 14px rgba(77, 184, 204, 0.7));
+  transform: scale(1.04);
+}
+
+/* ---------- Nav Links ---------- */
+.linkContainer {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  list-style: none;
+}
+
+.linkContainer2 {
+  position: relative;
+}
+
+.link {
+  display: flex;
+  align-items: center;
+}
+
+.navLink {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--cream);
+  text-decoration: none;
+  padding: 8px 14px;
+  border-radius: 4px;
+  position: relative;
+  transition: color var(--transition), background var(--transition);
+
+  /* Underline slide-in effect */
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 4px;
+    left: 14px;
+    right: 14px;
+    height: 2px;
+    background: var(--sky);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform var(--transition);
+    border-radius: 2px;
+  }
+}
+
+.navLink:hover {
+  color: var(--sky);
+  background: rgba(77, 184, 204, 0.08);
+}
+
+.navLink:hover::after {
+  transform: scaleX(1);
+}
+
+/* React Router active state */
+.navLink.active {
+  color: var(--sky);
+  background: rgba(77, 184, 204, 0.1);
+}
+
+.navLink.active::after {
+  transform: scaleX(1);
+  background: var(--orange);
+}
+
+/* "Support Us" — accent CTA button */
+.linkContainer2:last-child .navLink {
+  background: var(--orange);
+  color: var(--white);
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  box-shadow: 0 2px 10px rgba(212, 98, 42, 0.35);
+}
+
+.linkContainer2:last-child .navLink::after {
+  display: none;
+}
+
+.linkContainer2:last-child .navLink:hover {
+  background: var(--orange-light);
+  color: var(--white);
+  box-shadow: 0 4px 18px rgba(212, 98, 42, 0.55);
+  transform: translateY(-1px);
+}
+
+/* ---------- Hamburger Button (mobile only) ---------- */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  background: none;
+  border: 1.5px solid rgba(232, 213, 176, 0.25);
+  border-radius: 6px;
+  cursor: pointer;
+  padding: 6px;
+  transition: border-color var(--transition), background var(--transition);
+  z-index: 1100;
+}
+
+.hamburger:hover {
+  border-color: var(--sky);
+  background: rgba(77, 184, 204, 0.08);
+}
+
+.hamburger span {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: var(--cream);
+  border-radius: 2px;
+  transition: transform var(--transition), opacity var(--transition), background var(--transition);
+}
+
+/* Hamburger → X animation */
+.hamburger.open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+  background: var(--sky);
+}
+.hamburger.open span:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+.hamburger.open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+  background: var(--sky);
+}
+
+/* ---------- Mobile Menu Overlay ---------- */
+@media (max-width: 768px) {
+  .hamburger {
+    display: flex;
+  }
+
+  .linkContainer {
+    /* Slide-down drawer */
+    position: fixed;
+    top: calc(var(--nav-height) + 3px); /* +3px for top border */
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    background: var(--charcoal);
+    padding: 12px 0 20px;
+    border-bottom: 2px solid var(--teal);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+
+    /* Hidden by default */
+    transform: translateY(-8px);
+    opacity: 0;
+    pointer-events: none;
+    transition:
+      transform var(--transition),
+      opacity var(--transition);
+  }
+
+  .linkContainer.open {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  .linkContainer2 {
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .link {
+    width: 100%;
+  }
+
+  .navLink {
+    display: block;
+    width: 100%;
+    padding: 14px 28px;
+    font-size: 0.9rem;
+    border-radius: 0;
+  }
+
+  .navLink::after {
+    left: 28px;
+    right: 28px;
+    bottom: 8px;
+  }
+
+  .linkContainer2:last-child {
+    padding: 16px 20px 4px;
+  }
+
+  .linkContainer2:last-child .navLink {
+    border-radius: 8px;
+    text-align: center;
+    width: 100%;
+  }
+}
+
+/* ---------- Entrance Animation ---------- */
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.navContainer {
+  animation: slideDown 0.4s cubic-bezier(0.4, 0, 0.2, 1) both;
+}

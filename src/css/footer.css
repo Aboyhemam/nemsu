@@ -1,0 +1,399 @@
+/* ============================================================
+   NEMSU Footer — Footer.css
+   Palette (consistent with Header & Home):
+     Deep Teal    #1a6b7a
+     Sky Blue     #4db8cc
+     Warm Orange  #d4622a
+     Cream        #e8d5b0
+     Charcoal     #1e1e1e
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap');
+
+:root {
+  --teal:        #1a6b7a;
+  --teal-light:  #22899c;
+  --sky:         #4db8cc;
+  --orange:      #d4622a;
+  --orange-light:#e8784a;
+  --cream:       #e8d5b0;
+  --charcoal:    #1e1e1e;
+  --charcoal-deep: #141414;
+  --charcoal-mid:  #252525;
+  --transition:  0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ============================================================
+   ROOT
+   ============================================================ */
+.footerRoot {
+  position: relative;
+  background-color: var(--charcoal-deep);
+  font-family: 'DM Sans', sans-serif;
+  color: var(--cream);
+  overflow: hidden;
+
+  /* Atmospheric glow from top — teal bleeds up from the footer */
+  background-image:
+    radial-gradient(ellipse 80% 40% at 50% 0%, rgba(26, 107, 122, 0.2) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 30% at 90% 100%, rgba(212, 98, 42, 0.1) 0%, transparent 60%);
+}
+
+/* Geometric background grid lines for depth */
+.footerRoot::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(77, 184, 204, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(77, 184, 204, 0.03) 1px, transparent 1px);
+  background-size: 48px 48px;
+  pointer-events: none;
+}
+
+/* ============================================================
+   TOP ACCENT STRIPE
+   Mirrors the orange stripe on the Header's top edge
+   ============================================================ */
+.footerStripe {
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    var(--teal)   0%,
+    var(--sky)    35%,
+    var(--orange) 65%,
+    var(--teal)   100%
+  );
+}
+
+/* ============================================================
+   INNER GRID — 4 columns
+   ============================================================ */
+.footerInner {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1.2fr 1fr;
+  gap: 48px 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 56px 24px 48px;
+  position: relative;
+  z-index: 1;
+}
+
+/* ============================================================
+   COLUMN 1 — Brand
+   ============================================================ */
+.footerBrand {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.footerLogo img {
+  height: 52px;
+  width: auto;
+  object-fit: contain;
+  filter: brightness(1.1) drop-shadow(0 0 10px rgba(77, 184, 204, 0.35));
+  transition: filter var(--transition), transform var(--transition);
+}
+
+.footerLogo img:hover {
+  filter: brightness(1.3) drop-shadow(0 0 16px rgba(77, 184, 204, 0.65));
+  transform: scale(1.04);
+}
+
+.footerTagline {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.35rem;
+  letter-spacing: 0.1em;
+  line-height: 1.25;
+  color: var(--white, #fff);
+
+  /* Sky-to-cream gradient text */
+  background: linear-gradient(135deg, var(--sky), var(--cream));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.footerMotto {
+  font-size: 0.78rem;
+  font-style: italic;
+  font-weight: 300;
+  letter-spacing: 0.15em;
+  color: var(--orange);
+  opacity: 0.9;
+}
+
+/* ============================================================
+   COLUMN TITLES
+   ============================================================ */
+.footerColTitle {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1rem;
+  letter-spacing: 0.18em;
+  color: var(--sky);
+  text-transform: uppercase;
+  margin-bottom: 18px;
+  padding-bottom: 10px;
+  position: relative;
+
+  /* Underline rule */
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 32px;
+    height: 2px;
+    background: linear-gradient(90deg, var(--orange), transparent);
+    border-radius: 2px;
+    transition: width var(--transition);
+  }
+}
+
+.footerCol:hover .footerColTitle::after {
+  width: 56px;
+}
+
+/* ============================================================
+   QUICK LINKS
+   ============================================================ */
+.footerLinks {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footerLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: rgba(232, 213, 176, 0.7);
+  text-decoration: none;
+  transition: color var(--transition), gap var(--transition);
+}
+
+.footerLinkArrow {
+  font-size: 1.1rem;
+  color: var(--orange);
+  transition: transform var(--transition), color var(--transition);
+  line-height: 1;
+}
+
+.footerLink:hover {
+  color: var(--cream);
+}
+
+.footerLink:hover .footerLinkArrow {
+  transform: translateX(4px);
+  color: var(--sky);
+}
+
+.footerLink.active {
+  color: var(--sky);
+}
+
+.footerLink.active .footerLinkArrow {
+  color: var(--sky);
+}
+
+/* ============================================================
+   CONTACT
+   ============================================================ */
+.footerContact {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.footerContact li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.footerContactIcon {
+  font-size: 0.95rem;
+  margin-top: 1px;
+  flex-shrink: 0;
+  color: var(--orange);
+  filter: drop-shadow(0 0 4px rgba(212, 98, 42, 0.4));
+}
+
+.footerContactLink {
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: rgba(232, 213, 176, 0.7);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+
+.footerContactLink:hover {
+  color: var(--sky);
+}
+
+.footerContactText {
+  font-size: 0.875rem;
+  font-weight: 300;
+  color: rgba(232, 213, 176, 0.65);
+  line-height: 1.6;
+}
+
+/* ============================================================
+   SOCIAL BUTTONS
+   ============================================================ */
+.footerSocials {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.footerSocialBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 8px;
+  border: 1.5px solid rgba(77, 184, 204, 0.2);
+  background: rgba(77, 184, 204, 0.06);
+  color: rgba(232, 213, 176, 0.75);
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition:
+    background var(--transition),
+    border-color var(--transition),
+    color var(--transition),
+    transform var(--transition),
+    box-shadow var(--transition);
+}
+
+.footerSocialBtn:hover {
+  background: var(--teal);
+  border-color: var(--sky);
+  color: var(--white, #fff);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(26, 107, 122, 0.45);
+}
+
+.footerSocialNote {
+  font-size: 0.78rem;
+  font-weight: 300;
+  line-height: 1.65;
+  color: rgba(232, 213, 176, 0.45);
+  font-style: italic;
+}
+
+/* ============================================================
+   BOTTOM BAR
+   ============================================================ */
+.footerBottom {
+  border-top: 1px solid rgba(77, 184, 204, 0.1);
+  background: rgba(0, 0, 0, 0.25);
+  position: relative;
+  z-index: 1;
+}
+
+.footerBottomInner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 18px 24px;
+}
+
+.footerCopy {
+  font-size: 0.78rem;
+  color: rgba(232, 213, 176, 0.4);
+  font-weight: 300;
+  letter-spacing: 0.03em;
+}
+
+.footerCredit {
+  font-size: 0.78rem;
+  color: rgba(232, 213, 176, 0.35);
+  font-weight: 300;
+  letter-spacing: 0.03em;
+}
+
+.footerHeart {
+  color: var(--orange);
+  display: inline-block;
+  animation: heartbeat 1.6s ease-in-out infinite;
+}
+
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1);    }
+  14%       { transform: scale(1.25); }
+  28%       { transform: scale(1);    }
+  42%       { transform: scale(1.18); }
+  56%       { transform: scale(1);    }
+}
+
+/* ============================================================
+   RESPONSIVE — Tablet
+   ============================================================ */
+@media (max-width: 900px) {
+  .footerInner {
+    grid-template-columns: 1fr 1fr;
+    gap: 40px 32px;
+    padding: 48px 24px 40px;
+  }
+
+  .footerBrand {
+    grid-column: 1 / -1; /* full width on tablet */
+    flex-direction: row;
+    align-items: center;
+    gap: 24px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid rgba(77, 184, 204, 0.1);
+  }
+
+  .footerTagline {
+    font-size: 1.1rem;
+  }
+}
+
+/* ============================================================
+   RESPONSIVE — Mobile
+   ============================================================ */
+@media (max-width: 560px) {
+  .footerInner {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    padding: 40px 20px 32px;
+  }
+
+  .footerBrand {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .footerBottomInner {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 6px;
+    padding: 16px 20px;
+  }
+
+  .footerSocials {
+    gap: 8px;
+  }
+
+  .footerSocialBtn {
+    width: 42px;
+    height: 42px;
+  }
+}

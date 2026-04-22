@@ -1,0 +1,275 @@
+/* ================== ROOT ================== */
+:root {
+  --teal:#1a6b7a;
+  --teal-light:#22899c;
+  --sky:#4db8cc;
+  --orange:#d4622a;
+  --orange-light:#e8784a;
+  --cream:#e8d5b0;
+  --charcoal:#1e1e1e;
+  --charcoal-mid:#252525;
+  --charcoal-deep:#161616;
+
+  --transition:0.35s cubic-bezier(.4,0,.2,1);
+}
+
+/* ================== BASE ================== */
+.eventContainer {
+  min-height:100vh;
+  font-family:'DM Sans',sans-serif;
+  color:var(--cream);
+  background:
+    radial-gradient(55% 40% at 0% 0%,rgba(26,107,122,.18),transparent 65%),
+    radial-gradient(45% 35% at 100% 100%,rgba(212,98,42,.1),transparent 60%),
+    var(--charcoal);
+  overflow-x:hidden;
+  animation:fadeIn .5s ease both;
+}
+
+@keyframes fadeIn {
+  from{opacity:0;transform:translateY(12px)}
+  to{opacity:1;transform:none}
+}
+
+/* ================== LAYOUT ================== */
+.event {
+  display:flex;
+  flex-direction:column;
+  max-width:1200px;
+  margin:auto;
+  padding:64px 28px;
+  gap:40px;
+  position:relative;
+}
+
+/* watermark */
+.event::before {
+  content:"EVENT";
+  position:absolute;
+  top:20px;
+  right:24px;
+  font:5rem 'Bebas Neue';
+  color:rgba(77,184,204,.05);
+  pointer-events:none;
+}
+
+/* ================== GALLERY ================== */
+.galleryWrap {
+  position:relative;
+  overflow:hidden;
+  border-radius:12px;
+  display:flex;
+  flex-direction:column;
+  box-shadow:
+    0 0 0 1px rgba(77,184,204,.18),
+    0 0 0 5px rgba(26,107,122,.1),
+    0 20px 50px rgba(0,0,0,.5);
+}
+
+/* corner accents */
+.galleryWrap::before,
+.galleryWrap::after {
+  content:'';
+  position:absolute;
+  width:50px;
+  height:50px;
+  border:3px solid;
+  z-index:2;
+}
+
+.galleryWrap::before {
+  top:-3px;
+  left:-3px;
+  border-color:var(--sky) transparent transparent var(--sky);
+}
+
+.galleryWrap::after {
+  bottom:-3px;
+  right:-3px;
+  border-color:transparent var(--orange) var(--orange) transparent;
+}
+
+/* ================== MAIN VIEW ================== */
+.galleryView {
+  position:relative;
+  width:100%;
+  height:70vh;
+  background:var(--charcoal-deep);
+  overflow:hidden;
+}
+
+/* slideshow images */
+.viewimg {
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  opacity:0;
+  transform:scale(1.03);
+  transition:opacity .4s ease, transform .4s ease;
+}
+
+/* active image */
+.viewimg.active {
+  opacity:1;
+  transform:scale(1);
+}
+
+/* ================== INDEX (TOP LEFT) ================== */
+.mainIndex {
+  position:absolute;
+  top:12px;
+  left:16px;
+  z-index:5;
+
+  font-size:0.9rem;
+  color:#fff;
+
+  background:rgba(0,0,0,0.35);
+  padding:4px 10px;
+  border-radius:6px;
+  backdrop-filter:blur(4px);
+}
+
+/* ================== THUMBNAILS ================== */
+.gallery {
+  display:flex;
+  overflow-x:auto;
+  background:var(--charcoal-deep);
+  border-top:1px solid rgba(212,98,42,.2);
+  scrollbar-width:none;
+}
+
+.gallery::-webkit-scrollbar {
+  display:none;
+}
+
+.eventImgContainer {
+  flex:0 0 20%;
+  min-width:70px;
+  cursor:pointer;
+  position:relative;
+  overflow:hidden;
+  transition:transform var(--transition);
+}
+
+/* active indicator */
+.eventImgContainer.active::after {
+  content:'';
+  position:absolute;
+  bottom:0;
+  left:0;
+  right:0;
+  height:3px;
+  background:var(--sky);
+}
+
+/* hover overlay */
+.eventImgContainer::before {
+  content:'';
+  position:absolute;
+  inset:0;
+  background:transparent;
+  transition:var(--transition);
+}
+
+.eventImgContainer:hover::before {
+  background:rgba(26,107,122,.2);
+}
+
+/* ================== THUMB IMAGE ================== */
+.imgContent {
+  height:80px;
+  overflow:hidden;
+}
+
+.imgEvent {
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transition:transform .35s ease, filter .3s ease;
+  filter:brightness(.7) saturate(.6);
+}
+
+.eventImgContainer:hover .imgEvent {
+  transform:scale(1.06);
+  filter:brightness(.85) saturate(.9);
+}
+
+.eventImgContainer.active .imgEvent {
+  filter:none;
+}
+
+/* ================== TEXT SECTION ================== */
+.eventAbout {
+  display:flex;
+  flex-direction:column;
+  gap:24px;
+}
+
+/* title */
+.titleText {
+  font:clamp(2rem,4vw,3rem) 'Bebas Neue';
+  letter-spacing:.05em;
+  background:linear-gradient(to right,var(--sky),var(--orange));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+/* description box */
+.descripttext {
+  padding:24px;
+  border-radius:10px;
+  background:rgba(232,213,176,.05);
+  border:1px solid rgba(232,213,176,.08);
+  transition:var(--transition);
+}
+
+.descripttext:hover {
+  background:rgba(232,213,176,.08);
+}
+
+/* paragraph */
+.textEvent {
+  font-size:clamp(.9rem,1.3vw,1rem);
+  line-height:1.8;
+  color:rgba(232,213,176,.8);
+}
+
+/* drop cap */
+.textEvent::first-letter {
+  float:left;
+  font:3.5rem 'Bebas Neue';
+  margin-right:8px;
+  color:var(--sky);
+}
+
+/* ================== RESPONSIVE ================== */
+@media (max-width:900px){
+  .galleryView {
+    height:60vh;
+  }
+}
+
+@media (max-width:480px){
+  .event {
+    padding:32px 16px;
+  }
+
+  .galleryView {
+    height:55vh;
+  }
+
+  .eventImgContainer {
+    flex:0 0 25%;
+  }
+
+  .imgContent {
+    height:60px;
+  }
+
+  .titleText {
+    font-size:2rem;
+  }
+}
