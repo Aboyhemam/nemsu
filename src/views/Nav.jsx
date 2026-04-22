@@ -16,7 +16,7 @@ function Nav() {
       {/* ✅ MUST be outside Routes */}
       <ScrollToTop />
 
-      <Routes>
+      <Routes basename="/nemsu">
 
         <Route path='/' element={
           <>

@@ -5,13 +5,17 @@ import heroImg from './assets/hero.png'
 import './App.css'
 import Home from "./views/Home"
 import Nav from "./views/Nav"
+import { HashRouter } from 'react-router-dom'
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
     <>
-    <Nav/>
+    <HashRouter>
+      <Nav/>
+    </HashRouter>
+    
     </>
   )
 }
