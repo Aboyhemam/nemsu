@@ -4,9 +4,10 @@ import babel from '@rolldown/plugin-babel'
 
 // https://vite.dev/config/
 export default defineConfig({
+  base: '/nemsu/', // ✅ move it here
+
   plugins: [
     react(),
-    babel({ presets: [reactCompilerPreset()] }),
-    base("/nemsu")
+    babel({ presets: [reactCompilerPreset()] })
   ],
 })
