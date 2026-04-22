@@ -3,29 +3,26 @@ import "../css/event.css"
 
 function Event() {
 
-  const images1 = [
-    "/pictures/fresher meet/IMG-20250810-WA0056.jpg",
-    "/pictures/fresher meet/IMG-20250810-WA0076.jpg",
-    "/pictures/fresher meet/IMG-20250809-WA0067.jpg",
-    "/pictures/fresher meet/IMG-20250810-WA0062.jpg",
-    "/pictures/fresher meet/IMG-20250810-WA0345.jpg"
-  ]
+  const images1 = Object.values(
+  import.meta.glob('../assets/fresher meet/*.{jpg,JPG,png}', {
+    eager: true,
+    import: 'default'
+  })
+)
 
-  const images2 = [
-    "/pictures/ningol chakouba/1.JPG",
-    "/pictures/ningol chakouba/2.JPG",
-    "/pictures/ningol chakouba/3.JPG",
-    "/pictures/ningol chakouba/4.JPG",
-    "/pictures/ningol chakouba/5.JPG"
-  ]
+  const images2 = Object.values(
+  import.meta.glob('../assets/ningol chakoubat/*.{jpg,JPG,png}', {
+    eager: true,
+    import: 'default'
+  })
+)
 
-  const images3= [
-    "/pictures/eachu/IMG_5202.jpg",
-    "/pictures/eachu/IMG_7872.jpg",
-    "/pictures/eachu/IMG_8218.JPG",
-    "/pictures/eachu/IMG_8449.JPG",
-    "/pictures/eachu/IMG_9074.JPG"
-  ]
+  const images3 = Object.values(
+  import.meta.glob('../assets/eachu/*.{jpg,JPG,png}', {
+    eager: true,
+    import: 'default'
+  })
+)
 
   const [activeIndex, setActiveIndex] = useState(0)
   const [activeIndex1, setActiveIndex1] = useState(0)

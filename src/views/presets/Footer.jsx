@@ -1,6 +1,7 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 import "../../css/footer.css";
+import logo from '../../assets/pictures/logo.png'
 
 function Footer() {
   const currentYear = new Date().getFullYear()
@@ -16,7 +17,7 @@ function Footer() {
         {/* ── Column 1 : Brand ── */}
         <div className="footerBrand">
           <div className="footerLogo">
-            <img src="/logo.png" alt="NEMSU" />
+            <img src={logo} alt="NEMSU" />
           </div>
           <p className="footerTagline">
             Nerist Manipur<br />Students' Union

@@ -1,6 +1,8 @@
 import React from 'react'
 import Header from './presets/Header'
 import "./../css/home.css"
+import pic from "../assets/pictures/IMG-20260422-WA0075.jpg"
+
 function Home() {
   return (
     <div className="homeBody">
@@ -17,7 +19,7 @@ function Home() {
         <div className="bodyBody">
             <div className="picContainer">
                 <div className="pic">
-                    <img src="/pictures/IMG-20260422-WA0075.jpg" alt="" className="homePic" />
+                    <img src={pic} alt="" className="homePic" />
                 </div>
             </div>
             <div className="textContainer">

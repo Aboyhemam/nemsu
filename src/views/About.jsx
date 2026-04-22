@@ -1,11 +1,18 @@
 import React from 'react'
 import "../css/about.css"
+import pic1 from "../assets/pictures/gfm.jpg"
+import pic2 from "../assets/pictures/fresher meet/IMG-20250810-WA0345.jpg"
+import pic3 from "../assets/pictures/pic1.jpg"
+import pic4 from "../assets/pictures/eachu/IMG_9074.JPG"
+import pic5 from "../assets/pictures/IMG_0501.jpg"
+import pic6 from "../assets/pictures/eachu/IMG_5202.jpg"
+import pic7 from "../assets/pictures/ningol chakouba/5.JPG"
 function About() {
   return (
     <div className="aboutContainer">
         <div className="contentRight">
             <div className="imgContainer">
-                <img src="/pictures/gfm.jpg" alt="" className="aboutImg" />
+                <img src={pic1} alt="" className="aboutImg" />
             </div>
             <div className="parContainer">
                 <div className="paraText">
@@ -15,7 +22,7 @@ function About() {
         </div>
         <div className="contentLeft">
             <div className="imgContainer">
-                <img src="/pictures/fresher meet/IMG-20250810-WA0345.jpg" alt="" className="aboutImg" />
+                <img src={pic2} alt="" className="aboutImg" />
             </div>
             <div className="parContainer">
                 <div className="paraText">
@@ -25,7 +32,7 @@ function About() {
         </div>
         <div className="contentRight">
             <div className="imgContainer">
-                <img src="/pictures/pic1.jpg" alt="" className="aboutImg" />
+                <img src={pic3} alt="" className="aboutImg" />
             </div>
             <div className="parContainer">
                 <div className="paraText">
@@ -35,7 +42,7 @@ function About() {
         </div>
         <div className="contentLeft">
             <div className="imgContainer">
-                <img src="/pictures/eachu/IMG_9074.JPG" alt="" className="aboutImg" />
+                <img src={pic4} alt="" className="aboutImg" />
             </div>
             <div className="parContainer">
                 <div className="paraText">
@@ -45,7 +52,7 @@ function About() {
         </div>
         <div className="contentRight">
             <div className="imgContainer">
-                <img src="/pictures/IMG_0501.jpg" alt="" className="aboutImg" />
+                <img src={pic5} alt="" className="aboutImg" />
             </div>
             <div className="parContainer">
                 <div className="paraText">
@@ -55,7 +62,7 @@ function About() {
         </div>
         <div className="contentLeft">
             <div className="imgContainer">
-                <img src="/pictures/eachu/IMG_5202.jpg" alt="" className="aboutImg" />
+                <img src={pic6} alt="" className="aboutImg" />
             </div>
             <div className="parContainer">
                 <div className="paraText">
@@ -65,7 +72,7 @@ function About() {
         </div>
         <div className="contentRight">
             <div className="imgContainer">
-                <img src="/pictures/ningol chakouba/5.JPG" alt="" className="aboutImg" />
+                <img src={pic7} alt="" className="aboutImg" />
             </div>
             <div className="parContainer">
                 <div className="paraText">
