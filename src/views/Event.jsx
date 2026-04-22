@@ -4,14 +4,14 @@ import "../css/event.css"
 function Event() {
 
   const images1 = Object.values(
-  import.meta.glob('../assets/fresher meet/*.{jpg,JPG,png}', {
+  import.meta.glob('../assets/fresher-meet/*.{jpg,JPG,png}', {
     eager: true,
     import: 'default'
   })
 )
 
   const images2 = Object.values(
-  import.meta.glob('../assets/ningol chakoubat/*.{jpg,JPG,png}', {
+  import.meta.glob('../assets/ningol-chakouba/*.{jpg,JPG,png}', {
     eager: true,
     import: 'default'
   })

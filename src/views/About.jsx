@@ -1,12 +1,12 @@
 import React from 'react'
 import "../css/about.css"
 import pic1 from "../assets/pictures/gfm.jpg"
-import pic2 from "../assets/pictures/fresher meet/IMG-20250810-WA0345.jpg"
+import pic2 from "../assets/pictures/fresher-meet/IMG-20250810-WA0345.jpg"
 import pic3 from "../assets/pictures/pic1.jpg"
 import pic4 from "../assets/pictures/eachu/IMG_9074.JPG"
 import pic5 from "../assets/pictures/IMG_0501.jpg"
 import pic6 from "../assets/pictures/eachu/IMG_5202.jpg"
-import pic7 from "../assets/pictures/ningol chakouba/5.JPG"
+import pic7 from "../assets/pictures/ningol-chakouba/5.JPG"
 function About() {
   return (
     <div className="aboutContainer">
