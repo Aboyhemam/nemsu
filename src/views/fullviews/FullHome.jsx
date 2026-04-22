@@ -7,7 +7,7 @@ function FullHome() {
   return (
     <>
     <Header/>
-    <Homet/>
+    <Home/>
     <Footer/>
     </>
   )

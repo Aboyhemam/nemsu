@@ -12,22 +12,32 @@ import FullEvent from './fullviews/FullEvent'
 import FullSupport from './fullviews/FullSupport'
 import ScrollToTop from './ScrollToTop'
 
+// ✅ Layout wrapper
+function RootLayout() {
+  return (
+    <>
+      <ScrollToTop />
+      <Outlet />
+    </>
+  )
+}
 
-// ✅ Main component
+// ✅ Router
+const router = createHashRouter([
+  {
+    path: "/",
+    element: <RootLayout />,
+    children: [
+      { index: true, element: <FullHome /> },
+      { path: "about", element: <FullAbout /> },
+      { path: "events", element: <FullEvent /> },
+      { path: "contact", element: <FullContact /> },
+      { path: "support", element: <FullSupport /> }
+    ]
+  }
+])
+
 function Nav() {
-  const router=createHashRouter([
-    {
-      element: <ScrollToTop/>,
-      children:[
-        {path:"/", element:<FullHome/>},
-        {path:"/about", element:<FullAbout/>},
-        {path:"/events", element:<FullEvent/>},
-        {path:"/contact", element:<FullContact/>},
-        {path:"/support", element:<FullSupport/>}
-      ]
-    }
-  ])
-
   return <RouterProvider router={router} />
 }
 
