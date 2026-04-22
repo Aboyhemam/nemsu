@@ -4,7 +4,7 @@ import babel from '@rolldown/plugin-babel'
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: '/', // ✅ move it here
+  base: '/nemsu/', // ✅ move it here
 
   plugins: [
     react(),

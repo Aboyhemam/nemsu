@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
 import "../../css/header.css";
+import logo from '../../assets/pictures/logo.png'
 
 function Header() {
   const [menuOpen, setMenuOpen] = useState(false)
@@ -23,7 +24,7 @@ function Header() {
         {/* Logo */}
         <div className="logoContainer">
           <div className="logo">
-            <img src="/logo.png" alt="NEMSU" />
+            <img src={logo} alt="NEMSU" />
           </div>
         </div>
 
