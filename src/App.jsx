@@ -5,7 +5,7 @@ import heroImg from './assets/hero.png'
 import './App.css'
 import Home from "./views/Home"
 import Nav from "./views/Nav"
-import { BrowserRouter } from 'react-router-dom'
+
 
 function App() {
   const [count, setCount] = useState(0)
