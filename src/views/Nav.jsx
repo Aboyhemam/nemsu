@@ -5,44 +5,29 @@ import {
   Outlet
 } from 'react-router-dom'
 
-import Home from './Home'
-import Header from './presets/Header'
-import Footer from './presets/Footer'
-import About from './About'
-import Event from './Event'
-import Contact from './Contact'
-import Support from './Support'
+import FullAbout from './fullviews/FullAbout'
+import FullHome from './fullviews/FullHome'
+import FullContact from './fullviews/FullContact'
+import FullEvent from './fullviews/FullEvent'
+import FullSupport from './fullviews/FullSupport'
 import ScrollToTop from './ScrollToTop'
 
-// ✅ Layout component (shared UI)
-function RootLayout() {
-  return (
-    <>
-      <Header />
-      <ScrollToTop />
-      <Outlet />
-      <Footer />
-    </>
-  )
-}
-
-// ✅ Router configuration (OUTSIDE component)
-const router = createHashRouter([
-  {
-    path: "/",
-    element: <RootLayout />,
-    children: [
-      { index: true, element: <Home /> },
-      { path: "about", element: <About /> },
-      { path: "event", element: <Event /> },
-      { path: "contact", element: <Contact /> },
-      { path: "support", element: <Support /> },
-    ],
-  },
-])
 
 // ✅ Main component
 function Nav() {
+  const router=createHashRouter([
+    {
+      element: <ScrollToTop/>,
+      children:[
+        {path:"/", element:<FullHome/>},
+        {path:"/about", element:<FullAbout/>},
+        {path:"/events", element:<FullEvent/>},
+        {path:"/contact", element:<FullContact/>},
+        {path:"/support", element:<FullSupport/>}
+      ]
+    }
+  ])
+
   return <RouterProvider router={router} />
 }
 
