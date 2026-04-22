@@ -7,6 +7,7 @@ import pic4 from "../assets/pictures/eachu/IMG_9074.JPG"
 import pic5 from "../assets/pictures/IMG_0501.jpg"
 import pic6 from "../assets/pictures/eachu/IMG_5202.jpg"
 import pic7 from "../assets/pictures/ningol-chakouba/5.JPG"
+
 function About() {
   return (
     <div className="aboutContainer">

@@ -1,24 +1,25 @@
 import React, { useState } from 'react'
 import "../css/event.css"
 
+
 function Event() {
 
   const images1 = Object.values(
-  import.meta.glob('../assets/fresher-meet/*.{jpg,JPG,png}', {
+  import.meta.glob('../assets/pictures/fresher-meet/*.{jpg,JPG,png}', {
     eager: true,
     import: 'default'
   })
 )
 
   const images2 = Object.values(
-  import.meta.glob('../assets/ningol-chakouba/*.{jpg,JPG,png}', {
+  import.meta.glob('../assets/pictures/ningol-chakouba/*.{jpg,JPG,png}', {
     eager: true,
     import: 'default'
   })
 )
 
   const images3 = Object.values(
-  import.meta.glob('../assets/eachu/*.{jpg,JPG,png}', {
+  import.meta.glob('../assets/pictures/eachu/*.{jpg,JPG,png}', {
     eager: true,
     import: 'default'
   })
