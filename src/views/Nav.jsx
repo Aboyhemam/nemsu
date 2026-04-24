@@ -23,19 +23,24 @@ function RootLayout() {
 }
 
 // ✅ Router
-const router = createBrowserRouter([
+const router = createBrowserRouter(
+  [
+    {
+      path: "/",
+      element: <RootLayout />,
+      children: [
+        { index: true, element: <FullHome /> },
+        { path: "about", element: <FullAbout /> },
+        { path: "events", element: <FullEvent /> },
+        { path: "contact", element: <FullContact /> },
+        { path: "support", element: <FullSupport /> }
+      ]
+    }
+  ],
   {
-    path: "/",
-    element: <RootLayout />,
-    children: [
-      { index: true, element: <FullHome /> },
-      { path: "about", element: <FullAbout /> },
-      { path: "events", element: <FullEvent /> },
-      { path: "contact", element: <FullContact /> },
-      { path: "support", element: <FullSupport /> }
-    ]
+    basename: "/nemsu"   // ✅ ADD THIS
   }
-])
+)
 
 function Nav() {
   return <RouterProvider router={router} />
