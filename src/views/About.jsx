@@ -1,5 +1,6 @@
 import React from 'react'
 import "../css/about.css"
+
 import pic1 from "../assets/pictures/gfm.jpg"
 import pic2 from "../assets/pictures/fresher-meet/IMG-20250810-WA0345.jpg"
 import pic3 from "../assets/pictures/pic1.jpg"
@@ -8,80 +9,59 @@ import pic5 from "../assets/pictures/IMG_0501.jpg"
 import pic6 from "../assets/pictures/eachu/IMG_5202.jpg"
 import pic7 from "../assets/pictures/ningol-chakouba/5.JPG"
 
+const data = [
+  {
+    img: pic1,
+    text: "The Nerist Manipur Students’ Union (NEMSU) stands as a vibrant student organization..."
+  },
+  {
+    img: pic2,
+    text: "One of the most anticipated events organized by NEMSU is the Fresher Meet..."
+  },
+  {
+    img: pic3,
+    text: "Another key event is the One Day Sports Meet..."
+  },
+  {
+    img: pic4,
+    text: "NEMSU also takes pride in celebrating important cultural festivals..."
+  },
+  {
+    img: pic5,
+    text: "One of the most lively and culturally rich programs is Thabal Chongba..."
+  },
+  {
+    img: pic6,
+    text: "Finally, the Farewell program is organized to bid a heartfelt goodbye..."
+  },
+  {
+    img: pic7,
+    text: "Through these events and initiatives, NEMSU continues to uphold its mission..."
+  }
+]
+
 function About() {
   return (
     <div className="aboutContainer">
-        <div className="contentRight">
-            <div className="imgContainer">
-                <img src={pic1} alt="" className="aboutImg" />
-            </div>
-            <div className="parContainer">
-                <div className="paraText">
-                    <p className="aboutText">The Nerist Manipur Students’ Union (NEMSU) stands as a vibrant student organization dedicated to the welfare, unity, and cultural identity of Manipuri students at NERIST. Guided by its motto, “Learn, Unity and Peace,” NEMSU plays a vital role in creating a supportive environment where students can grow academically while staying connected to their roots. Beyond academics, the union actively organizes events that celebrate tradition, strengthen friendships, and build a sense of belonging among students.</p>
-                </div>
-            </div>
+      {data.map((item, index) => (
+        <div 
+          key={index} 
+          className={`aboutSection ${index % 2 === 0 ? "right" : "left"}`}
+        >
+          <div className="imgContainer">
+            <img 
+              src={item.img} 
+              alt="NEMSU event" 
+              className="aboutImg"
+              loading="lazy"
+            />
+          </div>
+
+          <div className="parContainer">
+            <p className="aboutText">{item.text}</p>
+          </div>
         </div>
-        <div className="contentLeft">
-            <div className="imgContainer">
-                <img src={pic2} alt="" className="aboutImg" />
-            </div>
-            <div className="parContainer">
-                <div className="paraText">
-                    <p className="aboutText">One of the most anticipated events organized by NEMSU is the Fresher Meet, which warmly welcomes new students into the community. This program helps freshers adapt to campus life, connect with seniors, and feel at home in a new environment. It is filled with cultural performances, interactive sessions, and moments that lay the foundation for lasting friendships.</p>
-                </div>
-            </div>
-        </div>
-        <div className="contentRight">
-            <div className="imgContainer">
-                <img src={pic3} alt="" className="aboutImg" />
-            </div>
-            <div className="parContainer">
-                <div className="paraText">
-                    <p className="aboutText">Another key event is the One Day Sports Meet, which promotes physical fitness, teamwork, and sportsmanship. Students participate enthusiastically in various games and activities, making it a day of energy, excitement, and unity. The event not only encourages healthy competition but also strengthens the bond among participants.</p>
-                </div>
-            </div>
-        </div>
-        <div className="contentLeft">
-            <div className="imgContainer">
-                <img src={pic4} alt="" className="aboutImg" />
-            </div>
-            <div className="parContainer">
-                <div className="paraText">
-                    <p className="aboutText">NEMSU also takes pride in celebrating important cultural festivals such as Ningol Chakouba and Cheiraoba. These occasions bring students together to relive the warmth of home and family traditions. Ningol Chakouba, known for honoring women and strengthening family ties, is celebrated with shared meals and joy, while Cheiraoba, the Manipuri New Year, is marked with prayers, cultural rituals, and a renewed sense of hope.</p>
-                </div>
-            </div>
-        </div>
-        <div className="contentRight">
-            <div className="imgContainer">
-                <img src={pic5} alt="" className="aboutImg" />
-            </div>
-            <div className="parContainer">
-                <div className="paraText">
-                    <p className="aboutText">One of the most lively and culturally rich programs is Thabal Chongba, a traditional Manipuri dance event that fills the campus with rhythm and joy. It serves as a platform for students to express their cultural heritage while enjoying a festive atmosphere.</p>
-                </div>
-            </div>
-        </div>
-        <div className="contentLeft">
-            <div className="imgContainer">
-                <img src={pic6} alt="" className="aboutImg" />
-            </div>
-            <div className="parContainer">
-                <div className="paraText">
-                    <p className="aboutText">Finally, the Farewell program is organized to bid a heartfelt goodbye to graduating students. It is an emotional yet celebratory event where juniors express gratitude and seniors reflect on their journey at NERIST. The program highlights achievements, memories, and the strong bonds formed over the years.</p>
-                </div>
-            </div>
-        </div>
-        <div className="contentRight">
-            <div className="imgContainer">
-                <img src={pic7} alt="" className="aboutImg" />
-            </div>
-            <div className="parContainer">
-                <div className="paraText">
-                    <p className="aboutText">Through these events and initiatives, NEMSU continues to uphold its mission of fostering unity, preserving culture, and supporting students. It remains not just an organization, but a family that nurtures growth, friendship, and harmony among Manipuri students at NERIST.</p>
-                </div>
-            </div>
-        </div>
-        
+      ))}
     </div>
   )
 }
