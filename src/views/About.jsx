@@ -13,7 +13,7 @@ function About() {
     <div className="aboutContainer">
         <div className="contentRight">
             <div className="imgContainer">
-                <img src={pic1} alt="" className="aboutImg" />
+                <img src="{pic1}" alt="" className="aboutImg" />
             </div>
             <div className="parContainer">
                 <div className="paraText">

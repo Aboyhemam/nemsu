@@ -1,6 +1,6 @@
 import React from 'react'
 import {
-  createHashRouter,
+  createBrowserRouter,
   RouterProvider,
   Outlet
 } from 'react-router-dom'
@@ -23,7 +23,7 @@ function RootLayout() {
 }
 
 // ✅ Router
-const router = createHashRouter([
+const router = createBrowserRouter([
   {
     path: "/",
     element: <RootLayout />,
