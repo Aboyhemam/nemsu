@@ -1,0 +1,96 @@
+/* Wrapper */
+.adminLoginFormWrap {
+    min-height: 100dvh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+
+    background-image:
+    radial-gradient(ellipse 70% 50% at 15% 0%, rgba(26, 107, 122, 0.35) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 40% at 85% 100%, rgba(232, 120, 74, 0.15) 0%, transparent 60%);
+    color: white;
+}
+
+/* Card */
+.adminLoginFormContainer {
+    width: 100%;
+    max-width: 400px;
+    padding: 25px;
+    border-radius: 20px;
+
+    background: rgba(47, 46, 46, 0.6);
+    backdrop-filter: blur(10px);
+
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+/* Form */
+.adminLoginForm {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+/* Title */
+.adminLogin {
+    text-align: center;
+    font-size: 1.8rem;
+}
+
+/* Input group */
+.loginComponent {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+/* Inputs */
+input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+
+    font-size: 16px; /* prevents zoom on iOS */
+}
+
+/* Focus effect */
+input:focus {
+    box-shadow: 0 0 0 2px rgba(232, 120, 74, 0.6);
+}
+
+/* Button */
+.login {
+    margin-top: 10px;
+    padding: 12px;
+    border-radius: 10px;
+    border: none;
+
+    background: rgb(232, 120, 74);
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+/* Hover */
+.login:hover {
+    background: rgb(232 120 74 / 0.8);
+}
+
+/* Mobile tweaks */
+@media (max-width: 480px) {
+    .adminLoginFormContainer {
+        padding: 20px;
+        border-radius: 15px;
+    }
+
+    .adminLogin {
+        font-size: 1.5rem;
+    }
+}

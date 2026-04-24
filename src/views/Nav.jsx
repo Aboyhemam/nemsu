@@ -11,6 +11,8 @@ import FullContact from './fullviews/FullContact'
 import FullEvent from './fullviews/FullEvent'
 import FullSupport from './fullviews/FullSupport'
 import ScrollToTop from './ScrollToTop'
+import AdminLogin from './admin/AdminLogin'
+import AdminHome from './admin/AdminHome'
 
 // ✅ Layout wrapper
 function RootLayout() {
@@ -33,7 +35,9 @@ const router = createBrowserRouter(
         { path: "about", element: <FullAbout /> },
         { path: "events", element: <FullEvent /> },
         { path: "contact", element: <FullContact /> },
-        { path: "support", element: <FullSupport /> }
+        { path: "support", element: <FullSupport /> },
+        { path: "admin", element: <AdminLogin/> },
+        { path: "adminhome", element: <AdminHome/> }
       ]
     }
   ],
