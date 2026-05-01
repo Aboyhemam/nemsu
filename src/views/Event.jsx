@@ -131,7 +131,7 @@ function Event() {
       try {
         setLoading(true)
         setError(null)
-        const res = await fetch('https://nemsu-backend.onrender.com/admin/getEvent', { signal: controller.signal })
+        const res = await fetch('https://nemsu-backend.onrender.com/admin/getEvents', { signal: controller.signal })
         if (!res.ok) throw new Error(`Server error ${res.status}`)
         const data = await res.json()
         // Response shape: { success, count, data: [...] }

@@ -94,7 +94,7 @@ function EventUpload() {
     images.forEach((img) => formData.append('images', img.file))
 
     try {
-      const res = await fetch('https://nemsu-backend.onrender.com/event/create', {
+      const res = await fetch('https://nemsu-backend.onrender.com/admin/createEvents', {
         method: 'POST',
         body: formData,
         // Do NOT set Content-Type — browser sets it with boundary automatically
