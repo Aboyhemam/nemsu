@@ -70,7 +70,7 @@ const router = createBrowserRouter(
     }
   ],
   {
-    basename: "/nemsu"
+    basename: "/"
   }
 )
 
