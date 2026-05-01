@@ -1,96 +1,353 @@
-/* Wrapper */
+/* ============================================================
+   NEMSU Admin Login — adminlogin.css
+   Palette: Teal #1a6b7a | Sky #4db8cc | Orange #d4622a | Cream #e8d5b0
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&family=DM+Mono:wght@400;500&display=swap');
+
+:root {
+  --teal:        #1a6b7a;
+  --sky:         #4db8cc;
+  --sky-dim:     rgba(77, 184, 204, 0.1);
+  --sky-border:  rgba(77, 184, 204, 0.25);
+  --orange:      #d4622a;
+  --cream:       #e8d5b0;
+  --charcoal:    #1e1e1e;
+  --charcoal-mid:#252525;
+  --charcoal-hi: #2d2d2d;
+  --border:      rgba(255, 255, 255, 0.07);
+  --error:       #e05c5c;
+  --transition:  0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ── Full-page centering ── */
 .adminLoginFormWrap {
-    min-height: 100dvh;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-
-    background-image:
-    radial-gradient(ellipse 70% 50% at 15% 0%, rgba(26, 107, 122, 0.35) 0%, transparent 70%),
-    radial-gradient(ellipse 50% 40% at 85% 100%, rgba(232, 120, 74, 0.15) 0%, transparent 60%);
-    color: white;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--charcoal);
+  background-image:
+    linear-gradient(rgba(77,184,204,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(77,184,204,0.025) 1px, transparent 1px),
+    radial-gradient(ellipse 65% 55% at 10% 10%, rgba(26,107,122,0.28) 0%, transparent 65%),
+    radial-gradient(ellipse 45% 40% at 90% 90%, rgba(212,98,42,0.12)  0%, transparent 55%);
+  background-size: 40px 40px, 40px 40px, 100% 100%, 100% 100%;
+  padding: 24px;
+  font-family: 'DM Sans', sans-serif;
 }
 
-/* Card */
+/* ── Card ── */
 .adminLoginFormContainer {
-    width: 100%;
-    max-width: 400px;
-    padding: 25px;
-    border-radius: 20px;
-
-    background: rgba(47, 46, 46, 0.6);
-    backdrop-filter: blur(10px);
-
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  width: 100%;
+  max-width: 420px;
+  background: var(--charcoal-mid);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow:
+    0 0 0 1px rgba(77,184,204,0.08),
+    0 24px 64px rgba(0,0,0,0.6),
+    0 4px 12px rgba(0,0,0,0.4);
+  animation: loginCardIn 0.5s cubic-bezier(0.4, 0, 0.2, 1) both;
 }
 
-/* Form */
+@keyframes loginCardIn {
+  from { opacity: 0; transform: translateY(24px) scale(0.98); }
+  to   { opacity: 1; transform: translateY(0)   scale(1);     }
+}
+
+/* ── Top colour stripe ── */
+.loginStripe {
+  height: 3px;
+  background: linear-gradient(90deg, var(--teal), var(--sky), var(--orange), var(--teal));
+  background-size: 200% 100%;
+  animation: stripeSlide 3s linear infinite;
+}
+
+@keyframes stripeSlide {
+  0%   { background-position: 0%   0; }
+  100% { background-position: 200% 0; }
+}
+
+/* ── Logo area ── */
+.loginLogoArea {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 28px 32px 0;
+  gap: 6px;
+}
+
+.loginLogo {
+  height: 52px;
+  width: auto;
+  object-fit: contain;
+  filter: brightness(1.1) drop-shadow(0 0 10px rgba(77,184,204,0.35));
+}
+
+.loginLogoSub {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin: 0;
+}
+
+/* ── Form ── */
 .adminLoginForm {
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 24px 32px 28px;
 }
 
-/* Title */
-.adminLogin {
-    text-align: center;
-    font-size: 1.8rem;
+.adminLoginTitle {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2rem;
+  letter-spacing: 0.12em;
+  background: linear-gradient(135deg, var(--sky), var(--cream));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0 0 2px;
+  text-align: center;
 }
 
-/* Input group */
+.adminLoginSub {
+  font-size: 0.75rem;
+  font-weight: 300;
+  color: rgba(232, 213, 176, 0.4);
+  text-align: center;
+  letter-spacing: 0.03em;
+  margin: -14px 0 0;
+}
+
+/* ── Error banner ── */
+.loginError {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(224, 92, 92, 0.1);
+  border: 1px solid rgba(224, 92, 92, 0.3);
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 0.82rem;
+  color: var(--error);
+  animation: loginErrorShake 0.4s ease;
+}
+
+@keyframes loginErrorShake {
+  0%, 100% { transform: translateX(0);   }
+  20%       { transform: translateX(-6px); }
+  40%       { transform: translateX(6px);  }
+  60%       { transform: translateX(-4px); }
+  80%       { transform: translateX(4px);  }
+}
+
+.loginErrorIcon {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--error);
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* ── Field ── */
 .loginComponent {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
 }
 
-/* Inputs */
-input {
-    width: 100%;
-    padding: 12px;
-    border-radius: 10px;
-    border: none;
-    outline: none;
-
-    font-size: 16px; /* prevents zoom on iOS */
+.loginLabel {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--sky);
 }
 
-/* Focus effect */
-input:focus {
-    box-shadow: 0 0 0 2px rgba(232, 120, 74, 0.6);
+.loginInputWrap {
+  position: relative;
+  display: flex;
+  align-items: center;
 }
 
-/* Button */
-.login {
-    margin-top: 10px;
-    padding: 12px;
-    border-radius: 10px;
-    border: none;
-
-    background: rgb(232, 120, 74);
-    color: white;
-    font-size: 16px;
-    font-weight: 600;
-
-    cursor: pointer;
-    transition: 0.3s ease;
+.loginInputIcon {
+  position: absolute;
+  left: 12px;
+  font-size: 0.9rem;
+  color: rgba(77, 184, 204, 0.45);
+  pointer-events: none;
+  line-height: 1;
 }
 
-/* Hover */
-.login:hover {
-    background: rgb(232 120 74 / 0.8);
+.loginInput {
+  width: 100%;
+  background: var(--charcoal-hi);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px 42px 12px 36px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem;
+  color: var(--cream);
+  outline: none;
+  caret-color: var(--sky);
+  transition: border-color var(--transition), background var(--transition), box-shadow var(--transition);
 }
 
-/* Mobile tweaks */
+.loginInput::placeholder { color: rgba(232, 213, 176, 0.2); }
+
+.loginInput:focus {
+  border-color: var(--sky-border);
+  background: rgba(26, 107, 122, 0.1);
+  box-shadow: 0 0 0 3px rgba(77, 184, 204, 0.08);
+}
+
+.loginInput:disabled { opacity: 0.6; cursor: not-allowed; }
+
+/* Show/hide password toggle */
+.loginTogglePass {
+  position: absolute;
+  right: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 0.85rem;
+  color: rgba(232, 213, 176, 0.35);
+  padding: 4px;
+  line-height: 1;
+  transition: color var(--transition);
+}
+
+.loginTogglePass:hover { color: rgba(232, 213, 176, 0.75); }
+
+/* ── Submit button ── */
+.loginBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 13px;
+  border-radius: 8px;
+  border: none;
+  background: var(--orange);
+  color: #fff;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  box-shadow: 0 2px 12px rgba(212, 98, 42, 0.35);
+  margin-top: 4px;
+  transition: background var(--transition), box-shadow var(--transition), transform var(--transition);
+}
+
+.loginBtn:hover:not(:disabled) {
+  background: #e8784a;
+  box-shadow: 0 6px 22px rgba(212, 98, 42, 0.5);
+  transform: translateY(-2px);
+}
+
+.loginBtn:disabled { opacity: 0.55; cursor: not-allowed; transform: none; }
+
+.loginBtnLoading { background: var(--teal); box-shadow: 0 2px 12px rgba(26,107,122,0.3); }
+
+.loginSpinner {
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgba(255,255,255,0.3);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  flex-shrink: 0;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ── Footer note ── */
+.loginFootnote {
+  text-align: center;
+  font-size: 0.7rem;
+  color: rgba(232, 213, 176, 0.2);
+  padding: 0 32px 20px;
+  font-weight: 300;
+  letter-spacing: 0.03em;
+}
+
+/* ============================================================
+   PROTECTED ROUTE — checking / blocked screens
+   ============================================================ */
+.protectedChecking {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  background: var(--charcoal);
+  color: rgba(232, 213, 176, 0.5);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem;
+}
+
+.protectedSpinner {
+  width: 32px;
+  height: 32px;
+  border: 3px solid rgba(77,184,204,0.15);
+  border-top-color: var(--sky);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+.protectedBlocked {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  background: var(--charcoal);
+  font-family: 'DM Sans', sans-serif;
+  color: var(--cream);
+  text-align: center;
+  padding: 40px;
+}
+
+.protectedBlockedIcon { font-size: 3rem; }
+
+.protectedBlockedTitle {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2rem;
+  letter-spacing: 0.1em;
+  color: var(--error, #e05c5c);
+  margin: 0;
+}
+
+.protectedBlockedMsg {
+  font-size: 0.9rem;
+  font-weight: 300;
+  color: rgba(232, 213, 176, 0.45);
+  max-width: 380px;
+  line-height: 1.75;
+  margin: 0;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
 @media (max-width: 480px) {
-    .adminLoginFormContainer {
-        padding: 20px;
-        border-radius: 15px;
-    }
-
-    .adminLogin {
-        font-size: 1.5rem;
-    }
+  .adminLoginFormContainer { border-radius: 12px; }
+  .adminLoginForm { padding: 20px 20px 24px; }
+  .loginLogoArea  { padding: 24px 20px 0; }
+  .loginFootnote  { padding: 0 20px 18px; }
 }

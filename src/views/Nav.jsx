@@ -2,7 +2,8 @@ import React from 'react'
 import {
   createBrowserRouter,
   RouterProvider,
-  Outlet
+  Outlet,
+  Navigate
 } from 'react-router-dom'
 
 import FullAbout from './fullviews/FullAbout'
@@ -11,8 +12,11 @@ import FullContact from './fullviews/FullContact'
 import FullEvent from './fullviews/FullEvent'
 import FullSupport from './fullviews/FullSupport'
 import ScrollToTop from './ScrollToTop'
+
 import AdminLogin from './admin/AdminLogin'
 import AdminHome from './admin/AdminHome'
+import EventUpload from './admin/EventUpload'
+import ProtectedRoute from './Protectedroute'
 
 // ✅ Layout wrapper
 function RootLayout() {
@@ -31,18 +35,42 @@ const router = createBrowserRouter(
       path: "/",
       element: <RootLayout />,
       children: [
+        // ── Public pages ──
         { index: true, element: <FullHome /> },
         { path: "about", element: <FullAbout /> },
         { path: "events", element: <FullEvent /> },
         { path: "contact", element: <FullContact /> },
         { path: "support", element: <FullSupport /> },
-        { path: "admin", element: <AdminLogin/> },
-        { path: "adminhome", element: <AdminHome/> }
+
+        // ── Admin login (must be public) ──
+        { path: "admin", element: <AdminLogin /> },
+        
+
+        // ── Protected routes ──
+        {
+          path: "adminhome",
+          element: (
+            <ProtectedRoute>
+              <AdminHome />
+            </ProtectedRoute>
+          )
+        },
+        {
+          path: "adminEvent",
+          element: (
+            <ProtectedRoute>
+              <EventUpload />
+            </ProtectedRoute>
+          )
+        },
+
+        // ── Fallback ──
+        { path: "*", element: <Navigate to="/" replace /> }
       ]
     }
   ],
   {
-    basename: "/nemsu"   // ✅ ADD THIS
+    basename: "/nemsu"
   }
 )
 

@@ -13,7 +13,7 @@ const adminModules = [
   },
   {
     id: 'events',
-    to: '/admin/events',
+    to: '/adminEvent',
     label: 'Event Update',
     desc: 'Create, edit and publish upcoming NEMSU events.',
     icon: '◈',
