@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import "../../css/adminlogin.css"
 
@@ -10,6 +10,14 @@ function AdminLogin() {
   const [showPassword, setShowPassword] = useState(false)
   const [error, setError]       = useState('')
   const [loading, setLoading]   = useState(false)
+
+  // ✅ Redirect if already logged in
+  useEffect(() => {
+    const token = localStorage.getItem('nemsu_token')
+    if (token) {
+      navigate('/adminhome')
+    }
+  }, [navigate])
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -35,7 +43,6 @@ function AdminLogin() {
         return
       }
 
-      // Store token + admin info
       localStorage.setItem('nemsu_token', data.token)
       localStorage.setItem('nemsu_admin', JSON.stringify(data.admin))
 
@@ -51,7 +58,6 @@ function AdminLogin() {
     <div className="adminLoginFormWrap">
       <div className="adminLoginFormContainer">
 
-        {/* Decorative top stripe */}
         <div className="loginStripe" />
 
         <div className="loginLogoArea">
@@ -63,7 +69,6 @@ function AdminLogin() {
           <h1 className="adminLoginTitle">Sign In</h1>
           <p className="adminLoginSub">Access restricted to authorised personnel only.</p>
 
-          {/* Error banner */}
           {error && (
             <div className="loginError" role="alert">
               <span className="loginErrorIcon">!</span>
@@ -106,8 +111,6 @@ function AdminLogin() {
                 type="button"
                 className="loginTogglePass"
                 onClick={() => setShowPassword(v => !v)}
-                aria-label={showPassword ? 'Hide password' : 'Show password'}
-                tabIndex={-1}
               >
                 {showPassword ? '🙈' : '👁'}
               </button>

@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import '../../css/adminhome.css'
 
 const adminModules = [
@@ -40,8 +40,21 @@ const adminModules = [
 function AdminHome() {
   const [menuOpen, setMenuOpen] = useState(false)
   const menuRef = useRef(null)
+  const navigate = useNavigate()
 
-  // Close dropdown when clicking outside
+  // ✅ CORRECT logout for your login system
+  const handleLogout = () => {
+    // remove stored auth data
+    localStorage.removeItem('nemsu_token')
+    localStorage.removeItem('nemsu_admin')
+
+    // close menu
+    setMenuOpen(false)
+
+    // redirect to login page
+    navigate('/admin')
+  }
+
   useEffect(() => {
     function handleClickOutside(e) {
       if (menuRef.current && !menuRef.current.contains(e.target)) {
@@ -55,20 +68,16 @@ function AdminHome() {
   return (
     <div className="adminHomeContainer">
 
-      {/* ── Top Admin Navbar ── */}
       <div className="adminNavbar">
         <div className="adminHeadingContainer">
           <span className="adminBadge">Admin</span>
           <h2 className="adminHeading">Control Panel</h2>
         </div>
 
-        {/* Profile + dropdown */}
         <div className="adminProfileWrapper" ref={menuRef}>
           <button
             className={`adminProfileBtn ${menuOpen ? 'open' : ''}`}
             onClick={() => setMenuOpen(prev => !prev)}
-            aria-label="Profile menu"
-            aria-expanded={menuOpen}
           >
             <div className="adminProfilePic">
               <img src="" alt="Admin" className="displayprofile" />
@@ -77,9 +86,9 @@ function AdminHome() {
             <span className="adminProfileChevron">▾</span>
           </button>
 
-          {/* Dropdown menu */}
           <div className={`hiddenMenu ${menuOpen ? 'visible' : ''}`}>
             <div className="hiddenMenuArrow" />
+
             <NavLink
               to="/admin/change-password"
               className="menu"
@@ -88,26 +97,28 @@ function AdminHome() {
               <span className="menuIcon">🔑</span>
               Change Password
             </NavLink>
+
             <div className="menuDivider" />
-            <NavLink
-              to="/logout"
+
+            {/* ✅ FIXED LOGOUT */}
+            <button
               className="menu menuDanger"
-              onClick={() => setMenuOpen(false)}
+              onClick={handleLogout}
+              type="button"
             >
               <span className="menuIcon">⏻</span>
               Logout
-            </NavLink>
+            </button>
+
           </div>
         </div>
       </div>
 
-      {/* ── Section Title ── */}
       <div className="adminSectionHeader">
         <p className="adminSectionLabel">Modules</p>
         <h3 className="adminSectionTitle">What would you like to manage?</h3>
       </div>
 
-      {/* ── Module Cards ── */}
       <div className="adLinkGrid">
         {adminModules.map((mod, i) => (
           <NavLink
