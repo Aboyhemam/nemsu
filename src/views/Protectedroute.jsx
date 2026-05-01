@@ -11,9 +11,8 @@ import { Navigate, useLocation } from 'react-router-dom'
  * controller) where it cannot be bypassed.
  */
 const ALLOWED_IPS = [
-   '103.197.83.2',
-   '127.0.0.1',
-   '49.42.109.122'
+   
+   
   // '203.0.113.10',   // example: hostel wifi static IP
   // '198.51.100.42',  // example: office IP
 ]
