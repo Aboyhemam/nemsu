@@ -71,7 +71,7 @@ function MessagePanel({ onClose, onMarkRead }) {
     if (msg.read) return
     try {
       const token = localStorage.getItem('nemsu_token')
-      await fetch(`${API_BASE}/messages/read/${msg._id}`, {
+      await fetch(`${API_BASE}/msg/read/${msg._id}`, {
         method: 'PATCH',
         headers: { Authorization: `Bearer ${token}` },
       })
