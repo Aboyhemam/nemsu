@@ -61,7 +61,7 @@ function AdminLogin() {
         <div className="loginStripe" />
 
         <div className="loginLogoArea">
-          <img src="/NEMSULOGO-1.png" alt="NEMSU" className="loginLogo" />
+          <img src="/logo.png" alt="NEMSU" className="loginLogo" />
           <p className="loginLogoSub">Admin Portal</p>
         </div>
 
