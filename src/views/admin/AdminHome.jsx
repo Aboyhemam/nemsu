@@ -5,7 +5,7 @@ import '../../css/adminhome.css'
 const adminModules = [
   {
     id: 'finance',
-    to: '/admin/finance',
+    to: '/adminFinance',
     label: 'Finance & Expense Entry',
     desc: 'Record transactions, manage budgets and expenditure logs.',
     icon: '₹',

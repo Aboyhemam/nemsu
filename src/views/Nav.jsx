@@ -17,6 +17,7 @@ import AdminLogin from './admin/AdminLogin'
 import AdminHome from './admin/AdminHome'
 import EventUpload from './admin/EventUpload'
 import ProtectedRoute from './Protectedroute'
+import Finance from './admin/Finance'
 
 // ✅ Layout wrapper
 function RootLayout() {
@@ -60,6 +61,14 @@ const router = createBrowserRouter(
           element: (
             <ProtectedRoute>
               <EventUpload />
+            </ProtectedRoute>
+          )
+        },
+        {
+          path: "adminFinance",
+          element: (
+            <ProtectedRoute>
+              <Finance/>
             </ProtectedRoute>
           )
         },
