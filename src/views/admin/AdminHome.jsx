@@ -3,7 +3,7 @@ import { NavLink, useNavigate } from 'react-router-dom'
 import '../../css/adminhome.css'
 
 // ─── API base — swap in your real URL ───────────────────────
-const API_BASE = 'YOUR_API_URL_HERE'  // e.g. https://nemsu-backend.onrender.com
+const API_BASE = 'https://nemsu-backend.onrender.com'  // e.g. https://nemsu-backend.onrender.com
 
 const adminModules = [
   {
@@ -52,7 +52,7 @@ function MessagePanel({ onClose, onMarkRead }) {
       try {
         setLoading(true)
         const token = localStorage.getItem('nemsu_token')
-        const res = await fetch(`${API_BASE}/messages/get`, {
+        const res = await fetch(`${API_BASE}/msg/get`, {
           headers: { Authorization: `Bearer ${token}` },
         })
         if (!res.ok) throw new Error(`Server error ${res.status}`)
