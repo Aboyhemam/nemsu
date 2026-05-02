@@ -182,7 +182,7 @@ function AdminHome() {
     async function fetchUnread() {
       try {
         const token = localStorage.getItem('nemsu_token')
-        const res = await fetch(`${API_BASE}/messages/unread-count`, {
+        const res = await fetch(`${API_BASE}/msg/unread-count`, {
           headers: { Authorization: `Bearer ${token}` },
         })
         if (!res.ok) return
