@@ -18,6 +18,7 @@ import AdminHome from './admin/AdminHome'
 import EventUpload from './admin/EventUpload'
 import ProtectedRoute from './Protectedroute'
 import Finance from './admin/Finance'
+import ExportPage from './admin/ExportPage'
 
 // ✅ Layout wrapper
 function RootLayout() {
@@ -69,6 +70,14 @@ const router = createBrowserRouter(
           element: (
             <ProtectedRoute>
               <Finance/>
+            </ProtectedRoute>
+          )
+        },
+        {
+          path: "admin/export",
+          element: (
+            <ProtectedRoute>
+              <ExportPage/>
             </ProtectedRoute>
           )
         },
