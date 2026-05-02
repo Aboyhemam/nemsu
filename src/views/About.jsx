@@ -11,6 +11,14 @@ import pic7 from "../assets/pictures/ningol-chakouba/5.JPG"
 function About() {
   return (
     <div className="aboutContainer">
+        <div className="eventsPageHeader">
+        <p className="eventsPageLabel">NEMSU</p>
+        <h1 className="eventsPageTitle">About</h1>
+        <p className="eventsPageSub">
+          Relive our celebrations — cultural festivals, sports meets &amp; community moments.
+        </p>
+        <div className="eventsPageRule" />
+      </div>
         <div className="contentRight">
             <div className="imgContainer">
                 <img src={pic1} alt="" className="aboutImg" />

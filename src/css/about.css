@@ -25,6 +25,18 @@
 /* ============================================================
    PAGE WRAPPER
    ============================================================ */
+
+.AboutHeader{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 20px;
+}
+
+.abouotHeader{
+  padding-top: 20px;
+}
 .aboutContainer {
   min-height: 100vh;
   background-color: var(--charcoal);
