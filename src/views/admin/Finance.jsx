@@ -1,10 +1,8 @@
 import React, { useState, useEffect, useMemo } from 'react'
 import '../../css/finance.css'
 
-// ─── API base — swap in your real URL ───────────────────────
-const API_BASE = 'https://nemsu-backend.onrender.com'   // e.g. https://nemsu-backend.onrender.com
+const API_BASE = 'https://nemsu-backend.onrender.com'
 
-// ─── Helpers ─────────────────────────────────────────────────
 const fmt = (n) =>
   new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(n)
 
@@ -13,19 +11,27 @@ const fmtDate = (d) =>
 
 const EMPTY_FORM = { title: '', type: 'Outgoing', date: '', amount: '', detail: '' }
 
+// ── Auth header helper ──
+const authHeader = () => ({
+  'Authorization': `Bearer ${localStorage.getItem('token')}`,
+})
+
 // ─── Add / Edit Modal ────────────────────────────────────────
 function RecordModal({ initial, onSave, onClose, saving }) {
   const [form, setForm] = useState(initial || EMPTY_FORM)
   const [errors, setErrors] = useState({})
 
-  const set = (k, v) => { setForm(f => ({ ...f, [k]: v })); setErrors(e => { const n={...e}; delete n[k]; return n }) }
+  const set = (k, v) => {
+    setForm(f => ({ ...f, [k]: v }))
+    setErrors(e => { const n = { ...e }; delete n[k]; return n })
+  }
 
   const validate = () => {
     const e = {}
-    if (!form.title.trim())          e.title  = 'Title is required.'
-    if (!form.date)                  e.date   = 'Date is required.'
+    if (!form.title.trim())                                    e.title  = 'Title is required.'
+    if (!form.date)                                            e.date   = 'Date is required.'
     if (!form.amount || isNaN(form.amount) || Number(form.amount) <= 0)
-                                     e.amount = 'Enter a valid positive amount.'
+                                                               e.amount = 'Enter a valid positive amount.'
     return e
   }
 
@@ -67,8 +73,8 @@ function RecordModal({ initial, onSave, onClose, saving }) {
           {/* Title */}
           <div className={`modalField ${errors.title ? 'fieldError' : ''}`}>
             <label className="modalFieldLabel" htmlFor="f-title">Title *</label>
-            <input id="f-title" className="modalInput" placeholder="e.g. Membership dues" value={form.title}
-              onChange={e => set('title', e.target.value)} />
+            <input id="f-title" className="modalInput" placeholder="e.g. Membership dues"
+              value={form.title} onChange={e => set('title', e.target.value)} />
             {errors.title && <p className="fieldErrMsg">{errors.title}</p>}
           </div>
 
@@ -134,24 +140,24 @@ function ConfirmDialog({ record, onConfirm, onCancel, deleting }) {
 
 // ─── Main Page ───────────────────────────────────────────────
 function Finance() {
-  const [records, setRecords]       = useState([])
-  const [loading, setLoading]       = useState(true)
-  const [error, setError]           = useState(null)
-  const [modal, setModal]           = useState(null)   // null | 'add' | record (edit)
+  const [records, setRecords]           = useState([])
+  const [loading, setLoading]           = useState(true)
+  const [error, setError]               = useState(null)
+  const [modal, setModal]               = useState(null)
   const [deleteTarget, setDeleteTarget] = useState(null)
-  const [saving, setSaving]         = useState(false)
-  const [deleting, setDeleting]     = useState(false)
-  const [filter, setFilter]         = useState('All')  // 'All' | 'Incoming' | 'Outgoing'
-  const [search, setSearch]         = useState('')
-  const [sortDesc, setSortDesc]     = useState(true)
-  const [toast, setToast]           = useState(null)
+  const [saving, setSaving]             = useState(false)
+  const [deleting, setDeleting]         = useState(false)
+  const [filter, setFilter]             = useState('All')
+  const [search, setSearch]             = useState('')
+  const [sortDesc, setSortDesc]         = useState(true)
+  const [toast, setToast]               = useState(null)
 
   const showToast = (msg, type = 'success') => {
     setToast({ msg, type })
     setTimeout(() => setToast(null), 3000)
   }
 
-  // ── Fetch all records ──
+  // ── Fetch all records (public) ──
   useEffect(() => {
     const controller = new AbortController()
     async function load() {
@@ -175,7 +181,10 @@ function Finance() {
     try {
       const res = await fetch(`${API_BASE}/finance/add`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          ...authHeader(),                        // ✅ token attached
+        },
         body: JSON.stringify(form),
       })
       if (!res.ok) throw new Error('Failed to add record.')
@@ -193,7 +202,10 @@ function Finance() {
     try {
       const res = await fetch(`${API_BASE}/finance/update/${modal._id}`, {
         method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          ...authHeader(),                        // ✅ token attached
+        },
         body: JSON.stringify(form),
       })
       if (!res.ok) throw new Error('Failed to update record.')
@@ -209,7 +221,12 @@ function Finance() {
   const handleDelete = async () => {
     setDeleting(true)
     try {
-      const res = await fetch(`${API_BASE}/finance/delete/${deleteTarget._id}`, { method: 'DELETE' })
+      const res = await fetch(`${API_BASE}/finance/delete/${deleteTarget._id}`, {
+        method: 'DELETE',
+        headers: {
+          ...authHeader(),                        // ✅ token attached
+        },
+      })
       if (!res.ok) throw new Error('Failed to delete record.')
       setRecords(r => r.filter(rec => rec._id !== deleteTarget._id))
       setDeleteTarget(null)
@@ -275,12 +292,12 @@ function Finance() {
         <div className="summaryCard summaryIn">
           <p className="summaryCardLabel">↑ Total Incoming</p>
           <p className="summaryCardAmount amtIn">{fmt(totalIn)}</p>
-          <p className="summaryCardSub">{records.filter(r=>r.type==='Incoming').length} entries</p>
+          <p className="summaryCardSub">{records.filter(r => r.type === 'Incoming').length} entries</p>
         </div>
         <div className="summaryCard summaryOut">
           <p className="summaryCardLabel">↓ Total Outgoing</p>
           <p className="summaryCardAmount amtOut">{fmt(totalOut)}</p>
-          <p className="summaryCardSub">{records.filter(r=>r.type==='Outgoing').length} entries</p>
+          <p className="summaryCardSub">{records.filter(r => r.type === 'Outgoing').length} entries</p>
         </div>
       </div>
 
@@ -290,8 +307,9 @@ function Finance() {
           <input className="fnSearch" placeholder="🔍  Search records…"
             value={search} onChange={e => setSearch(e.target.value)} />
           <div className="filterBtns">
-            {['All','Incoming','Outgoing'].map(f => (
-              <button key={f} className={`filterBtn ${filter===f?'filterActive':''} ${f!=='All'?`filter${f}`:''}`}
+            {['All', 'Incoming', 'Outgoing'].map(f => (
+              <button key={f}
+                className={`filterBtn ${filter === f ? 'filterActive' : ''} ${f !== 'All' ? `filter${f}` : ''}`}
                 onClick={() => setFilter(f)}>{f}</button>
             ))}
           </div>
@@ -305,7 +323,7 @@ function Finance() {
       {/* ── Table ── */}
       {loading && (
         <div className="fnTableWrap">
-          {[...Array(5)].map((_, i) => <div key={i} className="skeletonRow" style={{'--i':i}} />)}
+          {[...Array(5)].map((_, i) => <div key={i} className="skeletonRow" style={{ '--i': i }} />)}
         </div>
       )}
 
@@ -343,7 +361,7 @@ function Finance() {
             </thead>
             <tbody>
               {displayed.map((rec, i) => (
-                <tr key={rec._id} className="fnRow" style={{'--i': i}}>
+                <tr key={rec._id} className="fnRow" style={{ '--i': i }}>
                   <td className="tdDate">{fmtDate(rec.date)}</td>
                   <td className="tdTitle">{rec.title}</td>
                   <td>
