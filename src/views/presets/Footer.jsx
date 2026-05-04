@@ -76,7 +76,7 @@ function Footer() {
           <h4 className="footerColTitle">Follow Us</h4>
           <div className="footerSocials">
             {[
-              { href: 'https://facebook.com',  label: 'Facebook',  icon: 'f' },
+              { href: 'https://www.facebook.com/share/1CpEUgqe8f/',  label: 'Facebook',  icon: 'f' },
               { href: 'https://www.instagram.com/nemsu_official?igsh=enZ0NXJpcGs5Ym83', label: 'Instagram', icon: '◈' },
               { href: 'https://youtube.com/@nemsuofficial?si=tENQ4WN6O7DUHIHA',   label: 'YouTube',   icon: '▶' },
             ].map(({ href, label, icon }) => (
