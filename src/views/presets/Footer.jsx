@@ -64,8 +64,8 @@ function Footer() {
             </li>
             <li>
               <span className="footerContactIcon">📞</span>
-              <a href="tel:+910000000000" className="footerContactLink">
-                +91 00000 00000
+              <a href="tel:+919362843841" className="footerContactLink">
+                +91 93628 43841
               </a>
             </li>
           </ul>
@@ -78,7 +78,6 @@ function Footer() {
             {[
               { href: 'https://facebook.com',  label: 'Facebook',  icon: 'f' },
               { href: 'https://www.instagram.com/nemsu_official?igsh=enZ0NXJpcGs5Ym83', label: 'Instagram', icon: '◈' },
-              { href: 'https://twitter.com',   label: 'X / Twitter', icon: '𝕏' },
               { href: 'https://youtube.com/@nemsuofficial?si=tENQ4WN6O7DUHIHA',   label: 'YouTube',   icon: '▶' },
             ].map(({ href, label, icon }) => (
               <a

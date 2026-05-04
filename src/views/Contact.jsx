@@ -77,7 +77,7 @@ function Contact() {
 
             <div className="infoCard">
               <h3>Phone</h3>
-              <p>+91 98765 43210</p>
+              <p>+91 93628 43841</p>
             </div>
 
             <div className="infoCard">
@@ -120,7 +120,7 @@ function Contact() {
 
             {/* ✅ Status message */}
             {statusMsg && (
-              <p style={{ marginBottom: "10px", color: "crimson" }}>
+              <p style={{ marginBottom: "10px", color: "green" }}>
                 {statusMsg}
               </p>
             )}
