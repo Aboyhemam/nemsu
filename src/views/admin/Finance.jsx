@@ -13,7 +13,7 @@ const EMPTY_FORM = { title: '', type: 'Outgoing', date: '', amount: '', detail: 
 
 // ── Auth header helper ──
 const authHeader = () => ({
-  'Authorization': `Bearer ${localStorage.getItem('token')}`,
+  'Authorization': `Bearer ${localStorage.getItem('nemsu_token')}`,
 })
 
 // ─── Add / Edit Modal ────────────────────────────────────────
