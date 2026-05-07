@@ -10,6 +10,7 @@ import flag2 from "../assets/pictures/flags/flag2.jpg"
 import flag3 from "../assets/pictures/flags/flag3.jpg"
 import flag4 from "../assets/pictures/flags/flag4.jpg"
 import flag5 from "../assets/pictures/flags/flag5.jpg"
+import flag6 from "../assets/pictures/flags/flag6.png"
 
 // ── Helpers ──────────────────────────────────────────────────
 const isNew = (dateStr) => {
@@ -125,7 +126,7 @@ function Home() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
 
-  const flags = [flag1, flag2, flag3, flag4, flag5]
+  const flags = [flag1, flag2, flag3, flag4, flag5, flag6]
 
   useEffect(() => {
 
