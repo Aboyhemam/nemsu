@@ -1,0 +1,334 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap');
+
+/* =========================================================
+   VARIABLES
+========================================================= */
+
+:root {
+  --teal: #1a6b7a;
+  --teal-light: #22899c;
+  --sky: #4db8cc;
+  --orange: #d4622a;
+  --cream: #e8d5b0;
+  --cream-dim: rgba(232, 213, 176, 0.08);
+  --charcoal: #1e1e1e;
+  --charcoal-mid: #252525;
+  --white: #ffffff;
+
+  --transition: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* =========================================================
+   PAGE
+========================================================= */
+
+.uploadNoticePage {
+  min-height: 100vh;
+  background-color: var(--charcoal);
+
+  background-image:
+    radial-gradient(
+      ellipse 70% 50% at 15% 0%,
+      rgba(26, 107, 122, 0.35) 0%,
+      transparent 70%
+    ),
+    radial-gradient(
+      ellipse 50% 40% at 85% 100%,
+      rgba(212, 98, 42, 0.15) 0%,
+      transparent 60%
+    );
+
+  padding: 50px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-family: 'DM Sans', sans-serif;
+}
+
+/* =========================================================
+   CONTAINER
+========================================================= */
+
+.uploadNoticeContainer {
+  width: 100%;
+  max-width: 620px;
+
+  background: rgba(26, 107, 122, 0.08);
+
+  border: 1px solid rgba(77, 184, 204, 0.15);
+
+  border-radius: 18px;
+
+  backdrop-filter: blur(10px);
+
+  box-shadow:
+    0 0 0 1px rgba(77, 184, 204, 0.1),
+    0 20px 60px rgba(0, 0, 0, 0.45);
+
+  overflow: hidden;
+
+  animation: fadeUp 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.uploadNoticeHeader {
+  padding: 34px 36px 24px;
+  border-bottom: 1px solid rgba(77, 184, 204, 0.12);
+}
+
+.uploadNoticeTitle {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2rem, 5vw, 3rem);
+  letter-spacing: 0.08em;
+
+  margin: 0;
+
+  background: linear-gradient(
+    135deg,
+    var(--sky) 0%,
+    var(--cream) 60%
+  );
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.uploadNoticeSub {
+  margin-top: 10px;
+
+  font-size: 0.95rem;
+  font-weight: 300;
+  line-height: 1.7;
+
+  color: rgba(232, 213, 176, 0.65);
+}
+
+/* =========================================================
+   FORM
+========================================================= */
+
+.uploadNoticeForm {
+  padding: 34px 36px 40px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+/* =========================================================
+   FIELD
+========================================================= */
+
+.uploadField {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.uploadLabel {
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+
+  color: var(--cream);
+}
+
+/* =========================================================
+   INPUT
+========================================================= */
+
+.uploadInput {
+  background: rgba(255, 255, 255, 0.03);
+
+  border: 1px solid rgba(77, 184, 204, 0.16);
+
+  border-radius: 12px;
+
+  padding: 14px 16px;
+
+  font-size: 0.95rem;
+
+  color: var(--cream);
+
+  outline: none;
+
+  transition:
+    border var(--transition),
+    box-shadow var(--transition),
+    background var(--transition);
+}
+
+.uploadInput::placeholder {
+  color: rgba(232, 213, 176, 0.35);
+}
+
+.uploadInput:focus {
+  border-color: var(--sky);
+
+  box-shadow:
+    0 0 0 3px rgba(77, 184, 204, 0.15);
+
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* =========================================================
+   FILE BOX
+========================================================= */
+
+.uploadFileBox {
+  position: relative;
+
+  border: 2px dashed rgba(77, 184, 204, 0.25);
+
+  background: rgba(77, 184, 204, 0.04);
+
+  border-radius: 14px;
+
+  padding: 30px 20px;
+
+  text-align: center;
+
+  cursor: pointer;
+
+  transition:
+    border var(--transition),
+    background var(--transition),
+    transform var(--transition);
+}
+
+.uploadFileBox:hover {
+  border-color: var(--sky);
+  background: rgba(77, 184, 204, 0.08);
+
+  transform: translateY(-2px);
+}
+
+.uploadFileInput {
+  display: none;
+}
+
+.uploadFileText {
+  color: rgba(232, 213, 176, 0.8);
+
+  font-size: 0.92rem;
+  font-weight: 400;
+}
+
+/* =========================================================
+   BUTTON
+========================================================= */
+
+.uploadButton {
+  border: none;
+  outline: none;
+
+  padding: 15px 18px;
+
+  border-radius: 12px;
+
+  background: linear-gradient(
+    135deg,
+    var(--orange),
+    #e17842
+  );
+
+  color: var(--white);
+
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+
+  cursor: pointer;
+
+  transition:
+    transform var(--transition),
+    box-shadow var(--transition),
+    opacity var(--transition);
+
+  box-shadow:
+    0 10px 30px rgba(212, 98, 42, 0.25);
+}
+
+.uploadButton:hover {
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 16px 36px rgba(212, 98, 42, 0.32);
+}
+
+.uploadButton:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* =========================================================
+   MESSAGE
+========================================================= */
+
+.uploadMessage {
+  padding: 14px 16px;
+
+  border-radius: 10px;
+
+  font-size: 0.88rem;
+  line-height: 1.6;
+}
+
+.uploadSuccess {
+  background: rgba(77, 184, 204, 0.08);
+
+  border: 1px solid rgba(77, 184, 204, 0.2);
+
+  color: var(--sky);
+}
+
+.uploadError {
+  background: rgba(212, 98, 42, 0.08);
+
+  border: 1px solid rgba(212, 98, 42, 0.2);
+
+  color: #ff9b6c;
+}
+
+/* =========================================================
+   ANIMATION
+========================================================= */
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+  .uploadNoticeHeader {
+    padding: 28px 22px 20px;
+  }
+
+  .uploadNoticeForm {
+    padding: 28px 22px 34px;
+  }
+
+  .uploadFileBox {
+    padding: 24px 16px;
+  }
+
+  .uploadButton {
+    width: 100%;
+  }
+}

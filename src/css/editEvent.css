@@ -1,0 +1,250 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap');
+
+:root {
+  --teal: #1a6b7a;
+  --sky: #4db8cc;
+  --orange: #d4622a;
+  --cream: #e8d5b0;
+  --charcoal: #1e1e1e;
+  --panel: #252525;
+  --border: rgba(255,255,255,0.08);
+}
+
+.editEventPage {
+  min-height: 100vh;
+  padding: 40px 28px 80px;
+  background:
+    radial-gradient(circle at top left, rgba(26,107,122,0.25), transparent 40%),
+    radial-gradient(circle at bottom right, rgba(212,98,42,0.12), transparent 40%),
+    var(--charcoal);
+
+  color: var(--cream);
+  font-family: 'DM Sans', sans-serif;
+}
+
+.editEventTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 32px;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.editEventMini {
+  color: var(--orange);
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  margin-bottom: 8px;
+}
+
+.editEventHeading {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  letter-spacing: 0.08em;
+  margin: 0;
+
+  background: linear-gradient(
+    90deg,
+    var(--sky),
+    var(--cream)
+  );
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.dashboardBtn {
+  padding: 12px 18px;
+  border-radius: 10px;
+  text-decoration: none;
+  background: rgba(77,184,204,0.08);
+  border: 1px solid rgba(77,184,204,0.2);
+  color: var(--sky);
+  transition: 0.3s ease;
+  font-size: 0.9rem;
+}
+
+.dashboardBtn:hover {
+  background: rgba(77,184,204,0.15);
+  transform: translateY(-2px);
+}
+
+.editMessage {
+  padding: 14px 18px;
+  border-radius: 10px;
+  margin-bottom: 22px;
+  font-size: 0.92rem;
+}
+
+.successMsg {
+  background: rgba(77,184,204,0.1);
+  border: 1px solid rgba(77,184,204,0.25);
+  color: var(--sky);
+}
+
+.errorMsg {
+  background: rgba(212,98,42,0.1);
+  border: 1px solid rgba(212,98,42,0.25);
+  color: #ff8d61;
+}
+
+.editLoading {
+  padding: 60px;
+  text-align: center;
+  font-size: 1rem;
+  opacity: 0.8;
+}
+
+.editEventGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(340px,1fr));
+  gap: 24px;
+}
+
+.editCard {
+  background: rgba(37,37,37,0.92);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  overflow: hidden;
+
+  backdrop-filter: blur(10px);
+
+  animation: fadeUp 0.5s ease both;
+  animation-delay: calc(var(--i) * 0.08s);
+
+  transition: 0.35s ease;
+}
+
+.editCard:hover {
+  transform: translateY(-4px);
+  border-color: rgba(77,184,204,0.18);
+}
+
+.editImageWrap {
+  height: 220px;
+  overflow: hidden;
+}
+
+.editImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: 0.5s ease;
+}
+
+.editCard:hover .editImage {
+  transform: scale(1.04);
+}
+
+.editCardBody {
+  padding: 22px;
+}
+
+.editLabel {
+  display: block;
+  margin-bottom: 8px;
+  margin-top: 18px;
+  font-size: 0.85rem;
+  color: rgba(232,213,176,0.8);
+}
+
+.editInput,
+.editTextarea,
+.editFile {
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.03);
+  color: var(--cream);
+  padding: 12px 14px;
+  font-size: 0.92rem;
+  outline: none;
+}
+
+.editTextarea {
+  resize: vertical;
+  min-height: 130px;
+}
+
+.editInput:focus,
+.editTextarea:focus {
+  border-color: rgba(77,184,204,0.35);
+  box-shadow: 0 0 0 3px rgba(77,184,204,0.08);
+}
+
+.editBtnRow {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.saveBtn,
+.deleteBtn {
+  flex: 1;
+  border: none;
+  border-radius: 10px;
+  padding: 13px;
+  font-size: 0.92rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.saveBtn {
+  background: linear-gradient(
+    135deg,
+    var(--teal),
+    var(--sky)
+  );
+
+  color: white;
+}
+
+.saveBtn:hover {
+  transform: translateY(-2px);
+}
+
+.deleteBtn {
+  background: rgba(212,98,42,0.12);
+  border: 1px solid rgba(212,98,42,0.28);
+  color: var(--orange);
+}
+
+.deleteBtn:hover {
+  background: rgba(212,98,42,0.2);
+  transform: translateY(-2px);
+}
+
+.saveBtn:disabled,
+.deleteBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+@keyframes fadeUp {
+
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+}
+
+@media (max-width: 768px) {
+
+  .editEventPage {
+    padding: 24px 18px 60px;
+  }
+
+  .editBtnRow {
+    flex-direction: column;
+  }
+
+}

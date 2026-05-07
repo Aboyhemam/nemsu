@@ -14,14 +14,25 @@ const adminModules = [
     icon: '₹',
     accent: 'teal',
   },
+
   {
-    id: 'events',
-    to: '/adminEvent',
-    label: 'Event Update',
-    desc: 'Create, edit and publish upcoming NEMSU events.',
-    icon: '◈',
+    id: 'add-event',
+    to: '/admin/add-event',
+    label: 'Add Event',
+    desc: 'Create and publish new NEMSU events with posters and details.',
+    icon: '+',
     accent: 'orange',
   },
+
+  {
+    id: 'edit-event',
+    to: '/admin/editEvent',
+    label: 'Edit Events',
+    desc: 'Update existing event information, posters and schedules.',
+    icon: '✎',
+    accent: 'teal',
+  },
+
   {
     id: 'notice',
     to: '/admin/notice',
@@ -30,6 +41,7 @@ const adminModules = [
     icon: '⊞',
     accent: 'teal',
   },
+
   {
     id: 'export',
     to: '/admin/export',

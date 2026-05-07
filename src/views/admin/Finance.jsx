@@ -187,7 +187,13 @@ function Finance() {
         },
         body: JSON.stringify(form),
       })
-      if (!res.ok) throw new Error('Failed to add record.')
+      const data = await res.json(); // 👈 read response body
+
+    if (!res.ok) {
+    // ❌ backend returned error (like 400, 401, 500)
+        console.error(data.message || "Something went wrong");
+        throw new Error(data.message || "Request failed");
+    }
       const created = await res.json()
       setRecords(r => [created.data ?? created, ...r])
       setModal(null)

@@ -19,7 +19,8 @@ import EventUpload from './admin/EventUpload'
 import ProtectedRoute from './Protectedroute'
 import Finance from './admin/Finance'
 import ExportPage from './admin/ExportPage'
-
+import UploadNotice from './admin/UploadNotice'
+import EditEvent from './admin/EditEvent'
 // ✅ Layout wrapper
 function RootLayout() {
   return (
@@ -78,6 +79,22 @@ const router = createBrowserRouter(
           element: (
             <ProtectedRoute>
               <ExportPage/>
+            </ProtectedRoute>
+          )
+        },
+        {
+          path: "admin/notice",
+          element: (
+            <ProtectedRoute>
+              <UploadNotice/>
+            </ProtectedRoute>
+          )
+        },
+        {
+          path: "admin/editEvent",
+          element: (
+            <ProtectedRoute>
+              <EditEvent/>
             </ProtectedRoute>
           )
         },
