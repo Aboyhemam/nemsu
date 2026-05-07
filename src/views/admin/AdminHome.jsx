@@ -17,7 +17,7 @@ const adminModules = [
 
   {
     id: 'add-event',
-    to: '/admin/add-event',
+    to: '/admin/addEvent',
     label: 'Add Event',
     desc: 'Create and publish new NEMSU events with posters and details.',
     icon: '+',

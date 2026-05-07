@@ -1,7 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import Header from './presets/Header'
 import "./../css/home.css"
+
 import pic from "../assets/pictures/IMG-20260422-WA0075.jpg"
+
+// ── FLAG IMAGES ──────────────────────────────────────────────
+import flag1 from "../assets/pictures/flags/flag1.jpg"
+import flag2 from "../assets/pictures/flags/flag2.jpg"
+import flag3 from "../assets/pictures/flags/flag3.jpg"
+import flag4 from "../assets/pictures/flags/flag4.jpg"
+import flag5 from "../assets/pictures/flags/flag5.jpg"
 
 // ── Helpers ──────────────────────────────────────────────────
 const isNew = (dateStr) => {
@@ -13,16 +21,23 @@ const isNew = (dateStr) => {
 
 const fmtDate = (d) =>
   new Date(d).toLocaleDateString('en-IN', {
-    day: '2-digit', month: 'short', year: 'numeric'
+    day: '2-digit',
+    month: 'short',
+    year: 'numeric'
   })
 
-// ── Notice Board Component ────────────────────────────────────
+// ── Notice Board Component ───────────────────────────────────
 function NoticeBoard({ notices, loading, error }) {
+
   if (loading) {
     return (
       <div className="noticeBoardBody">
         {[...Array(4)].map((_, i) => (
-          <div key={i} className="noticeSkeleton" style={{ '--i': i }} />
+          <div
+            key={i}
+            className="noticeSkeleton"
+            style={{ '--i': i }}
+          />
         ))}
       </div>
     )
@@ -57,28 +72,46 @@ function NoticeBoard({ notices, loading, error }) {
           className="noticeItem"
           style={{ '--i': i }}
         >
-          {/* Left pin dot */}
+
           <span className="noticePinDot" />
 
           <div className="noticeContent">
+
             <div className="noticeTitleRow">
-              <span className="noticeTitle">{notice.title}</span>
+              <span className="noticeTitle">
+                {notice.title}
+              </span>
+
               {isNew(notice.createdAt) && (
-                <span className="noticeBadgeNew">NEW</span>
+                <span className="noticeBadgeNew">
+                  NEW
+                </span>
               )}
             </div>
-            <span className="noticeDate">{fmtDate(notice.createdAt)}</span>
+
+            <span className="noticeDate">
+              {fmtDate(notice.createdAt)}
+            </span>
+
           </div>
 
-          {/* Download/open icon */}
           <span className="noticeArrow">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
-              stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-              <polyline points="15 3 21 3 21 9"/>
-              <line x1="10" y1="14" x2="21" y2="3"/>
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+              <polyline points="15 3 21 3 21 9" />
+              <line x1="10" y1="14" x2="21" y2="3" />
             </svg>
           </span>
+
         </a>
       ))}
     </div>
@@ -87,108 +120,199 @@ function NoticeBoard({ notices, loading, error }) {
 
 // ── Main Home ────────────────────────────────────────────────
 function Home() {
+
   const [notices, setNotices] = useState([])
   const [loading, setLoading] = useState(true)
-  const [error, setError]     = useState(null)
+  const [error, setError] = useState(null)
+
+  const flags = [flag1, flag2, flag3, flag4, flag5]
 
   useEffect(() => {
+
     const controller = new AbortController()
 
     async function fetchNotices() {
       try {
+
         setLoading(true)
         setError(null)
+
         const res = await fetch(
           'https://nemsu-backend.onrender.com/admin/getNotice',
           { signal: controller.signal }
         )
-        if (!res.ok) throw new Error(`Server error ${res.status}`)
+
+        if (!res.ok) {
+          throw new Error(`Server error ${res.status}`)
+        }
+
         const data = await res.json()
-        // Accept { success, count, data: [...] } or plain array
-        const list = Array.isArray(data) ? data : data.data ?? []
-        // Sort newest first
-        list.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+
+        const list = Array.isArray(data)
+          ? data
+          : data.data ?? []
+
+        list.sort(
+          (a, b) =>
+            new Date(b.createdAt) - new Date(a.createdAt)
+        )
+
         setNotices(list)
+
       } catch (err) {
+
         if (err.name !== 'AbortError') {
           setError(err.message || 'Failed to load notices.')
         }
+
       } finally {
         setLoading(false)
       }
     }
 
     fetchNotices()
+
     return () => controller.abort()
+
   }, [])
 
-  const newCount = notices.filter(n => isNew(n.createdAt)).length
+  const newCount = notices.filter(
+    n => isNew(n.createdAt)
+  ).length
 
   return (
     <div className="homeBody">
 
-      {/* ── Hero Heading ── */}
-      <div className="heading">
-        <div className="nemsu">
-          <h2 className="name">Nerist Manipur Students' Union</h2>
+      {/* ── FLAG TICKER ───────────────────────────── */}
+      <div className="flagTicker">
+
+        <div className="flagTrack">
+
+          {[...flags, ...flags].map((flag, i) => (
+            <div className="flagItem" key={i}>
+              <img
+                src={flag}
+                alt={`flag-${i}`}
+                className="flagImage"
+              />
+            </div>
+          ))}
+
         </div>
-        <div className="motto">
-          <h3 className="motoText">Learn Unity and Peace</h3>
-        </div>
+
       </div>
 
-      {/* ── Body: About + Notice Board ── */}
-      <div className="bodyBody">
+      {/* ── Hero Heading ─────────────────────────── */}
+      <div className="heading">
 
-        {/* Left: Photo + About text */}
-        <div className="bodyLeft">
-          <div className="picContainer">
-            <div className="pic">
-              <img src={pic} alt="NEMSU" className="homePic" />
-            </div>
-          </div>
-          <div className="textContainer">
-            <div className="bodyText">
-              <span className="text">
-                The Nerist Manipur Students' Union (NEMSU) is a student-driven organization
-                established to promote the welfare, unity, and overall development of Manipuri
-                students at NERIST. Rooted in the values of community support and cultural
-                identity, NEMSU serves as a platform for students to connect, collaborate, and
-                address their academic and social needs. Guided by its motto, "Learn, Unity and
-                Peace," the union strives to foster a harmonious environment where students can
-                grow intellectually, support one another, and contribute positively to campus life.
-              </span>
-            </div>
-          </div>
+        <div className="nemsu">
+          <h2 className="name">
+            Nerist Manipur Students' Union
+          </h2>
         </div>
 
-        {/* Right: Notice Board */}
+        <div className="motto">
+          <h3 className="motoText">
+            Learn Unity and Peace
+          </h3>
+        </div>
+
+      </div>
+
+      {/* ── Body ─────────────────────────────────── */}
+      <div className="bodyBody">
+
+        {/* LEFT */}
+        <div className="bodyLeft">
+
+          <div className="picContainer">
+            <div className="pic">
+              <img
+                src={pic}
+                alt="NEMSU"
+                className="homePic"
+              />
+            </div>
+          </div>
+
+          <div className="textContainer">
+
+            <div className="bodyText">
+
+              <span className="text">
+                The Nerist Manipur Students' Union (NEMSU) is a
+                student-driven organization established to promote
+                the welfare, unity, and overall development of
+                Manipuri students at NERIST. Rooted in the values
+                of community support and cultural identity,
+                NEMSU serves as a platform for students to connect,
+                collaborate, and address their academic and social
+                needs. Guided by its motto, "Learn, Unity and Peace,"
+                the union strives to foster a harmonious environment
+                where students can grow intellectually, support one
+                another, and contribute positively to campus life.
+              </span>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        {/* RIGHT */}
         <div className="noticeBoardContainer">
+
           <div className="noticeBoardHeader">
+
             <div className="noticeBoardTitleRow">
+
               <div className="noticeBoardTitleLeft">
-                {/* Pin icon */}
-                <svg className="noticePinIcon" width="16" height="16" viewBox="0 0 24 24"
-                  fill="none" stroke="currentColor" strokeWidth="2.2"
-                  strokeLinecap="round" strokeLinejoin="round">
-                  <line x1="12" y1="17" x2="12" y2="22"/>
-                  <path d="M5 17h14v-1.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 10.76V6h1a2 2 0 0 0 0-4H8a2 2 0 0 0 0 4h1v4.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24Z"/>
+
+                <svg
+                  className="noticePinIcon"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <line x1="12" y1="17" x2="12" y2="22" />
+                  <path d="M5 17h14v-1.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 10.76V6h1a2 2 0 0 0 0-4H8a2 2 0 0 0 0 4h1v4.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24Z" />
                 </svg>
-                <h3 className="noticeBoardTitle">Notice Board</h3>
+
+                <h3 className="noticeBoardTitle">
+                  Notice Board
+                </h3>
+
               </div>
+
               {newCount > 0 && (
                 <span className="noticeBoardNewCount">
                   {newCount} new
                 </span>
               )}
+
             </div>
-            <p className="noticeBoardSub">Official announcements &amp; circulars</p>
+
+            <p className="noticeBoardSub">
+              Official announcements &amp; circulars
+            </p>
+
           </div>
 
-          <NoticeBoard notices={notices} loading={loading} error={error} />
+          <NoticeBoard
+            notices={notices}
+            loading={loading}
+            error={error}
+          />
+
         </div>
 
       </div>
+
     </div>
   )
 }

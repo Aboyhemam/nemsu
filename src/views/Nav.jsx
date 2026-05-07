@@ -59,7 +59,7 @@ const router = createBrowserRouter(
           )
         },
         {
-          path: "adminEvent",
+          path: "admin/addEvent",
           element: (
             <ProtectedRoute>
               <EventUpload />
