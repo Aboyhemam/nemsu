@@ -89,7 +89,7 @@ function EditEvent() {
       const res = await fetch(
         `${API_BASE}/admin/updateEvent/${event._id}`,
         {
-          method: 'POST',
+          method: 'PUT',
           headers: {
             Authorization: `Bearer ${token}`
           },
