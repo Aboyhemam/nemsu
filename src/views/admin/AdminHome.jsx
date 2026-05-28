@@ -23,6 +23,14 @@ const adminModules = [
     icon: '+',
     accent: 'orange',
   },
+  {
+    id: 'freshers',
+    to: '/admin/freshers',
+    label: 'Freshers Data',
+    desc: 'Get list and details of freshers coming for admission/counseling',
+    icon: '👤',
+    accent: 'orange',
+  },
 
   {
     id: 'edit-event',

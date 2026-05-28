@@ -22,6 +22,7 @@ import ExportPage from './admin/ExportPage'
 import UploadNotice from './admin/UploadNotice'
 import EditEvent from './admin/EditEvent'
 import Freshers from './Freshers'
+import ExportFreshersPage from './admin/Exportfreshers'
 // ✅ Layout wrapper
 function RootLayout() {
   return (
@@ -57,6 +58,14 @@ const router = createBrowserRouter(
           element: (
             <ProtectedRoute>
               <AdminHome />
+            </ProtectedRoute>
+          )
+        },
+        {
+          path: "admin/freshers",
+          element: (
+            <ProtectedRoute>
+              <ExportFreshersPage />
             </ProtectedRoute>
           )
         },
