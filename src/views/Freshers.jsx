@@ -323,9 +323,15 @@ function Freshers() {
               </option>
 
               <option value="NEE I">NEE I</option>
-              <option value="NEE II">NEE II</option>
+              <option value="NEE II(BBA)">NEE II (BBA)</option>
+              <option value="NEE II(PCB Forestry)">NEE II(PCB Forestry)</option>
+              <option value="NEE II(PCM Science)">NEE II(PCM Science)</option>
+              <option value="NEE II(PCM E&T)">NEE II(PCM E&T)</option>
+              <option value="JEE">JEE</option>
+              <option value="CUET">CUET</option>
               <option value="NEE III">NEE III</option>
               <option value="NEPGET">NEPGET</option>
+
             </select>
 
             {/* Status */}
