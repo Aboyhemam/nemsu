@@ -240,10 +240,10 @@ function Home() {
       <div className="registerContainer">
        <div className="registerLink">
         <div className="formLinkHeader">
-          <h2 className="linkHeader">Alert for candidates who appeared NEE 2026</h2>
+          <h2 className="linkHeader">Alert for candidates who appeared NEE/JEE/CUET/NEPGET 2026</h2>
         </div>
         <p className="rLink">
-           All candidates from Manipur, including Manipuri candidates from other states, who are selected or placed on the waiting list for NEE, are requested to sign up using this form so that we can assist you.
+           All candidates from Manipur, including Manipuri candidates from other states, who are selected or placed on the waiting list for NEE/JEE/CUET/NEPGET, are requested to sign up using this form so that we can assist you.
         </p>
 
         <NavLink to="/neeRegister" className="formLink">
