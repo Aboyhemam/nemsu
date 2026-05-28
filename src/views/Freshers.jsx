@@ -6,6 +6,7 @@ function Freshers() {
   const [formData, setFormData] = useState({
     name: "",
     parentName: "",
+    gender:"",
     phoneNo: "",
     parentNo: "",
     email: "",
@@ -43,7 +44,8 @@ function Freshers() {
       !formData.email.trim() ||
       !formData.address.trim() ||
       !formData.entry.trim() ||
-      !formData.status.trim()
+      !formData.status.trim() ||
+      !formData.gender.trim()
     ) {
       return "Please fill all fields"
     }
@@ -113,6 +115,7 @@ function Freshers() {
       setFormData({
         name: "",
         parentName: "",
+        gender:"",
         phoneNo: "",
         parentNo: "",
         email: "",
@@ -269,6 +272,16 @@ function Freshers() {
               value={formData.parentName}
               onChange={handleChange}
             />
+            
+            <select name="gender"
+            value={formData.gender}
+            onChange={handleChange}
+            className='fresherInput'
+            >
+                <option value="">Select Gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+            </select>
 
             {/* Phone */}
             <input

@@ -18,7 +18,40 @@
   cursor: pointer;
 }
 
-/* ── Status filter buttons ── */
+/* ── Gender filter buttons ── */
+.filterTypeMale    { background: #dbeafe !important; color: #1e40af !important; border-color: #93c5fd !important; }
+.filterTypeFemale  { background: #fce7f3 !important; color: #9d174d !important; border-color: #f9a8d4 !important; }
+.filterTypeOther   { background: #f3e8ff !important; color: #6b21a8 !important; border-color: #d8b4fe !important; }
+
+/* ── Gender pills in table ── */
+.pillGenderMale {
+  background: #dbeafe;
+  color: #1e40af;
+  border: 1px solid #93c5fd;
+  font-size: 0.72rem;
+  padding: 2px 8px;
+  border-radius: 99px;
+  font-weight: 500;
+}
+.pillGenderFemale {
+  background: #fce7f3;
+  color: #9d174d;
+  border: 1px solid #f9a8d4;
+  font-size: 0.72rem;
+  padding: 2px 8px;
+  border-radius: 99px;
+  font-weight: 500;
+}
+.pillGenderOther {
+  background: #f3e8ff;
+  color: #6b21a8;
+  border: 1px solid #d8b4fe;
+  font-size: 0.72rem;
+  padding: 2px 8px;
+  border-radius: 99px;
+  font-weight: 500;
+}
+
 .filterTypeSelected  { background: #d1fae5 !important; color: #065f46 !important; border-color: #34d399 !important; }
 .filterTypeWaiting   { background: #fef9c3 !important; color: #854d0e !important; border-color: #facc15 !important; }
 .filterTypeUnset     { background: #f3f4f6 !important; color: #374151 !important; border-color: #9ca3af !important; }

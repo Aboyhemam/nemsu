@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react'
 import * as XLSX from 'xlsx'
-import './../../css/exportFreshers.css'
+import '../../css/exportFreshers.css'
 
 // ─── API base ─────────────────────────────────────────────────
 const API_BASE = 'https://nemsu-backend.onrender.com'
@@ -25,7 +25,8 @@ const ENTRY_OPTIONS = [
   'NEPTGET',
 ]
 
-const STATUS_OPTIONS = ['All', 'Selected', 'Waiting', 'Unset']
+const STATUS_OPTIONS  = ['All', 'Selected', 'Waiting', 'Unset']
+const GENDER_OPTIONS  = ['All', 'Male', 'Female']
 
 // ─── Export Logic ──────────────────────────────────────────────
 function exportToExcel(records, filterEntry, filterStatus, dateFrom, dateTo) {
@@ -41,6 +42,7 @@ function exportToExcel(records, filterEntry, filterStatus, dateFrom, dateTo) {
     'Parent No':      r.parentNo || '',
     'Email':          r.email || '',
     'Address':        r.address || '',
+    'Gender':         r.gender || '—',
     'Entry Type':     r.entry || '—',
     'Status':         r.status || 'Unset',
   }))
@@ -55,6 +57,7 @@ function exportToExcel(records, filterEntry, filterStatus, dateFrom, dateTo) {
     { wch: 14 },  // Parent No
     { wch: 28 },  // Email
     { wch: 32 },  // Address
+    { wch: 10 },  // Gender
     { wch: 24 },  // Entry Type
     { wch: 12 },  // Status
   ]
@@ -76,6 +79,9 @@ function exportToExcel(records, filterEntry, filterStatus, dateFrom, dateTo) {
     { 'Metric': 'Selected',         'Value': selected },
     { 'Metric': 'Waiting',          'Value': waiting },
     { 'Metric': 'Status Unset',     'Value': unset },
+    { 'Metric': '──────────────',   'Value': '' },
+    { 'Metric': 'Male',             'Value': records.filter(r => r.gender === 'Male').length },
+    { 'Metric': 'Female',           'Value': records.filter(r => r.gender === 'Female').length },
     { 'Metric': '──────────────',   'Value': '' },
     ...entryBreakdown,
     { 'Metric': '──────────────',   'Value': '' },
@@ -103,6 +109,7 @@ function ExportFreshersPage() {
   // Filters
   const [filterEntry,  setFilterEntry]  = useState('All')
   const [filterStatus, setFilterStatus] = useState('All')
+  const [filterGender, setFilterGender] = useState('All')
   const [dateFrom, setDateFrom]         = useState('')
   const [dateTo,   setDateTo]           = useState('')
   const [search,   setSearch]           = useState('')
@@ -133,6 +140,7 @@ function ExportFreshersPage() {
   const preview = useMemo(() => {
     let list = [...records]
     if (filterEntry !== 'All')  list = list.filter(r => r.entry === filterEntry)
+    if (filterGender !== 'All') list = list.filter(r => r.gender === filterGender)
     if (filterStatus !== 'All') {
       if (filterStatus === 'Unset') list = list.filter(r => !r.status)
       else list = list.filter(r => r.status === filterStatus)
@@ -149,7 +157,7 @@ function ExportFreshersPage() {
       )
     }
     return list.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
-  }, [records, filterEntry, filterStatus, dateFrom, dateTo, search])
+  }, [records, filterEntry, filterGender, filterStatus, dateFrom, dateTo, search])
 
   // Summary stats
   const totalSelected = preview.filter(r => r.status === 'Selected').length
@@ -169,12 +177,13 @@ function ExportFreshersPage() {
   const clearFilters = () => {
     setFilterEntry('All')
     setFilterStatus('All')
+    setFilterGender('All')
     setDateFrom('')
     setDateTo('')
     setSearch('')
   }
 
-  const hasActiveFilter = filterEntry !== 'All' || filterStatus !== 'All' || dateFrom || dateTo || search
+  const hasActiveFilter = filterEntry !== 'All' || filterStatus !== 'All' || filterGender !== 'All' || dateFrom || dateTo || search
 
   return (
     <div className="exportContainer">
@@ -247,6 +256,21 @@ function ExportFreshersPage() {
                 onClick={() => setFilterStatus(s)}
               >
                 {s === 'Selected' ? '✓ ' : s === 'Waiting' ? '⏳ ' : s === 'Unset' ? '— ' : ''}{s}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div className="filterGroup">
+          <label className="filterLabel">Gender</label>
+          <div className="filterTypeBtns">
+            {GENDER_OPTIONS.map(g => (
+              <button
+                key={g}
+                className={`filterTypeBtn ${filterGender === g ? `filterTypeActive filterType${g}` : ''}`}
+                onClick={() => setFilterGender(g)}
+              >
+                {g === 'Male' ? '♂ ' : g === 'Female' ? '♀ ' : ''}{g}
               </button>
             ))}
           </div>
@@ -337,6 +361,7 @@ function ExportFreshersPage() {
                   <th>Parent</th>
                   <th>Phone</th>
                   <th>Email</th>
+                  <th>Gender</th>
                   <th>Entry Type</th>
                   <th>Status</th>
                 </tr>
@@ -350,6 +375,11 @@ function ExportFreshersPage() {
                     <td className="tdDetail">{rec.parentName || <span className="tdNone">—</span>}</td>
                     <td className="tdDetail">{rec.phoneNo || <span className="tdNone">—</span>}</td>
                     <td className="tdDetail">{rec.email || <span className="tdNone">—</span>}</td>
+                    <td>
+                      {rec.gender
+                        ? <span className={`typePill pillGender${rec.gender}`}>{rec.gender}</span>
+                        : <span className="tdNone">—</span>}
+                    </td>
                     <td>
                       {rec.entry
                         ? <span className="typePill pillEntry">{rec.entry}</span>
