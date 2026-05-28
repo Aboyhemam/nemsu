@@ -137,7 +137,7 @@ function Freshers() {
 
           <div className="formHeader">
             <h2 className="formHeading">
-              Form for NEE/NEPGET Selected and Waiting List
+              Form for NEE/JEE/QUET/NEPGET Selected and Waiting List
             </h2>
           </div>
 
@@ -147,7 +147,7 @@ function Freshers() {
               Note: This form is meant only for candidates from
               Manipur, including Manipuri candidates from other
               states, who appeared in the NERIST Entrance
-              Examination (NEE) or NERIST Post Graduate Entrance
+              Examination (NEE) or JEE or QUET or NERIST Post Graduate Entrance
               Test (NEPGET) and are either selected or in the
               waiting list.
 
