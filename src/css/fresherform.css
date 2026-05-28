@@ -1,0 +1,383 @@
+/* ============================================================
+   NEMSU Fresher Form — fresherform.css
+   Palette:
+   Teal #1a6b7a | Sky #4db8cc | Orange #d4622a | Cream #e8d5b0
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap');
+
+:root {
+  --teal:       #1a6b7a;
+  --sky:        #4db8cc;
+  --sky-dim:    rgba(77, 184, 204, 0.10);
+  --sky-border: rgba(77, 184, 204, 0.20);
+  --orange:     #d4622a;
+  --cream:      #e8d5b0;
+  --charcoal:   #1e1e1e;
+  --ch-mid:     #252525;
+  --white:      #ffffff;
+  --ease:       cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ============================================================
+   BASE
+   ============================================================ */
+
+.fresherFormContainer {
+  min-height: 100vh;
+  padding: 50px 24px 80px;
+  background:
+    radial-gradient(
+      ellipse 70% 50% at 15% 0%,
+      rgba(26,107,122,0.30) 0%,
+      transparent 70%
+    ),
+    radial-gradient(
+      ellipse 50% 40% at 85% 100%,
+      rgba(212,98,42,0.13) 0%,
+      transparent 60%
+    ),
+    var(--charcoal);
+
+  font-family: 'DM Sans', sans-serif;
+  color: var(--cream);
+}
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+
+.formHeaderContainer {
+  max-width: 1100px;
+  margin: 0 auto 40px;
+}
+
+.formHeader {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.formHeading {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2rem, 5vw, 4rem);
+  letter-spacing: 0.08em;
+  line-height: 1.1;
+  margin: 0;
+
+  background: linear-gradient(
+    135deg,
+    var(--sky) 0%,
+    var(--cream) 60%
+  );
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.headerBody {
+  background: rgba(26,107,122,0.08);
+  border: 1px solid var(--sky-border);
+  border-radius: 18px;
+  padding: 28px;
+  backdrop-filter: blur(8px);
+
+  box-shadow:
+    0 0 0 1px rgba(77,184,204,0.05),
+    0 12px 44px rgba(0,0,0,0.30);
+}
+
+.hBody {
+  display: block;
+  font-size: 0.98rem;
+  line-height: 1.9;
+  color: rgba(232,213,176,0.88);
+}
+
+/* ============================================================
+   EXECUTIVE CONTACT
+   ============================================================ */
+
+.ebodyContainer {
+  margin-top: 28px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(77,184,204,0.12);
+}
+
+.eBodyHead {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.25rem;
+  letter-spacing: 0.08em;
+  color: var(--sky);
+  margin-bottom: 18px;
+}
+
+.executive {
+  margin: 12px 0;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: rgba(232,213,176,0.85);
+}
+
+.eBodyContact {
+  text-decoration: none;
+  color: var(--orange);
+  font-weight: 600;
+  margin-left: 6px;
+  transition: color 0.25s var(--ease);
+}
+
+.eBodyContact:hover {
+  color: var(--sky);
+}
+
+/* ============================================================
+   FORM BODY
+   ============================================================ */
+
+.formBody {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.fresher {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+
+  background: rgba(26,107,122,0.08);
+  border: 1px solid var(--sky-border);
+  border-radius: 20px;
+
+  padding: 34px;
+
+  backdrop-filter: blur(10px);
+
+  box-shadow:
+    0 0 0 1px rgba(77,184,204,0.05),
+    0 12px 44px rgba(0,0,0,0.30);
+}
+
+/* ============================================================
+   INPUTS
+   ============================================================ */
+
+.fresherInput {
+  width: 100%;
+  padding: 15px 16px;
+
+  border-radius: 12px;
+  border: 1px solid rgba(77,184,204,0.18);
+
+  background: rgba(255,255,255,0.04);
+  color: var(--cream);
+
+  font-size: 0.95rem;
+  font-family: inherit;
+
+  outline: none;
+
+  transition:
+    border-color 0.25s var(--ease),
+    background 0.25s var(--ease),
+    transform 0.25s var(--ease),
+    box-shadow 0.25s var(--ease);
+}
+
+.fresherInput::placeholder {
+  color: rgba(232,213,176,0.35);
+}
+
+.fresherInput:focus {
+  border-color: var(--sky);
+
+  background: rgba(77,184,204,0.06);
+
+  box-shadow:
+    0 0 0 4px rgba(77,184,204,0.08),
+    0 0 18px rgba(77,184,204,0.12);
+
+  transform: translateY(-1px);
+}
+
+/* ============================================================
+   TEXTAREA
+   ============================================================ */
+
+textarea.fresherInput {
+  min-height: 130px;
+  resize: vertical;
+}
+
+/* ============================================================
+   SELECT
+   ============================================================ */
+
+select.fresherInput {
+  cursor: pointer;
+}
+
+select.fresherInput option {
+  background: var(--ch-mid);
+  color: var(--cream);
+}
+
+/* ============================================================
+   BUTTON
+   ============================================================ */
+
+.buttonform {
+  margin-top: 10px;
+
+  border: none;
+  border-radius: 14px;
+
+  padding: 15px 22px;
+
+  background: linear-gradient(
+    135deg,
+    var(--teal),
+    var(--sky)
+  );
+
+  color: white;
+
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.25s var(--ease),
+    box-shadow 0.25s var(--ease),
+    opacity 0.25s var(--ease);
+}
+
+.buttonform:hover {
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 10px 24px rgba(77,184,204,0.22),
+    0 4px 12px rgba(0,0,0,0.28);
+}
+
+.buttonform:active {
+  transform: scale(0.98);
+}
+
+.buttonform:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+/* ============================================================
+   ALERTS
+   ============================================================ */
+
+.formError,
+.formSuccess {
+  padding: 14px 16px;
+  border-radius: 10px;
+
+  font-size: 0.92rem;
+  font-weight: 500;
+
+  animation: fadeUp 0.35s var(--ease);
+}
+
+.formError {
+  background: rgba(201,52,52,0.12);
+  border: 1px solid rgba(201,52,52,0.25);
+  color: #ff8b8b;
+}
+
+.formSuccess {
+  background: rgba(40,167,69,0.12);
+  border: 1px solid rgba(40,167,69,0.25);
+  color: #79e39b;
+}
+
+/* ============================================================
+   ANIMATION
+   ============================================================ */
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============================================================
+   RESPONSIVE — TABLET
+   ============================================================ */
+
+@media (max-width: 900px) {
+
+  .fresherFormContainer {
+    padding: 36px 18px 60px;
+  }
+
+  .headerBody {
+    padding: 22px;
+  }
+
+  .fresher {
+    padding: 24px;
+  }
+
+  .formHeading {
+    font-size: 2.7rem;
+  }
+}
+
+/* ============================================================
+   RESPONSIVE — MOBILE
+   ============================================================ */
+
+@media (max-width: 480px) {
+
+  .fresherFormContainer {
+    padding: 28px 14px 50px;
+  }
+
+  .headerBody {
+    padding: 18px;
+    border-radius: 14px;
+  }
+
+  .fresher {
+    padding: 18px;
+    border-radius: 16px;
+    gap: 14px;
+  }
+
+  .formHeading {
+    font-size: 2rem;
+  }
+
+  .hBody {
+    font-size: 0.88rem;
+    line-height: 1.8;
+  }
+
+  .executive {
+    font-size: 0.84rem;
+  }
+
+  .fresherInput {
+    font-size: 0.9rem;
+    padding: 13px 14px;
+  }
+
+  .buttonform {
+    width: 100%;
+    padding: 14px;
+  }
+}

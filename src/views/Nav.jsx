@@ -21,6 +21,7 @@ import Finance from './admin/Finance'
 import ExportPage from './admin/ExportPage'
 import UploadNotice from './admin/UploadNotice'
 import EditEvent from './admin/EditEvent'
+import Freshers from './Freshers'
 // ✅ Layout wrapper
 function RootLayout() {
   return (
@@ -44,6 +45,7 @@ const router = createBrowserRouter(
         { path: "events", element: <FullEvent /> },
         { path: "contact", element: <FullContact /> },
         { path: "support", element: <FullSupport /> },
+        { path: "neeRegister", element: <Freshers/> },
 
         // ── Admin login (must be public) ──
         { path: "admin", element: <AdminLogin /> },

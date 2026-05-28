@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useMemo, useCallback } from 'react'
+import { NavLink } from 'react-router-dom'
 import "./../css/home.css"
 
 import pic      from "../assets/pictures/IMG-20260422-WA0075.jpg"
@@ -235,6 +236,21 @@ function Home() {
         <p className="motoText">Learn Unity and Peace</p>
       </div>
 
+      {/* NEE Selected and Waiting List Register */}
+      <div className="registerContainer">
+       <div className="registerLink">
+        <div className="formLinkHeader">
+          <h2 className="linkHeader">Alert for candidates who appeared NEE 2026</h2>
+        </div>
+        <p className="rLink">
+           All candidates from Manipur, including Manipuri candidates from other states, who are selected or placed on the waiting list for NEE, are requested to sign up using this form so that we can assist you.
+        </p>
+
+        <NavLink to="/neeRegister" className="formLink">
+          Fill Up the Form Here
+        </NavLink>
+       </div>
+      </div>
       {/* ══ NOTICE BOARD ══ */}
       <section className="noticeSectionWrap" aria-label="Notice board">
         <div className="noticeBoardContainer">

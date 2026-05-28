@@ -588,7 +588,26 @@
 .galleryStripActive .galleryStripImg {
   filter: saturate(1) brightness(1);
 }
-
+.registerContainer{
+  
+  display: flex;
+  justify-content: center;
+}
+.registerLink{
+  max-width: 900px;
+  background-color: var(--ch-mid);
+  padding: 10px;
+  margin-top: 20px;
+  border: solid var(--sky-border);
+  border-radius: 20px;
+}
+.formLinkHeader{
+  color: #c93434;
+}
+.formLink{
+  text-decoration: none;
+  color: var(--sky);
+}
 /* ============================================================
    ANIMATIONS
    ============================================================ */
@@ -604,7 +623,9 @@
   .noticeSectionWrap  { padding: 32px 16px; }
   .sunSectionWrap     { padding: 0 16px 48px; }
   .gallerySectionWrap { padding: 0 16px 60px; }
-
+  .registerLink{
+    max-width: 400px;
+  }
   .sunRow, .sunRowImgRight {
     grid-template-columns: 1fr;
     direction: ltr; gap: 22px; padding: 36px 0;
@@ -631,6 +652,10 @@
   .sunCounter { font-size: 2.8rem; }
   .flagTicker::before, .flagTicker::after { width: 60px; }
   .flagImage { height: 34px; }
+  .registerContainer{
+    padding: 20px;
+    font-size: 0.78rem;
+  }
 
   .galleryStripThumb { width: calc((100% - 3 * 8px) / 4); min-width: 64px; }
   .galleryNavBtn     { width: 36px; height: 36px; font-size: 1.1rem; }
