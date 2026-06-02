@@ -113,21 +113,21 @@ function NewMember() {
     if (!files.student_sign) { setError('Student signature is required.'); return }
     if(!files.passportPhoto) {setError("Passport Photo is required"); return }
     if (!files.parent_sign)  { setError('Parent/Guardian signature is required.'); return }
+    if (!files.payment_SS) {
+  setError('Payment screenshot is required.')
+  return
+}
 
     setLoading(true)
     setError('')
 
     try {
-      const token = localStorage.getItem('nemsu_token')
       const body = new FormData()
       Object.entries(formData).forEach(([k, v]) => body.append(k, v))
       Object.entries(files).forEach(([k, v]) => { if (v) body.append(k, v) })
 
       const res = await fetch(`${API_BASE}/member/add`, {
         method: 'POST',
-        headers:{
-            "Content-Type": "application/json",
-          },
         body,
       })
 
