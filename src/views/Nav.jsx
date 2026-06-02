@@ -23,6 +23,7 @@ import UploadNotice from './admin/UploadNotice'
 import EditEvent from './admin/EditEvent'
 import Freshers from './Freshers'
 import NewMember from './NewMember'
+import AdminMembers from './admin/AdminMembers'
 import ExportFreshersPage from './admin/Exportfreshers'
 // ✅ Layout wrapper
 function RootLayout() {
@@ -60,6 +61,14 @@ const router = createBrowserRouter(
           element: (
             <ProtectedRoute>
               <AdminHome />
+            </ProtectedRoute>
+          )
+        },
+        {
+          path: "admin/get/members",
+          element: (
+            <ProtectedRoute>
+              <AdminMembers />
             </ProtectedRoute>
           )
         },

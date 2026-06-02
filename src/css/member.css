@@ -1,0 +1,240 @@
+.membersPage {
+  padding: 30px;
+  background: #f5f7fb;
+  min-height: 100vh;
+}
+
+/* HEADER */
+
+.membersTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.membersTitleBox h1 {
+  margin: 0;
+  font-size: 32px;
+  font-weight: 700;
+  color: #182848;
+}
+
+.membersTitleBox p {
+  margin-top: 8px;
+  color: #6b7280;
+}
+
+/* STATS */
+
+.membersStats {
+  display: flex;
+  gap: 20px;
+}
+
+.statCard {
+  background: white;
+  padding: 18px 28px;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0,0,0,.08);
+  text-align: center;
+}
+
+.statCard h2 {
+  margin: 0;
+  color: #1d4ed8;
+  font-size: 30px;
+}
+
+.statCard span {
+  color: #64748b;
+  font-size: 14px;
+}
+
+/* TOOLBAR */
+
+.membersToolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.searchInput {
+  width: 350px;
+  max-width: 100%;
+  padding: 12px 18px;
+  border-radius: 12px;
+  border: 1px solid #dbe2ea;
+  font-size: 15px;
+  outline: none;
+  background: white;
+}
+
+.searchInput:focus {
+  border-color: #2563eb;
+}
+
+/* BUTTONS */
+
+.membersActions {
+  display: flex;
+  gap: 12px;
+}
+
+.excelBtn,
+.blankBtn,
+.pdfBtn {
+  border: none;
+  padding: 11px 18px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: .25s;
+}
+
+.excelBtn {
+  background: #16a34a;
+  color: white;
+}
+
+.excelBtn:hover {
+  background: #15803d;
+}
+
+.blankBtn {
+  background: #2563eb;
+  color: white;
+}
+
+.blankBtn:hover {
+  background: #1d4ed8;
+}
+
+.pdfBtn {
+  background: #dc2626;
+  color: white;
+}
+
+.pdfBtn:hover {
+  background: #b91c1c;
+}
+
+/* TABLE */
+
+.membersTableWrapper {
+  background: white;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0,0,0,.08);
+}
+
+.membersTable {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.membersTable thead {
+  background: #182848;
+  color: white;
+}
+
+.membersTable thead th {
+  padding: 18px;
+  text-align: left;
+  position: sticky;
+  top: 0;
+}
+
+.membersTable tbody tr {
+  transition: .2s;
+}
+
+.membersTable tbody tr:hover {
+  background: #f8fafc;
+}
+
+.membersTable td {
+  padding: 16px;
+  border-bottom: 1px solid #eef2f7;
+}
+
+/* PROFILE PHOTO */
+
+.memberPhoto {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #e2e8f0;
+}
+
+/* NAME */
+
+.memberName {
+  font-weight: 600;
+  color: #182848;
+}
+
+/* BADGES */
+
+.courseBadge {
+  background: #dbeafe;
+  color: #1d4ed8;
+  padding: 5px 10px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  display: inline-block;
+}
+
+.deptBadge {
+  background: #fef3c7;
+  color: #b45309;
+  padding: 5px 10px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* LOADING */
+
+.loadingBox {
+  min-height: 70vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 22px;
+  color: #64748b;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 900px) {
+
+  .membersTop {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .membersToolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .searchInput {
+    width: 100%;
+  }
+
+  .membersActions {
+    width: 100%;
+  }
+
+  .excelBtn,
+  .blankBtn {
+    flex: 1;
+  }
+}
