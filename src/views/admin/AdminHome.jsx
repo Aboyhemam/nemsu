@@ -58,6 +58,14 @@ const adminModules = [
     icon: '↓',
     accent: 'orange',
   },
+  {
+    id: 'export',
+    to: '/admin/get/members',
+    label: 'New Member||Membership Form',
+    desc: 'Download membership forms and new members forms',
+    icon: '📄',
+    accent: 'orange',
+  },
 ]
 
 // ─── Message Panel ────────────────────────────────────────────
