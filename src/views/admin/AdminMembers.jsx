@@ -138,8 +138,48 @@ const filteredMembers = members.filter((member) =>
   };
 
   if (loading) {
-    return <h2>Loading Members...</h2>;
-  }
+  return (
+    <div className="membersPage">
+      <div className="membersTop">
+        <div className="membersTitleBox">
+          <h1>NEMSU Members Directory</h1>
+          <p>Manage registered members and generate documents</p>
+        </div>
+
+        <div className="membersStats">
+          <div className="statCard">
+            <h2>—</h2>
+            <span>Total Members</span>
+          </div>
+        </div>
+      </div>
+
+      <div className="membersToolbar">
+        <div className="searchInput membersSkeletonInput" />
+        <div className="membersActions">
+          <div className="membersSkeletonBtn" />
+          <div className="membersSkeletonBtn" />
+        </div>
+      </div>
+
+      <div className="membersTableWrap">
+        <div className="membersSkeletonTable">
+          {[...Array(6)].map((_, i) => (
+            <div className="membersSkeletonRow" key={i}>
+              <div className="membersSkeletonPhoto shimmer" />
+              <div className="membersSkeletonContent">
+                <div className="membersSkeletonLine lg shimmer" />
+                <div className="membersSkeletonLine md shimmer" />
+                <div className="membersSkeletonLine sm shimmer" />
+              </div>
+              <div className="membersSkeletonAction shimmer" />
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
 
   return (
     <div className="membersPage">
@@ -181,61 +221,54 @@ const filteredMembers = members.filter((member) =>
 
 </div>
 
-      <table className="membersTable">
-        <thead>
-          <tr>
-            <th>Photo</th>
-            <th>Name</th>
-            <th>Course</th>
-            <th>Department</th>
-            <th>Phone</th>
-            <th>Email</th>
-            <th>PDF</th>
-          </tr>
-        </thead>
+      <div className="membersTableWrap">
+  <table className="membersTable">
+    <thead>
+      <tr>
+        <th>Photo</th>
+        <th>Name</th>
+        <th>Course</th>
+        <th>Department</th>
+        <th>Phone</th>
+        <th>Email</th>
+        <th>PDF</th>
+      </tr>
+    </thead>
 
-        <tbody>
-            {filteredMembers.map((member) => (
-            <tr key={member._id}>
-              <td>
-                <img
-                  src={member.passportPhoto_fileId}
-                  alt=""
-                  width="50"
-                />
-              </td>
+    <tbody>
+      {filteredMembers.map((member) => (
+        <tr key={member._id}>
+          <td data-label="Photo">
+            <img
+              src={member.passportPhoto_fileId}
+              alt={`${member.firstName} ${member.lastName}`}
+              width="50"
+            />
+          </td>
 
-              <td>
-                {member.firstName}{" "}
-                {member.middleName}{" "}
-                {member.lastName}
-              </td>
+          <td data-label="Name" className="memberNameCell">
+            {member.firstName} {member.middleName} {member.lastName}
+          </td>
 
-              <td>{member.course}</td>
+          <td data-label="Course">{member.course}</td>
+          <td data-label="Department">{member.department}</td>
+          <td data-label="Phone">{member.phoneNo}</td>
+          <td data-label="Email">{member.email}</td>
 
-              <td>{member.department}</td>
-
-              <td>{member.phoneNo}</td>
-
-              <td>{member.email}</td>
-
-              <td>
-                <button
-                  onClick={() =>
-                    generateMemberPDF(
-                      member,
-                      nemsuLogo,
-                      neristLogo
-                    )
-                  }
-                >
-                  Generate PDF
-                </button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+          <td data-label="PDF">
+            <button
+              onClick={() =>
+                generateMemberPDF(member, nemsuLogo, neristLogo)
+              }
+            >
+              Generate PDF
+            </button>
+          </td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
     </div>
   );
 }

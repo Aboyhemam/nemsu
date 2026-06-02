@@ -1,9 +1,3 @@
-/* ============================================================
-   NEMSU Members Directory — member.css
-   Style direction: clean dark admin panel with subtle teal accent
-   Inspired by structured admin dashboards and export-table layouts
-   ============================================================ */
-
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=DM+Mono:wght@400;500&display=swap');
 
 :root {
@@ -12,39 +6,27 @@
   --panel: #20252b;
   --panel-2: #252b32;
   --panel-3: #2b323a;
-
   --text: #e9dfc9;
   --text-soft: rgba(233, 223, 201, 0.72);
   --text-faint: rgba(233, 223, 201, 0.38);
-
   --teal: #3ca6b6;
   --teal-dark: #1f6c79;
   --teal-dim: rgba(60, 166, 182, 0.12);
   --teal-border: rgba(60, 166, 182, 0.26);
-
   --orange: #d26b35;
   --orange-dim: rgba(210, 107, 53, 0.12);
   --orange-border: rgba(210, 107, 53, 0.28);
-
   --border: rgba(255, 255, 255, 0.075);
   --shadow: 0 16px 40px rgba(0, 0, 0, 0.22);
   --radius-sm: 8px;
   --radius-md: 12px;
   --radius-lg: 18px;
-
-  --success: #57b88b;
-  --danger: #e16b6b;
-
   --mono: 'DM Mono', monospace;
   --body: 'DM Sans', sans-serif;
   --display: 'Bebas Neue', sans-serif;
-
   --transition: 0.28s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* ============================================================
-   PAGE
-   ============================================================ */
 .membersPage {
   min-height: 100vh;
   padding: 32px 28px 72px;
@@ -57,23 +39,8 @@
   background-size: auto, auto, 36px 36px, 36px 36px, auto;
   color: var(--text);
   font-family: var(--body);
-  animation: membersPageIn 0.45s ease both;
 }
 
-@keyframes membersPageIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* ============================================================
-   TOP AREA
-   ============================================================ */
 .membersTop {
   display: flex;
   align-items: stretch;
@@ -105,7 +72,7 @@
 .membersTitleBox h1 {
   margin: 0 0 8px;
   font-family: var(--display);
-  font-size: clamp(2.2rem, 5vw, 3.5rem);
+  font-size: clamp(2.1rem, 5vw, 3.4rem);
   line-height: 0.95;
   letter-spacing: 0.06em;
   color: var(--text);
@@ -121,7 +88,6 @@
 
 .membersStats {
   display: flex;
-  align-items: stretch;
   gap: 14px;
   flex: 0 0 auto;
 }
@@ -133,18 +99,13 @@
   background: linear-gradient(180deg, rgba(60, 166, 182, 0.12), rgba(60, 166, 182, 0.05));
   border: 1px solid var(--teal-border);
   box-shadow: var(--shadow);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
 }
 
 .statCard h2 {
   margin: 0 0 6px;
   font-family: var(--mono);
   font-size: 1.9rem;
-  font-weight: 500;
   color: var(--teal);
-  letter-spacing: -0.03em;
 }
 
 .statCard span {
@@ -155,9 +116,6 @@
   color: var(--text-soft);
 }
 
-/* ============================================================
-   TOOLBAR
-   ============================================================ */
 .membersToolbar {
   display: flex;
   align-items: center;
@@ -212,7 +170,6 @@
   font-family: var(--body);
   font-weight: 700;
   font-size: 0.88rem;
-  letter-spacing: 0.02em;
   border-radius: 12px;
   transition: transform var(--transition), box-shadow var(--transition), background var(--transition), border-color var(--transition), color var(--transition);
 }
@@ -230,34 +187,27 @@
   box-shadow: 0 10px 24px rgba(60, 166, 182, 0.18);
 }
 
-.excelBtn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 14px 30px rgba(60, 166, 182, 0.26);
-}
-
 .blankBtn {
   color: var(--orange);
   background: var(--orange-dim);
   border: 1px solid var(--orange-border);
 }
 
-.blankBtn:hover {
-  transform: translateY(-2px);
-  background: rgba(210, 107, 53, 0.18);
+.membersTableWrap {
+  width: 100%;
+  overflow-x: auto;
+  border-radius: var(--radius-lg);
 }
 
-/* ============================================================
-   TABLE SHELL
-   ============================================================ */
 .membersTable {
   width: 100%;
-  min-width: 900px;
+  min-width: 920px;
   border-collapse: separate;
   border-spacing: 0;
-  overflow: hidden;
   background: var(--panel);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
+  overflow: hidden;
   box-shadow: var(--shadow);
 }
 
@@ -268,19 +218,10 @@
   border-bottom: 1px solid var(--border);
   font-family: var(--mono);
   font-size: 0.68rem;
-  font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.16em;
   color: var(--teal);
   white-space: nowrap;
-}
-
-.membersTable tbody tr {
-  transition: background var(--transition), transform var(--transition);
-}
-
-.membersTable tbody tr:hover {
-  background: rgba(60, 166, 182, 0.045);
 }
 
 .membersTable tbody td {
@@ -295,9 +236,10 @@
   border-bottom: none;
 }
 
-/* ============================================================
-   PHOTO CELL
-   ============================================================ */
+.membersTable tbody tr:hover {
+  background: rgba(60, 166, 182, 0.045);
+}
+
 .membersTable td img {
   width: 52px;
   height: 52px;
@@ -305,45 +247,27 @@
   border-radius: 14px;
   border: 1px solid rgba(255,255,255,0.08);
   background: var(--panel-3);
-  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.22);
   display: block;
 }
 
-/* ============================================================
-   CONTENT TUNING BY COLUMN
-   ============================================================ */
-.membersTable tbody td:nth-child(2) {
-  color: var(--text);
+.memberNameCell {
+  color: var(--text) !important;
   font-weight: 600;
-  min-width: 220px;
-}
-
-.membersTable tbody td:nth-child(3),
-.membersTable tbody td:nth-child(4) {
-  min-width: 140px;
 }
 
 .membersTable tbody td:nth-child(5) {
   font-family: var(--mono);
   font-size: 0.82rem;
-  color: rgba(233, 223, 201, 0.82);
   white-space: nowrap;
 }
 
 .membersTable tbody td:nth-child(6) {
-  max-width: 240px;
+  max-width: 220px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-.membersTable tbody td:last-child {
-  width: 150px;
-}
-
-/* ============================================================
-   ROW BUTTON
-   ============================================================ */
 .membersTable button {
   min-height: 38px;
   padding: 0 14px;
@@ -354,115 +278,125 @@
 }
 
 .membersTable button:hover {
-  transform: translateY(-1px);
   background: rgba(60, 166, 182, 0.18);
-  box-shadow: 0 8px 18px rgba(60, 166, 182, 0.14);
 }
 
-/* ============================================================
-   LOADING STATE
-   ============================================================ */
 .membersPage h2 {
   margin: 40px 0 0;
   font-family: var(--display);
   font-size: 2rem;
   letter-spacing: 0.08em;
-  color: var(--text);
 }
 
-/* ============================================================
-   TABLE RESPONSIVE WRAP SUPPORT
-   Add one wrapper in JSX if possible:
-   <div className="membersTableWrap"><table className="membersTable">...</table></div>
-   ============================================================ */
-.membersTableWrap {
-  width: 100%;
-  overflow-x: auto;
-  border-radius: var(--radius-lg);
+/* Skeleton */
+.membersSkeletonTable {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
-/* ============================================================
-   SCROLLBAR
-   ============================================================ */
-.membersTableWrap::-webkit-scrollbar {
+.membersSkeletonRow {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: var(--shadow);
+}
+
+.membersSkeletonPhoto {
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  background: var(--panel-3);
+  flex-shrink: 0;
+}
+
+.membersSkeletonContent {
+  flex: 1;
+  min-width: 0;
+}
+
+.membersSkeletonLine {
   height: 10px;
-}
-
-.membersTableWrap::-webkit-scrollbar-track {
-  background: var(--panel-2);
   border-radius: 999px;
+  background: var(--panel-3);
+  margin-bottom: 10px;
 }
 
-.membersTableWrap::-webkit-scrollbar-thumb {
-  background: rgba(255,255,255,0.14);
-  border-radius: 999px;
+.membersSkeletonLine.lg { width: 42%; }
+.membersSkeletonLine.md { width: 64%; }
+.membersSkeletonLine.sm { width: 30%; margin-bottom: 0; }
+
+.membersSkeletonAction {
+  width: 120px;
+  height: 40px;
+  border-radius: 12px;
+  background: var(--panel-3);
+  flex-shrink: 0;
 }
 
-.membersTableWrap::-webkit-scrollbar-thumb:hover {
-  background: rgba(255,255,255,0.22);
+.membersSkeletonInput {
+  background: var(--panel-3);
+  border: 1px solid var(--border);
 }
 
-/* ============================================================
-   RESPONSIVE
-   ============================================================ */
-@media (max-width: 980px) {
+.membersSkeletonBtn {
+  width: 158px;
+  height: 46px;
+  border-radius: 12px;
+  background: var(--panel-3);
+  border: 1px solid var(--border);
+}
+
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    rgba(255,255,255,0.04) 0%,
+    rgba(255,255,255,0.09) 50%,
+    rgba(255,255,255,0.04) 100%
+  );
+  background-size: 220% 100%;
+  animation: shimmerMove 1.2s linear infinite;
+}
+
+@keyframes shimmerMove {
+  from { background-position: 200% 0; }
+  to { background-position: -200% 0; }
+}
+
+/* Mobile card view */
+@media (max-width: 860px) {
   .membersPage {
-    padding: 24px 18px 56px;
+    padding: 22px 16px 48px;
   }
 
   .membersTop {
     flex-direction: column;
   }
 
-  .membersStats {
-    width: 100%;
-  }
-
+  .membersStats,
   .statCard {
     width: 100%;
-    min-width: 0;
   }
 
   .membersToolbar {
     padding: 16px;
+    flex-direction: column;
+    align-items: stretch;
   }
 
   .searchInput {
     width: 100%;
+    min-width: 0;
   }
 
   .membersActions {
     width: 100%;
-  }
-
-  .excelBtn,
-  .blankBtn {
-    flex: 1 1 220px;
-    justify-content: center;
-  }
-}
-
-@media (max-width: 640px) {
-  .membersTitleBox {
-    padding: 22px 18px 20px;
-  }
-
-  .membersTitleBox h1 {
-    font-size: 2.3rem;
-  }
-
-  .membersTitleBox p {
-    font-size: 0.88rem;
-  }
-
-  .membersToolbar {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .membersActions {
-    flex-direction: column;
-    align-items: stretch;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
   }
 
   .excelBtn,
@@ -471,6 +405,146 @@
   }
 
   .membersTable {
-    min-width: 820px;
+    min-width: 100%;
+    border: none;
+    background: transparent;
+    box-shadow: none;
   }
+
+  .membersTable thead {
+    display: none;
+  }
+
+  .membersTable tbody {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .membersTable tbody tr {
+    display: block;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+    padding: 14px;
+  }
+
+  .membersTable tbody td {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    font-size: 0.88rem;
+  }
+
+  .membersTable tbody td:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .membersTable tbody td::before {
+    content: attr(data-label);
+    min-width: 82px;
+    flex-shrink: 0;
+    font-family: var(--mono);
+    font-size: 0.66rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--teal);
+    padding-top: 4px;
+  }
+
+  .membersTable tbody td[data-label="Photo"] {
+    align-items: center;
+  }
+
+  .membersTable tbody td[data-label="Photo"]::before {
+    padding-top: 0;
+  }
+
+  .membersTable tbody td img {
+    width: 58px;
+    height: 58px;
+    margin-left: auto;
+  }
+
+  .membersTable tbody td[data-label="PDF"] {
+    display: block;
+    padding-top: 14px;
+  }
+
+  .membersTable tbody td[data-label="PDF"]::before {
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  .membersTable tbody td[data-label="PDF"] button {
+    width: 100%;
+    min-height: 42px;
+  }
+
+  .membersTable tbody td:nth-child(6) {
+    max-width: none;
+    white-space: normal;
+    overflow: visible;
+    text-overflow: initial;
+    word-break: break-word;
+  }
+
+  .membersSkeletonRow {
+    padding: 14px;
+  }
+
+  .membersSkeletonAction {
+    width: 88px;
+  }
+}
+
+@media (max-width: 560px) {
+  .membersTitleBox {
+    padding: 22px 18px 20px;
+  }
+
+  .membersTitleBox h1 {
+    font-size: 2.2rem;
+  }
+
+  .membersTitleBox p {
+    font-size: 0.88rem;
+  }
+
+  .membersActions {
+    grid-template-columns: 1fr;
+  }
+
+  .membersTable tbody td {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .membersTable tbody td::before {
+    min-width: 0;
+    padding-top: 0;
+  }
+
+  .membersTable tbody td img {
+    margin-left: 0;
+  }
+
+  .membersSkeletonRow {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .membersSkeletonAction {
+    width: 100%;
+  }
+
+  .membersSkeletonLine.lg { width: 70%; }
+  .membersSkeletonLine.md { width: 92%; }
+  .membersSkeletonLine.sm { width: 48%; }
 }
