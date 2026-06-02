@@ -98,26 +98,26 @@ const filteredMembers = members.filter((member) =>
     const blankMember = {
       firstName: "_ _ _ _ _ _ _ _",
       middleName: "_ _ _ _ _ _ _ _",
-      lastName: "_ _ _ _",
+      lastName: "_ _ _ _ _ _ _ _ _ _ _ _",
       gender: "_ _ _ _ _",
       DOB: "____/____/__________",
 
-      fatherName: "_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _",
-      motherName: "_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _" ,
+      fatherName: "_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _",
+      motherName: "_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _" ,
 
-      address: "_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _",
-      district: "_ _ _ _ _ _ _ _",
-      state: "_ _ _ _ _ _ _ _",
-      pin: "_ _ _ _ _ _ _ _",
+      address: "_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _",
+      district: "_ _ _ _ _ _ _ _ _ _ _ _ _",
+      state: "_ _ _ _ _ _ _ _ _ _ _ _ _",
+      pin: "_ _ _ _ _ _ _ _ _ _ _ _ _",
 
-      course: "_ _ _ _ _ _ _ _",
-      department: "_ _ _ _ _ _ _ _",
-      admissionYear: "_ _ _ _ _ _ _ _",
-      admittedThrough: "_ _ _ _ _ _ _ _",
+      course: "_ _ _ _ _ _ _ _ _ _ _ _ _",
+      department: "_ _ _ _ _ _ _ _ _ _ _ _ _",
+      admissionYear: "_ _ _ _ _ _ _ _ _ _ _ _ _",
+      admittedThrough: "_ _ _ _ _ _ _ _ _ _ _ _ _",
 
-      phoneNo: "_ _ _ _ _ _ _ _ _ _ _ _",
-      parentPhoneNo: "_ _ _ _ _ _ _ _ _ _ _ _ _",
-      email: "_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _",
+      phoneNo: "_ _ _ _ _ _ _ _ _ _ _ __ _ _ _ _ _",
+      parentPhoneNo: "_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _",
+      email: "_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _",
 
       passportPhoto_fileId:
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNQRY4_svfrclxUrnJFNVHf7GjhZVAlrFGyw&s",
@@ -127,6 +127,7 @@ const filteredMembers = members.filter((member) =>
 
       parent_sign_fileId:
         "https://ik.imagekit.io/ef0fjxapr/image.png",
+      createdAt:"___/___/______"
     };
 
     await generateMemberPDF(
