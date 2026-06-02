@@ -22,6 +22,7 @@ import ExportPage from './admin/ExportPage'
 import UploadNotice from './admin/UploadNotice'
 import EditEvent from './admin/EditEvent'
 import Freshers from './Freshers'
+import NewMember from './NewMember'
 import ExportFreshersPage from './admin/Exportfreshers'
 // ✅ Layout wrapper
 function RootLayout() {
@@ -47,6 +48,7 @@ const router = createBrowserRouter(
         { path: "contact", element: <FullContact /> },
         { path: "support", element: <FullSupport /> },
         { path: "neeRegister", element: <Freshers/> },
+        { path: "new/Member", element: <NewMember/> },
 
         // ── Admin login (must be public) ──
         { path: "admin", element: <AdminLogin /> },

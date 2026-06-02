@@ -1,0 +1,592 @@
+/* ═══════════════════════════════════════════════════
+   newMember.css  —  NEMSU Member Registration Form
+   Deep Teal · Warm Orange · Cream · Charcoal
+   Bebas Neue (headings) · DM Sans (body)
+═══════════════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap');
+
+:root {
+  --teal:        #1a6b68;
+  --teal-light:  #e8f4f3;
+  --teal-mid:    #2d8b87;
+  --orange:      #e8682a;
+  --orange-light:#fef1ea;
+  --cream:       #faf7f2;
+  --charcoal:    #2c2c2c;
+  --muted:       #7a7a7a;
+  --border:      #e2ddd7;
+  --white:       #ffffff;
+  --error:       #dc2626;
+  --error-bg:    #fef2f2;
+  --success:     #059669;
+  --success-bg:  #ecfdf5;
+  --radius:      10px;
+  --shadow:      0 2px 16px rgba(26,107,104,0.08);
+  --shadow-lg:   0 8px 40px rgba(26,107,104,0.13);
+}
+
+/* ── Wrap ── */
+.nmWrap {
+  font-family: 'DM Sans', sans-serif;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 32px 24px 64px;
+  color: var(--charcoal);
+  background: var(--cream);
+  min-height: 100vh;
+}
+
+/* ── Page Header ── */
+.nmBreadcrumb {
+  font-size: 0.78rem;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin: 0 0 6px;
+}
+.nmPageTitle {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.6rem;
+  letter-spacing: 0.04em;
+  color: var(--teal);
+  margin: 0 0 6px;
+  line-height: 1;
+}
+.nmPageSub {
+  font-size: 0.9rem;
+  color: var(--muted);
+  margin: 0 0 32px;
+}
+
+/* ── Progress Steps ── */
+.nmSteps {
+  display: flex;
+  align-items: flex-start;
+  position: relative;
+  margin-bottom: 36px;
+  padding-bottom: 4px;
+}
+.nmStepTrack {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--border);
+  border-radius: 99px;
+  z-index: 0;
+}
+.nmStepTrack::after {
+  content: '';
+  position: absolute;
+  left: 0; top: 0;
+  height: 100%;
+  width: var(--progress, 0%);
+  background: var(--teal);
+  border-radius: 99px;
+  transition: width 0.4s ease;
+}
+.nmStep {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  flex: 1;
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+  padding-bottom: 12px;
+  transition: opacity 0.2s;
+}
+.nmStep:not(.nmStepActive):not(.nmStepDone) { opacity: 0.4; }
+.nmStepDot {
+  width: 30px; height: 30px;
+  border-radius: 50%;
+  background: var(--white);
+  border: 2px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.75rem; font-weight: 600;
+  color: var(--muted);
+  transition: all 0.25s;
+}
+.nmStepActive .nmStepDot {
+  background: var(--teal); border-color: var(--teal); color: var(--white);
+  box-shadow: 0 0 0 4px rgba(26,107,104,0.15);
+}
+.nmStepDone .nmStepDot {
+  background: var(--teal-mid); border-color: var(--teal-mid); color: var(--white);
+}
+.nmStepLabel {
+  font-size: 0.7rem; font-weight: 500;
+  color: var(--charcoal); text-align: center; white-space: nowrap;
+}
+.nmStepActive .nmStepLabel { color: var(--teal); font-weight: 600; }
+
+/* ── Form Card ── */
+.nmForm {
+  background: var(--white);
+  border-radius: 16px;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+
+/* ── Section ── */
+.nmSection {
+  padding: 32px 36px;
+  animation: nmFadeIn 0.3s ease;
+}
+@keyframes nmFadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.nmSectionHeader {
+  display: flex; align-items: flex-start; gap: 16px;
+  margin-bottom: 28px; padding-bottom: 20px;
+  border-bottom: 1px solid var(--border);
+}
+.nmSectionNum {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.4rem; color: var(--teal-light);
+  line-height: 1; letter-spacing: 0.05em;
+  -webkit-text-stroke: 1.5px var(--teal);
+  flex-shrink: 0; margin-top: -2px;
+}
+.nmSectionTitle {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.5rem; letter-spacing: 0.04em;
+  color: var(--charcoal); margin: 0 0 4px;
+}
+.nmSectionSub { font-size: 0.83rem; color: var(--muted); margin: 0; }
+
+/* ── Subheading inside section ── */
+.nmSubheading {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin: 0 0 12px;
+}
+
+/* ── Divider ── */
+.nmDivider {
+  border: none;
+  border-top: 1px dashed var(--border);
+  margin: 24px 0 20px;
+}
+
+/* ── Rows ── */
+.nmRow {
+  display: grid; gap: 16px; margin-bottom: 16px;
+}
+.nmRow3 { grid-template-columns: repeat(3, 1fr); }
+.nmRow2 { grid-template-columns: repeat(2, 1fr); }
+.nmRow1 { grid-template-columns: 1fr; }
+
+@media (max-width: 640px) {
+  .nmRow3, .nmRow2 { grid-template-columns: 1fr; }
+  .nmSection { padding: 24px 20px; }
+  .nmStepLabel { font-size: 0.62rem; }
+}
+
+/* ── Field ── */
+.nmField { display: flex; flex-direction: column; gap: 6px; }
+.nmLabel {
+  font-size: 0.75rem; font-weight: 600;
+  color: var(--charcoal); letter-spacing: 0.01em; text-transform: uppercase;
+}
+.nmReq { color: var(--orange); margin-left: 1px; }
+
+/* ── Input / Select ── */
+.nmInput {
+  height: 42px; padding: 0 14px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem; color: var(--charcoal);
+  background: var(--white);
+  transition: border-color 0.18s, box-shadow 0.18s;
+  outline: none; width: 100%; box-sizing: border-box;
+}
+.nmInput::placeholder { color: #bbb; }
+.nmInput:focus {
+  border-color: var(--teal);
+  box-shadow: 0 0 0 3px rgba(26,107,104,0.12);
+}
+.nmSelect {
+  appearance: none; -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%231a6b68' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 36px; cursor: pointer;
+}
+
+/* ── Upload Grid ── */
+.nmUploadGrid {
+  display: grid; gap: 16px; margin-bottom: 8px;
+}
+.nmUploadGrid2 { grid-template-columns: repeat(2, 1fr); }
+@media (max-width: 560px) {
+  .nmUploadGrid2 { grid-template-columns: 1fr; }
+}
+
+.uploadBox {
+  border: 2px dashed var(--border);
+  border-radius: var(--radius);
+  min-height: 130px;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+  padding: 16px; background: var(--cream);
+}
+.uploadBox:hover { border-color: var(--teal); background: var(--teal-light); }
+
+.uploadBoxAccent {
+  border-color: rgba(232,104,42,0.35);
+  background: var(--orange-light);
+}
+.uploadBoxAccent:hover { border-color: var(--orange); background: #fde8d8; }
+
+.uploadPlaceholder {
+  display: flex; flex-direction: column;
+  align-items: center; gap: 6px; text-align: center;
+}
+.uploadIcon {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: var(--teal-light); color: var(--teal);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.1rem; font-weight: 700;
+  border: 1.5px solid rgba(26,107,104,0.2);
+}
+.uploadBoxAccent .uploadIcon {
+  background: var(--orange-light); color: var(--orange);
+  border-color: rgba(232,104,42,0.25);
+}
+.uploadLabel { font-size: 0.85rem; font-weight: 600; color: var(--charcoal); }
+.uploadHint  { font-size: 0.72rem; color: var(--muted); }
+.uploadPreview {
+  display: flex; flex-direction: column;
+  align-items: center; gap: 8px;
+}
+.uploadThumb {
+  width: 72px; height: 72px; object-fit: cover;
+  border-radius: 8px; border: 2px solid var(--teal-light);
+}
+.uploadDone {
+  font-size: 0.76rem; color: var(--success);
+  font-weight: 600; text-align: center; word-break: break-all;
+}
+
+/* ── Signature wrappers ── */
+.nmSignWrap { display: flex; flex-direction: column; gap: 8px; }
+.nmSignLabel {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 0.82rem; font-weight: 500; color: var(--charcoal);
+}
+.nmSignBadge {
+  font-size: 0.68rem; font-weight: 700;
+  padding: 2px 8px; border-radius: 99px;
+  letter-spacing: 0.03em; text-transform: uppercase;
+}
+.nmSignBadgeStudent {
+  background: var(--teal-light); color: var(--teal);
+  border: 1px solid rgba(26,107,104,0.2);
+}
+.nmSignBadgeParent {
+  background: var(--orange-light); color: var(--orange);
+  border: 1px solid rgba(232,104,42,0.2);
+}
+
+/* ── Agreement Box ── */
+.nmAgreementBox {
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--cream);
+  max-height: 280px;
+  overflow-y: auto;
+  position: relative;
+}
+.nmAgreementBox::-webkit-scrollbar { width: 5px; }
+.nmAgreementBox::-webkit-scrollbar-track { background: transparent; }
+.nmAgreementBox::-webkit-scrollbar-thumb {
+  background: var(--border); border-radius: 99px;
+}
+.nmAgreementInner { padding: 24px 28px; }
+.nmAgreementOrg {
+  font-size: 0.72rem; font-weight: 700;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--teal); margin: 0 0 6px;
+}
+.nmAgreementHeading {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.3rem; letter-spacing: 0.04em;
+  color: var(--charcoal); margin: 0 0 16px;
+}
+.nmAgreementPara {
+  font-size: 0.84rem; line-height: 1.7;
+  color: #444; margin: 0 0 12px;
+}
+.nmAgreementPara:last-child { margin-bottom: 0; }
+
+/* ── Agree Checkbox ── */
+.nmAgreeRow {
+  display: flex; align-items: flex-start;
+  gap: 12px; margin-top: 20px; cursor: pointer;
+  background: var(--teal-light);
+  border: 1.5px solid rgba(26,107,104,0.2);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+}
+.nmCheckbox {
+  width: 18px; height: 18px; flex-shrink: 0;
+  margin-top: 1px; cursor: pointer;
+  accent-color: var(--teal);
+}
+.nmAgreeText {
+  font-size: 0.85rem; line-height: 1.55;
+  color: var(--charcoal); font-weight: 500;
+}
+
+/* ── Error ── */
+.nmError {
+  background: var(--error-bg); color: var(--error);
+  border: 1px solid #fca5a5;
+  border-radius: var(--radius);
+  padding: 12px 16px;
+  font-size: 0.85rem; font-weight: 500;
+  display: flex; align-items: center; gap: 8px;
+  margin-top: 16px;
+}
+
+/* ── Nav Row ── */
+.nmNavRow {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 20px 36px;
+  border-top: 1px solid var(--border);
+  background: var(--cream);
+}
+
+/* ── Buttons ── */
+.nmBtn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 0 24px; height: 42px;
+  border-radius: var(--radius);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.88rem; font-weight: 600;
+  cursor: pointer; border: none;
+  transition: all 0.18s; letter-spacing: 0.01em;
+}
+.nmBtnPrimary { background: var(--teal); color: var(--white); }
+.nmBtnPrimary:hover {
+  background: var(--teal-mid);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(26,107,104,0.25);
+}
+.nmBtnSecondary {
+  background: var(--white); color: var(--teal);
+  border: 1.5px solid var(--border);
+}
+.nmBtnSecondary:hover { border-color: var(--teal); background: var(--teal-light); }
+.nmBtnSubmit { background: var(--orange); color: var(--white); padding: 0 32px; }
+.nmBtnSubmit:hover:not(:disabled) {
+  background: #d4561f;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(232,104,42,0.3);
+}
+.nmBtnSubmit:disabled { opacity: 0.55; cursor: not-allowed; }
+.nmBtnLoading { cursor: not-allowed; }
+
+/* ── Spinner ── */
+.nmSpinner {
+  width: 14px; height: 14px;
+  border: 2px solid rgba(255,255,255,0.35);
+  border-top-color: #fff; border-radius: 50%;
+  animation: nmSpin 0.7s linear infinite;
+  display: inline-block;
+}
+@keyframes nmSpin { to { transform: rotate(360deg); } }
+
+/* ── Success Screen ── */
+.nmSuccessBox {
+  background: var(--white); border-radius: 16px;
+  box-shadow: var(--shadow-lg); border: 1px solid var(--border);
+  padding: 64px 48px; text-align: center;
+  animation: nmFadeIn 0.4s ease;
+}
+.nmSuccessIcon {
+  width: 64px; height: 64px;
+  background: var(--success-bg); color: var(--success);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.8rem; margin: 0 auto 20px;
+  border: 2px solid #a7f3d0;
+}
+.nmSuccessTitle {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2rem; letter-spacing: 0.05em;
+  color: var(--teal); margin: 0 0 8px;
+}
+.nmSuccessSub { color: var(--muted); font-size: 0.9rem; margin: 0 0 28px; }
+
+/* ══ Payment QR Panel ══ */
+.nmPaymentPanel {
+  display: flex;
+  gap: 28px;
+  align-items: flex-start;
+  background: var(--cream);
+  border: 1.5px solid var(--border);
+  border-radius: 14px;
+  padding: 24px;
+}
+
+@media (max-width: 600px) {
+  .nmPaymentPanel { flex-direction: column; }
+}
+
+/* ── QR side ── */
+.nmQRSide {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.nmQRFrame {
+  width: 160px;
+  height: 160px;
+  border-radius: 12px;
+  border: 3px solid var(--teal);
+  background: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 6px;
+  box-shadow: 0 4px 16px rgba(26,107,104,0.12);
+  position: relative;
+}
+
+/* Decorative corner accents */
+.nmQRFrame::before,
+.nmQRFrame::after {
+  content: '';
+  position: absolute;
+  width: 18px; height: 18px;
+  border-color: var(--orange);
+  border-style: solid;
+}
+.nmQRFrame::before {
+  top: -3px; left: -3px;
+  border-width: 3px 0 0 3px;
+  border-radius: 3px 0 0 0;
+}
+.nmQRFrame::after {
+  bottom: -3px; right: -3px;
+  border-width: 0 3px 3px 0;
+  border-radius: 0 0 3px 0;
+}
+
+.nmQRImg {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.nmQRFallback {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  text-align: center;
+  padding: 8px;
+}
+
+.nmQRFallbackIcon {
+  font-size: 2rem;
+  opacity: 0.15;
+}
+
+.nmQRFallbackText {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1rem;
+  letter-spacing: 0.06em;
+  color: var(--teal);
+}
+
+.nmQRFallbackHint {
+  font-size: 0.68rem;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.nmQRMeta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.nmQRName {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.15rem;
+  letter-spacing: 0.08em;
+  color: var(--teal);
+}
+
+.nmQRUpi {
+  font-size: 0.75rem;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+/* ── Instructions side ── */
+.nmQRInfo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.nmQRSteps {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.nmQRStep {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 0.85rem;
+  color: var(--charcoal);
+  line-height: 1.4;
+}
+
+.nmQRStepNum {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--teal);
+  color: var(--white);
+  font-size: 0.72rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.nmQRNote {
+  font-size: 0.78rem;
+  color: #92400e;
+  background: #fffbeb;
+  border: 1px solid #fde68a;
+  border-radius: 8px;
+  padding: 10px 14px;
+  line-height: 1.5;
+}
