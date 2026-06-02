@@ -283,7 +283,7 @@ export const generateMemberPDF = async (member, nemsuLogo, neristLogo) => {
 
   dy += 3;
   const closing =
-    "I have read and understood the above declaration. I agree to all the terms and conditions of NEMSU membership and confirm that all information provided is accurate and truthful.(NB: Please go throught the constitution once)";
+    "I have read and understood the above declaration. I agree to all the terms and conditions of NEMSU membership and confirm that all information provided is accurate and truthful.(NB: Please go through the constitution once)";
   const closingWrapped = doc.splitTextToSize(closing, PAGE_W - MARGIN * 2);
   doc.setFont("helvetica", "italic");
   doc.setTextColor(...TEXT_DARK);
