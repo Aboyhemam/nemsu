@@ -111,6 +111,7 @@ function NewMember() {
     e.preventDefault()
     if (!agreed) { setError('You must agree to the terms before submitting.'); return }
     if (!files.student_sign) { setError('Student signature is required.'); return }
+    if(!files.passportPhoto) {setError("Passport Photo is required"); return }
     if (!files.parent_sign)  { setError('Parent/Guardian signature is required.'); return }
 
     setLoading(true)
@@ -122,9 +123,11 @@ function NewMember() {
       Object.entries(formData).forEach(([k, v]) => body.append(k, v))
       Object.entries(files).forEach(([k, v]) => { if (v) body.append(k, v) })
 
-      const res = await fetch(`${API_BASE}/members/add`, {
+      const res = await fetch(`${API_BASE}/member/add`, {
         method: 'POST',
-        headers: { Authorization: `Bearer ${token}` },
+        headers:{
+            "Content-Type": "application/json",
+          },
         body,
       })
 
