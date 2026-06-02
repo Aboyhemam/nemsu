@@ -51,7 +51,7 @@ const AGREEMENT_TEXT = `I, the undersigned, hereby declare that:
 
 2. I am a bonafide student of NERIST (North Eastern Regional Institute of Science and Technology), Nirjuli, Arunachal Pradesh, and I belong to the state of Manipur.
 
-3. I agree to abide by the rules, regulations, and code of conduct of the NEMSU (NERIST Manipur Students' Union) and shall not engage in any activity that brings disrepute to the organization.
+3. I agree to abide by the rules, regulations, and code of conduct of the NEMSU (NERIST Manipur Students' Union) Constituition (https://www.nemsu.co.in/NEMSUCONS.pdf) and shall not engage in any activity that brings disrepute to the organization.
 
 4. I understand that NEMSU membership is non-transferable and is valid for the duration of my enrollment at NERIST.
 
@@ -60,6 +60,8 @@ const AGREEMENT_TEXT = `I, the undersigned, hereby declare that:
 6. I acknowledge that the membership fee paid is non-refundable under any circumstances.
 
 7. I agree to participate actively in the activities of NEMSU and contribute positively to the welfare of Manipuri students at NERIST.
+
+8. I agree to pay the fines imposed by the Union in the cases of indiscipline action (not more than Rs200 per fine for disciplinary actions), and if I had to leave the Union before completion of my studies in NERIST and I continue to stay in NERIST, I agree to pay a fine of Rs. 2000 for harming the unity of the NEMSU family.
 
 By uploading my signature below, I confirm that I have read, understood, and agree to all the terms and conditions stated above.`
 
@@ -575,7 +577,7 @@ function NewMember() {
               />
               <span className="nmAgreeText">
                 I have read and understood the above declaration. I agree to all the terms
-                and conditions of NEMSU membership and confirm that all information provided
+                and conditions of NEMSU membership, <a href='https://www.nemsu.co.in/NEMSUCONS.pdf'>NEMSU constituition</a> and confirm that all information provided
                 is accurate and truthful.
               </span>
             </label>

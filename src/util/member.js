@@ -252,11 +252,12 @@ export const generateMemberPDF = async (member, nemsuLogo, neristLogo) => {
   const clauses = [
     "All information provided in this registration form is true, correct, and complete to the best of my knowledge. Any false or misleading information may result in cancellation of membership.",
     "I am a bonafide student of NERIST (North Eastern Regional Institute of Science and Technology), Nirjuli, Arunachal Pradesh, and I belong to the state of Manipur.",
-    "I agree to abide by the rules, regulations, and code of conduct of NEMSU (NERIST Manipur Students' Union) and shall not engage in any activity that brings disrepute to the organization.",
+    "I agree to abide by the rules, regulations, and code of conduct of NEMSU (NERIST Manipur Students' Union) Constitution (https://www.nemsu.co.in/NEMSUCONS.pdf) and shall not engage in any activity that brings disrepute to the organization.",
     "I understand that NEMSU membership is non-transferable and is valid for the duration of my enrollment at NERIST.",
     "I authorize NEMSU to use my information for official communication, record-keeping, and organizational purposes only. My data will not be shared with third parties without my consent.",
     "I acknowledge that the membership fee paid is non-refundable under any circumstances.",
     "I agree to participate actively in the activities of NEMSU and contribute positively to the welfare of Manipuri students at NERIST.",
+    "I agree to pay the fines imposed by the Union in the cases of indiscipline action (not more than Rs200 per fine for disciplinary actions), and if I had to leave the Union before completion of my studies in NERIST and I continue to stay in NERIST, I agree to pay a fine of Rs. 2000 for harming the unity of the NEMSU family."
   ];
 
   let dy = 58;
@@ -282,7 +283,7 @@ export const generateMemberPDF = async (member, nemsuLogo, neristLogo) => {
 
   dy += 3;
   const closing =
-    "I have read and understood the above declaration. I agree to all the terms and conditions of NEMSU membership and confirm that all information provided is accurate and truthful.";
+    "I have read and understood the above declaration. I agree to all the terms and conditions of NEMSU membership and confirm that all information provided is accurate and truthful.(NB: Please go throught the constitution once)";
   const closingWrapped = doc.splitTextToSize(closing, PAGE_W - MARGIN * 2);
   doc.setFont("helvetica", "italic");
   doc.setTextColor(...TEXT_DARK);

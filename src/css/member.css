@@ -1,228 +1,430 @@
-.membersPage {
-  padding: 30px;
-  background: #f5f7fb;
-  min-height: 100vh;
+/* ============================================================
+   NEMSU Members Directory — member.css
+   Style direction: clean dark admin panel with subtle teal accent
+   Inspired by structured admin dashboards and export-table layouts
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=DM+Mono:wght@400;500&display=swap');
+
+:root {
+  --bg: #16181c;
+  --bg-soft: #1d2126;
+  --panel: #20252b;
+  --panel-2: #252b32;
+  --panel-3: #2b323a;
+
+  --text: #e9dfc9;
+  --text-soft: rgba(233, 223, 201, 0.72);
+  --text-faint: rgba(233, 223, 201, 0.38);
+
+  --teal: #3ca6b6;
+  --teal-dark: #1f6c79;
+  --teal-dim: rgba(60, 166, 182, 0.12);
+  --teal-border: rgba(60, 166, 182, 0.26);
+
+  --orange: #d26b35;
+  --orange-dim: rgba(210, 107, 53, 0.12);
+  --orange-border: rgba(210, 107, 53, 0.28);
+
+  --border: rgba(255, 255, 255, 0.075);
+  --shadow: 0 16px 40px rgba(0, 0, 0, 0.22);
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+
+  --success: #57b88b;
+  --danger: #e16b6b;
+
+  --mono: 'DM Mono', monospace;
+  --body: 'DM Sans', sans-serif;
+  --display: 'Bebas Neue', sans-serif;
+
+  --transition: 0.28s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* HEADER */
+/* ============================================================
+   PAGE
+   ============================================================ */
+.membersPage {
+  min-height: 100vh;
+  padding: 32px 28px 72px;
+  background:
+    radial-gradient(circle at top left, rgba(60, 166, 182, 0.12), transparent 30%),
+    radial-gradient(circle at bottom right, rgba(210, 107, 53, 0.08), transparent 26%),
+    linear-gradient(rgba(60, 166, 182, 0.018) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(60, 166, 182, 0.018) 1px, transparent 1px),
+    var(--bg);
+  background-size: auto, auto, 36px 36px, 36px 36px, auto;
+  color: var(--text);
+  font-family: var(--body);
+  animation: membersPageIn 0.45s ease both;
+}
 
+@keyframes membersPageIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============================================================
+   TOP AREA
+   ============================================================ */
 .membersTop {
   display: flex;
+  align-items: stretch;
   justify-content: space-between;
-  align-items: center;
-  margin-bottom: 30px;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 22px;
+}
+
+.membersTitleBox {
+  flex: 1 1 540px;
+  position: relative;
+  padding: 28px 28px 24px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.025), rgba(255,255,255,0.01));
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.membersTitleBox::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 3px;
+  background: linear-gradient(to bottom, var(--teal), var(--orange));
 }
 
 .membersTitleBox h1 {
-  margin: 0;
-  font-size: 32px;
-  font-weight: 700;
-  color: #182848;
+  margin: 0 0 8px;
+  font-family: var(--display);
+  font-size: clamp(2.2rem, 5vw, 3.5rem);
+  line-height: 0.95;
+  letter-spacing: 0.06em;
+  color: var(--text);
 }
 
 .membersTitleBox p {
-  margin-top: 8px;
-  color: #6b7280;
+  margin: 0;
+  max-width: 560px;
+  font-size: 0.94rem;
+  line-height: 1.7;
+  color: var(--text-soft);
 }
-
-/* STATS */
 
 .membersStats {
   display: flex;
-  gap: 20px;
+  align-items: stretch;
+  gap: 14px;
+  flex: 0 0 auto;
 }
 
 .statCard {
-  background: white;
-  padding: 18px 28px;
-  border-radius: 16px;
-  box-shadow: 0 8px 24px rgba(0,0,0,.08);
-  text-align: center;
+  min-width: 190px;
+  padding: 22px 22px 18px;
+  border-radius: var(--radius-lg);
+  background: linear-gradient(180deg, rgba(60, 166, 182, 0.12), rgba(60, 166, 182, 0.05));
+  border: 1px solid var(--teal-border);
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .statCard h2 {
-  margin: 0;
-  color: #1d4ed8;
-  font-size: 30px;
+  margin: 0 0 6px;
+  font-family: var(--mono);
+  font-size: 1.9rem;
+  font-weight: 500;
+  color: var(--teal);
+  letter-spacing: -0.03em;
 }
 
 .statCard span {
-  color: #64748b;
-  font-size: 14px;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--text-soft);
 }
 
-/* TOOLBAR */
-
+/* ============================================================
+   TOOLBAR
+   ============================================================ */
 .membersToolbar {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  margin-bottom: 25px;
-  gap: 20px;
+  justify-content: space-between;
+  gap: 16px;
   flex-wrap: wrap;
+  margin-bottom: 22px;
+  padding: 18px 20px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: rgba(255, 255, 255, 0.025);
+  backdrop-filter: blur(8px);
 }
 
 .searchInput {
-  width: 350px;
-  max-width: 100%;
-  padding: 12px 18px;
+  flex: 1 1 320px;
+  min-width: 240px;
+  height: 46px;
+  padding: 0 14px;
+  border: 1px solid var(--border);
   border-radius: 12px;
-  border: 1px solid #dbe2ea;
-  font-size: 15px;
+  background: var(--panel-2);
+  color: var(--text);
+  font-size: 0.92rem;
   outline: none;
-  background: white;
+  transition: border-color var(--transition), background var(--transition), box-shadow var(--transition);
+}
+
+.searchInput::placeholder {
+  color: var(--text-faint);
 }
 
 .searchInput:focus {
-  border-color: #2563eb;
+  border-color: var(--teal-border);
+  background: rgba(60, 166, 182, 0.06);
+  box-shadow: 0 0 0 4px rgba(60, 166, 182, 0.08);
 }
-
-/* BUTTONS */
 
 .membersActions {
   display: flex;
+  align-items: center;
   gap: 12px;
+  flex-wrap: wrap;
 }
 
 .excelBtn,
 .blankBtn,
-.pdfBtn {
+.membersTable button {
+  appearance: none;
   border: none;
-  padding: 11px 18px;
-  border-radius: 10px;
   cursor: pointer;
-  font-weight: 600;
-  transition: .25s;
+  font-family: var(--body);
+  font-weight: 700;
+  font-size: 0.88rem;
+  letter-spacing: 0.02em;
+  border-radius: 12px;
+  transition: transform var(--transition), box-shadow var(--transition), background var(--transition), border-color var(--transition), color var(--transition);
+}
+
+.excelBtn,
+.blankBtn {
+  min-height: 46px;
+  padding: 0 18px;
+  white-space: nowrap;
 }
 
 .excelBtn {
-  background: #16a34a;
-  color: white;
+  color: #fff;
+  background: linear-gradient(135deg, var(--teal-dark), var(--teal));
+  box-shadow: 0 10px 24px rgba(60, 166, 182, 0.18);
 }
 
 .excelBtn:hover {
-  background: #15803d;
+  transform: translateY(-2px);
+  box-shadow: 0 14px 30px rgba(60, 166, 182, 0.26);
 }
 
 .blankBtn {
-  background: #2563eb;
-  color: white;
+  color: var(--orange);
+  background: var(--orange-dim);
+  border: 1px solid var(--orange-border);
 }
 
 .blankBtn:hover {
-  background: #1d4ed8;
+  transform: translateY(-2px);
+  background: rgba(210, 107, 53, 0.18);
 }
 
-.pdfBtn {
-  background: #dc2626;
-  color: white;
-}
-
-.pdfBtn:hover {
-  background: #b91c1c;
-}
-
-/* TABLE */
-
-.membersTableWrapper {
-  background: white;
-  border-radius: 18px;
-  overflow: hidden;
-  box-shadow: 0 8px 24px rgba(0,0,0,.08);
-}
-
+/* ============================================================
+   TABLE SHELL
+   ============================================================ */
 .membersTable {
   width: 100%;
-  border-collapse: collapse;
-}
-
-.membersTable thead {
-  background: #182848;
-  color: white;
+  min-width: 900px;
+  border-collapse: separate;
+  border-spacing: 0;
+  overflow: hidden;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
 }
 
 .membersTable thead th {
-  padding: 18px;
+  padding: 16px 18px;
   text-align: left;
-  position: sticky;
-  top: 0;
+  background: rgba(255, 255, 255, 0.025);
+  border-bottom: 1px solid var(--border);
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--teal);
+  white-space: nowrap;
 }
 
 .membersTable tbody tr {
-  transition: .2s;
+  transition: background var(--transition), transform var(--transition);
 }
 
 .membersTable tbody tr:hover {
-  background: #f8fafc;
+  background: rgba(60, 166, 182, 0.045);
 }
 
-.membersTable td {
-  padding: 16px;
-  border-bottom: 1px solid #eef2f7;
+.membersTable tbody td {
+  padding: 15px 18px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: middle;
+  font-size: 0.92rem;
+  color: var(--text-soft);
 }
 
-/* PROFILE PHOTO */
+.membersTable tbody tr:last-child td {
+  border-bottom: none;
+}
 
-.memberPhoto {
-  width: 55px;
-  height: 55px;
-  border-radius: 50%;
+/* ============================================================
+   PHOTO CELL
+   ============================================================ */
+.membersTable td img {
+  width: 52px;
+  height: 52px;
   object-fit: cover;
-  border: 3px solid #e2e8f0;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: var(--panel-3);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.22);
+  display: block;
 }
 
-/* NAME */
-
-.memberName {
+/* ============================================================
+   CONTENT TUNING BY COLUMN
+   ============================================================ */
+.membersTable tbody td:nth-child(2) {
+  color: var(--text);
   font-weight: 600;
-  color: #182848;
+  min-width: 220px;
 }
 
-/* BADGES */
+.membersTable tbody td:nth-child(3),
+.membersTable tbody td:nth-child(4) {
+  min-width: 140px;
+}
 
-.courseBadge {
-  background: #dbeafe;
-  color: #1d4ed8;
-  padding: 5px 10px;
+.membersTable tbody td:nth-child(5) {
+  font-family: var(--mono);
+  font-size: 0.82rem;
+  color: rgba(233, 223, 201, 0.82);
+  white-space: nowrap;
+}
+
+.membersTable tbody td:nth-child(6) {
+  max-width: 240px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.membersTable tbody td:last-child {
+  width: 150px;
+}
+
+/* ============================================================
+   ROW BUTTON
+   ============================================================ */
+.membersTable button {
+  min-height: 38px;
+  padding: 0 14px;
+  color: var(--teal);
+  background: var(--teal-dim);
+  border: 1px solid var(--teal-border);
+  font-size: 0.82rem;
+}
+
+.membersTable button:hover {
+  transform: translateY(-1px);
+  background: rgba(60, 166, 182, 0.18);
+  box-shadow: 0 8px 18px rgba(60, 166, 182, 0.14);
+}
+
+/* ============================================================
+   LOADING STATE
+   ============================================================ */
+.membersPage h2 {
+  margin: 40px 0 0;
+  font-family: var(--display);
+  font-size: 2rem;
+  letter-spacing: 0.08em;
+  color: var(--text);
+}
+
+/* ============================================================
+   TABLE RESPONSIVE WRAP SUPPORT
+   Add one wrapper in JSX if possible:
+   <div className="membersTableWrap"><table className="membersTable">...</table></div>
+   ============================================================ */
+.membersTableWrap {
+  width: 100%;
+  overflow-x: auto;
+  border-radius: var(--radius-lg);
+}
+
+/* ============================================================
+   SCROLLBAR
+   ============================================================ */
+.membersTableWrap::-webkit-scrollbar {
+  height: 10px;
+}
+
+.membersTableWrap::-webkit-scrollbar-track {
+  background: var(--panel-2);
   border-radius: 999px;
-  font-size: 13px;
-  font-weight: 600;
-  display: inline-block;
 }
 
-.deptBadge {
-  background: #fef3c7;
-  color: #b45309;
-  padding: 5px 10px;
+.membersTableWrap::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.14);
   border-radius: 999px;
-  font-size: 13px;
-  font-weight: 600;
 }
 
-/* LOADING */
-
-.loadingBox {
-  min-height: 70vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 22px;
-  color: #64748b;
+.membersTableWrap::-webkit-scrollbar-thumb:hover {
+  background: rgba(255,255,255,0.22);
 }
 
-/* RESPONSIVE */
-
-@media (max-width: 900px) {
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 980px) {
+  .membersPage {
+    padding: 24px 18px 56px;
+  }
 
   .membersTop {
     flex-direction: column;
-    align-items: flex-start;
-    gap: 15px;
+  }
+
+  .membersStats {
+    width: 100%;
+  }
+
+  .statCard {
+    width: 100%;
+    min-width: 0;
   }
 
   .membersToolbar {
-    flex-direction: column;
-    align-items: stretch;
+    padding: 16px;
   }
 
   .searchInput {
@@ -235,6 +437,40 @@
 
   .excelBtn,
   .blankBtn {
-    flex: 1;
+    flex: 1 1 220px;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 640px) {
+  .membersTitleBox {
+    padding: 22px 18px 20px;
+  }
+
+  .membersTitleBox h1 {
+    font-size: 2.3rem;
+  }
+
+  .membersTitleBox p {
+    font-size: 0.88rem;
+  }
+
+  .membersToolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .membersActions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .excelBtn,
+  .blankBtn {
+    width: 100%;
+  }
+
+  .membersTable {
+    min-width: 820px;
   }
 }
