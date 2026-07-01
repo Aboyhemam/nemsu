@@ -190,19 +190,20 @@ export const generateMemberPDF = async (member, nemsuLogo, neristLogo) => {
   // Personal details only in left column beside photo
   sectionTitle("Personal Details", contentRight - MARGIN);
   row("Full Name", fullName);
-  row("Father's Name", member.fatherName);
-  row("Mother's Name", member.motherName);
   row("Gender", member.gender);
   row("Date of Birth", formatDate(member.DOB));
-
-  // Start next section only after the photo area ends
-  y = Math.max(y, photoY + photoH + 8);
-
-  sectionTitle("Address Details");
   row("Address", member.address, { fullWidth: true });
   row("District", member.district, { fullWidth: true });
   row("State", member.state, { fullWidth: true });
   row("PIN", member.pin, { fullWidth: true });
+
+  // Start next section only after the photo area ends
+  y = Math.max(y, photoY + photoH + 8);
+
+  sectionTitle("Parents' Details");
+  row("Father's Name", member.fatherName);
+  row("Mother's Name", member.motherName);
+
 
   sectionTitle("Academic Details");
   row("Course", member.course, { fullWidth: true });
@@ -251,13 +252,14 @@ export const generateMemberPDF = async (member, nemsuLogo, neristLogo) => {
 
   const clauses = [
     "All information provided in this registration form is true, correct, and complete to the best of my knowledge. Any false or misleading information may result in cancellation of membership.",
-    "I am a bonafide student of NERIST (North Eastern Regional Institute of Science and Technology), Nirjuli, Arunachal Pradesh, and I belong to the state of Manipur.",
+    "I am a bonafide student of NERIST (North Eastern Regional Institute of Science and Technology), Nirjuli, Arunachal Pradesh.",
     "I agree to abide by the rules, regulations, and code of conduct of NEMSU (NERIST Manipur Students' Union) Constitution (https://www.nemsu.co.in/NEMSUCONS.pdf) and shall not engage in any activity that brings disrepute to the organization.",
     "I understand that NEMSU membership is non-transferable and is valid for the duration of my enrollment at NERIST.",
     "I authorize NEMSU to use my information for official communication, record-keeping, and organizational purposes only. My data will not be shared with third parties without my consent.",
     "I acknowledge that the membership fee paid is non-refundable under any circumstances.",
+    "I agree that if I am any found involved in violating Institute's rules, the Union will not intervene or provide assistance — no excuses, no exceptions",
     "I agree to participate actively in the activities of NEMSU and contribute positively to the welfare of Manipuri students at NERIST.",
-    "I agree to pay the fines imposed by the Union in the cases of indiscipline action (not more than Rs200 per fine for disciplinary actions), and if I had to leave the Union before completion of my studies in NERIST and I continue to stay in NERIST, I agree to pay a fine of Rs. 2000 for harming the unity of the NEMSU family."
+    "I hereby agree to pay any fines imposed by the Union for acts of indiscipline, with each disciplinary fine not exceeding ₹200. Furthermore, if I choose to leave the Union before completing my studies at NERIST while continuing to reside or study at NERIST, I agree to pay a fine of ₹2,000 for actions deemed detrimental to the unity and integrity of the NEMSU family."
   ];
 
   let dy = 58;
