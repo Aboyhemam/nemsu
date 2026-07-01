@@ -59,9 +59,11 @@ const AGREEMENT_TEXT = `I, the undersigned, hereby declare that:
 
 6. I acknowledge that the membership fee paid is non-refundable under any circumstances.
 
-7. I agree to participate actively in the activities of NEMSU and contribute positively to the welfare of Manipuri students at NERIST.
+7. I agree that if I am any found involved in violating Institute's rules, the Union will not intervene or provide assistance — no excuses, no exceptions
 
-8. I agree to pay the fines imposed by the Union in the cases of indiscipline action (not more than Rs200 per fine for disciplinary actions), and if I had to leave the Union before completion of my studies in NERIST and I continue to stay in NERIST, I agree to pay a fine of Rs. 2000 for harming the unity of the NEMSU family.
+8. I agree to participate actively in the activities of NEMSU and contribute positively to the welfare of Manipuri students at NERIST.
+
+9. I hereby agree to pay any fines imposed by the Union for acts of indiscipline, with each disciplinary fine not exceeding ₹200. Furthermore, if I choose to leave the Union before completing my studies at NERIST while continuing to reside or study at NERIST, I agree to pay a fine of ₹2,000 for actions deemed detrimental to the unity and integrity of the NEMSU family.
 
 By uploading my signature below, I confirm that I have read, understood, and agree to all the terms and conditions stated above.`
 

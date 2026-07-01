@@ -257,7 +257,7 @@ export const generateMemberPDF = async (member, nemsuLogo, neristLogo) => {
     "I understand that NEMSU membership is non-transferable and is valid for the duration of my enrollment at NERIST.",
     "I authorize NEMSU to use my information for official communication, record-keeping, and organizational purposes only. My data will not be shared with third parties without my consent.",
     "I acknowledge that the membership fee paid is non-refundable under any circumstances.",
-    "I agree that if I am any found involved in violating Institute's rules, the Union will not intervene or provide assistance — no excuses, no exceptions",
+    "I agree that if I am any found involved in violating Institute's rules, the Union will not intervene or provide assistance — no excuses, no exceptions.",
     "I agree to participate actively in the activities of NEMSU and contribute positively to the welfare of Manipuri students at NERIST.",
     "I hereby agree to pay any fines imposed by the Union for acts of indiscipline, with each disciplinary fine not exceeding ₹200. Furthermore, if I choose to leave the Union before completing my studies at NERIST while continuing to reside or study at NERIST, I agree to pay a fine of ₹2,000 for actions deemed detrimental to the unity and integrity of the NEMSU family."
   ];
