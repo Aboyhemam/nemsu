@@ -6,10 +6,11 @@ export const generateMemberPDF = async (member, nemsuLogo, neristLogo) => {
   const PAGE_W = 210;
   const PAGE_H = 297;
   const MARGIN = 15;
+  const FOOTER_TOP = PAGE_H - 14;
+  const CONTENT_BOTTOM = FOOTER_TOP - 4; // last safe y before footer line
 
-  // Minimal clean palette
-  const PRIMARY = [24, 43, 73];       // deep navy
-  const SECONDARY = [90, 103, 120];   // muted slate
+  const PRIMARY = [24, 43, 73];
+  const SECONDARY = [90, 103, 120];
   const TEXT_DARK = [35, 39, 47];
   const TEXT_MID = [90, 98, 108];
   const LIGHT = [245, 247, 250];
@@ -92,7 +93,7 @@ export const generateMemberPDF = async (member, nemsuLogo, neristLogo) => {
   const drawFooter = (pageNo, totalPages) => {
     doc.setDrawColor(...BORDER);
     doc.setLineWidth(0.4);
-    doc.line(MARGIN, PAGE_H - 14, PAGE_W - MARGIN, PAGE_H - 14);
+    doc.line(MARGIN, FOOTER_TOP, PAGE_W - MARGIN, FOOTER_TOP);
 
     doc.setTextColor(...TEXT_MID);
     doc.setFont("helvetica", "normal");
@@ -126,17 +127,14 @@ export const generateMemberPDF = async (member, nemsuLogo, neristLogo) => {
     });
   }
 
-  // Photo area
   const photoW = 34;
   const photoH = 42;
   const photoX = PAGE_W - MARGIN - photoW;
   const photoY = 58;
 
-  // Left column should stop before photo
   const gapToPhoto = 8;
   const contentRight = photoX - gapToPhoto;
 
-  // Photo card
   doc.setFillColor(...WHITE);
   doc.setDrawColor(...BORDER);
   doc.setLineWidth(0.5);
@@ -187,7 +185,6 @@ export const generateMemberPDF = async (member, nemsuLogo, neristLogo) => {
     y += lineGap * (Array.isArray(text) ? text.length : 1);
   };
 
-  // Personal details only in left column beside photo
   sectionTitle("Personal Details", contentRight - MARGIN);
   row("Full Name", fullName);
   row("Gender", member.gender);
@@ -197,13 +194,11 @@ export const generateMemberPDF = async (member, nemsuLogo, neristLogo) => {
   row("State", member.state, { fullWidth: true });
   row("PIN", member.pin, { fullWidth: true });
 
-  // Start next section only after the photo area ends
   y = Math.max(y, photoY + photoH + 8);
 
   sectionTitle("Parents' Details");
   row("Father's Name", member.fatherName);
   row("Mother's Name", member.motherName);
-
 
   sectionTitle("Academic Details");
   row("Course", member.course, { fullWidth: true });
@@ -217,7 +212,11 @@ export const generateMemberPDF = async (member, nemsuLogo, neristLogo) => {
   row("Email", member.email, { fullWidth: true });
 
   y += 8;
-  const signY = Math.min(y, PAGE_H - 45);
+
+  // FIX: clamp signY so it never runs past the footer, keeping everything
+  // on page 1 no matter how long the fields above turned out to be.
+  const SIGN_BLOCK_H = 30;
+  const signY = Math.min(y, CONTENT_BOTTOM - SIGN_BLOCK_H);
 
   doc.setDrawColor(...BORDER);
   doc.setLineWidth(0.3);
@@ -237,7 +236,7 @@ export const generateMemberPDF = async (member, nemsuLogo, neristLogo) => {
   drawFooter(1, 2);
 
   // =========================
-  // PAGE 2
+  // PAGE 2 — DECLARATION
   // =========================
   doc.addPage();
   drawHeader("NEMSU MEMBERSHIP DECLARATION");
@@ -262,14 +261,76 @@ export const generateMemberPDF = async (member, nemsuLogo, neristLogo) => {
     "I hereby agree to pay any fine imposed by th Union for the acts of indiscipline, with each fine not exceeding Rs. 200. Furthermore, if I choose to leave the Union before completing my studies at NERIST while continuing to reside or study at NERIST, I agree to pay a fine of Rs. 2000 for actions deemed detrimental to the unity and integrity of the NEMSU family."
   ];
 
-  let dy = 58;
+  const closing =
+    "I have read and understood the above declaration. I agree to all the terms and conditions of NEMSU membership and confirm that all information provided is accurate and truthful.(NB: Please go through the constitution once)";
+
+  // -------------------------------------------------------------
+  // FIX: Reserve fixed space at the bottom for signatures + approval
+  // box, then auto-shrink font/line-height of the declaration text
+  // (never the layout below it) so everything fits on this ONE page.
+  // -------------------------------------------------------------
+  const introY = 58;
+  const introH = 8;
+  const clausesStartY = introY + introH;
+
+  const SIGN_H = 30;            // signature imgs + line + label
+  const GAP_BEFORE_SIGN = 10;   // space between declaration text and signatures
+  const APPROVAL_H = 48;        // approval box height
+  const GAP_SIGN_APPROVAL = 10; // space between signatures and approval box
+
+  const reservedBottom =
+    GAP_BEFORE_SIGN + SIGN_H + GAP_SIGN_APPROVAL + APPROVAL_H;
+  const clausesAvailableH = CONTENT_BOTTOM - reservedBottom - clausesStartY;
+
+  // Base sizing (matches original design)
+  const BASE_FONT = 9.5;
+  const BASE_LINE_H = 5.2;
+  const BASE_CLAUSE_GAP = 3;
+  const BASE_CLOSING_GAP = 12;
+
+  const measure = (fontSize, lineH, clauseGap, closingGap) => {
+    doc.setFontSize(fontSize);
+    let h = 0;
+    clauses.forEach((clause) => {
+      const wrapped = doc.splitTextToSize(clause, PAGE_W - MARGIN * 2 - 8);
+      h += wrapped.length * lineH + clauseGap;
+    });
+    const closingWrapped = doc.splitTextToSize(closing, PAGE_W - MARGIN * 2);
+    h += closingWrapped.length * lineH + closingGap;
+    return h;
+  };
+
+  // Try shrinking in small steps until it fits, down to a readable floor.
+  let fontSize = BASE_FONT;
+  let lineH = BASE_LINE_H;
+  let clauseGap = BASE_CLAUSE_GAP;
+  let closingGap = BASE_CLOSING_GAP;
+  const MIN_FONT = 7.5;
+  const SHRINK_STEP = 0.25;
+
+  let requiredH = measure(fontSize, lineH, clauseGap, closingGap);
+  while (requiredH > clausesAvailableH && fontSize > MIN_FONT) {
+    fontSize -= SHRINK_STEP;
+    lineH -= 0.13;
+    clauseGap = Math.max(1.5, clauseGap - 0.1);
+    closingGap = Math.max(6, closingGap - 0.4);
+    requiredH = measure(fontSize, lineH, clauseGap, closingGap);
+  }
+  // If still too tall at the font floor, compress line-height further
+  // as a last resort (keeps everything on page 2, text just gets denser).
+  while (requiredH > clausesAvailableH && lineH > 3.4) {
+    lineH -= 0.1;
+    requiredH = measure(fontSize, lineH, clauseGap, closingGap);
+  }
+
+  let dy = introY;
   doc.setTextColor(...TEXT_DARK);
   doc.setFontSize(10);
   doc.setFont("helvetica", "bold");
   doc.text(agreementIntro, MARGIN, dy);
-  dy += 8;
+  dy += introH;
 
-  doc.setFontSize(9.5);
+  doc.setFontSize(fontSize);
   clauses.forEach((clause, i) => {
     const num = `${i + 1}.`;
     doc.setFont("helvetica", "bold");
@@ -280,18 +341,22 @@ export const generateMemberPDF = async (member, nemsuLogo, neristLogo) => {
     doc.setTextColor(...TEXT_DARK);
     const wrapped = doc.splitTextToSize(clause, PAGE_W - MARGIN * 2 - 8);
     doc.text(wrapped, MARGIN + 8, dy);
-    dy += wrapped.length * 5.2 + 3;
+    dy += wrapped.length * lineH + clauseGap;
   });
 
   dy += 3;
-  const closing =
-    "I have read and understood the above declaration. I agree to all the terms and conditions of NEMSU membership and confirm that all information provided is accurate and truthful.(NB: Please go through the constitution once)";
   const closingWrapped = doc.splitTextToSize(closing, PAGE_W - MARGIN * 2);
   doc.setFont("helvetica", "italic");
   doc.setTextColor(...TEXT_DARK);
+  doc.setFontSize(fontSize);
   doc.text(closingWrapped, MARGIN, dy);
-  dy += closingWrapped.length * 5.2 + 12;
+  dy += closingWrapped.length * lineH + closingGap;
 
+  // -------------------------------------------------------------
+  // Signatures — anchored using the reserved space, so they always
+  // land in the same safe zone regardless of how much the declaration
+  // text above got compressed.
+  // -------------------------------------------------------------
   doc.setDrawColor(...BORDER);
   doc.setLineWidth(0.3);
 
@@ -307,7 +372,11 @@ export const generateMemberPDF = async (member, nemsuLogo, neristLogo) => {
   doc.line(p2x, dy + 20, p2x + 55, dy + 20);
   doc.text("Parent / Guardian Signature", p2x, dy + 25);
 
-  const approvalBoxH = 48;
+  // -------------------------------------------------------------
+  // Approval box — anchored to the bottom of the page (fixed), so it
+  // never collides with the footer.
+  // -------------------------------------------------------------
+  const approvalBoxH = APPROVAL_H;
   const approvalY = PAGE_H - 14 - approvalBoxH - 4;
 
   doc.setFillColor(...PRIMARY);
