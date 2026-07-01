@@ -49,7 +49,7 @@ const AGREEMENT_TEXT = `I, the undersigned, hereby declare that:
 
 1. All information provided in this registration form is true, correct, and complete to the best of my knowledge. Any false or misleading information may result in cancellation of membership.
 
-2. I am a bonafide student of NERIST (North Eastern Regional Institute of Science and Technology), Nirjuli, Arunachal Pradesh, and I belong to the state of Manipur.
+2. I am a bonafide student of NERIST (North Eastern Regional Institute of Science and Technology), Nirjuli, Arunachal Pradesh.
 
 3. I agree to abide by the rules, regulations, and code of conduct of the NEMSU (NERIST Manipur Students' Union) Constituition (https://www.nemsu.co.in/NEMSUCONS.pdf) and shall not engage in any activity that brings disrepute to the organization.
 
