@@ -255,6 +255,7 @@ export const generateMemberPDF = async (member, nemsuLogo, neristLogo) => {
     "I agree to abide by the rules, regulations, and code of conduct of NEMSU (NERIST Manipur Students' Union) Constitution (https://www.nemsu.co.in/NEMSUCONS.pdf) and shall not engage in any activity that brings disrepute to the organization.",
     "I understand that NEMSU membership is non-transferable and is valid for the duration of my enrollment at NERIST.",
     "I authorize NEMSU to use my information for official communication, record-keeping, and organizational purposes only. My data will not be shared with third parties without my consent.",
+    "I agree to pay an amount of Rs. 300 as Union fee per semester and a registration fee of Rs.300 (300+300, Rs.600 for freshers)",
     "I acknowledge that the membership fee paid is non-refundable under any circumstances.",
     "I agree that if I am any found involved in violating Institute's rules, the Union will not intervene or provide assistance — no excuses, no exceptions.",
     "I agree to participate actively in the activities of NEMSU and contribute positively to the welfare of Manipuri students at NERIST.",
