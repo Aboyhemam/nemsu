@@ -259,7 +259,7 @@ export const generateMemberPDF = async (member, nemsuLogo, neristLogo) => {
     "I acknowledge that the membership fee paid is non-refundable under any circumstances.",
     "I agree that if I am any found involved in violating Institute's rules, the Union will not intervene or provide assistance — no excuses, no exceptions.",
     "I agree to participate actively in the activities of NEMSU and contribute positively to the welfare of Manipuri students at NERIST.",
-    "I hereby agree to pay any fine imposed by th Union for the acts of indiscipline, with each fine not exceeding Rs. 200. Furthermore, if I choose to leave the Union before completing my studies at NERIST while continuing to reside or study at NERIST, I agree to pay a fine of Rs. 2000 for actions deemed detrimental to the unity and integrity of the NEMSU family."
+    "I hereby agree to pay any fine imposed by the Union for the acts of indiscipline, with each fine not exceeding Rs. 200. Furthermore, if I choose to leave the Union before completing my studies at NERIST while continuing to reside or study at NERIST, I agree to pay a fine of Rs. 2000 for actions deemed detrimental to the unity and integrity of the NEMSU family."
   ];
 
   const closing =
