@@ -228,7 +228,7 @@ function NewMember() {
                 <label className="nmLabel">First Name <span className="nmReq">*</span></label>
                 <input className="nmInput" type="text" name="firstName"
                   value={formData.firstName} onChange={handleChange}
-                  placeholder="e.g. Rahul" required />
+                  placeholder="First Name" required />
               </div>
               <div className="nmField">
                 <label className="nmLabel">Middle Name</label>
@@ -240,7 +240,7 @@ function NewMember() {
                 <label className="nmLabel">Last Name <span className="nmReq">*</span></label>
                 <input className="nmInput" type="text" name="lastName"
                   value={formData.lastName} onChange={handleChange}
-                  placeholder="e.g. Singh" required />
+                  placeholder="Last Name" required />
               </div>
             </div>
 
@@ -271,7 +271,7 @@ function NewMember() {
                 <label className="nmLabel">Street / Village / Locality <span className="nmReq">*</span></label>
                 <input className="nmInput" type="text" name="address"
                   value={formData.address} onChange={handleChange}
-                  placeholder="e.g. Thangmeiband, Imphal" required />
+                  placeholder="Address details" required />
               </div>
             </div>
 
@@ -280,13 +280,13 @@ function NewMember() {
                 <label className="nmLabel">District <span className="nmReq">*</span></label>
                 <input className="nmInput" type="text" name="district"
                   value={formData.district} onChange={handleChange}
-                  placeholder="e.g. Imphal West" required />
+                  placeholder="District" required />
               </div>
               <div className="nmField">
                 <label className="nmLabel">State <span className="nmReq">*</span></label>
                 <input className="nmInput" type="text" name="state"
                   value={formData.state} onChange={handleChange}
-                  placeholder="e.g. Manipur" required />
+                  placeholder="State" required />
               </div>
               <div className="nmField">
                 <label className="nmLabel">PIN Code <span className="nmReq">*</span></label>
@@ -439,7 +439,7 @@ function NewMember() {
             <div className="nmDivider" />
             <p className="nmSubheading">Membership Fee Payment</p>
             <p className="nmSectionSub" style={{ marginBottom: '20px' }}>
-              Scan the QR code below using any UPI app (GPay, PhonePe, Paytm, etc.) to pay the membership fee+Registration fee (Rs. 500).
+              Scan the QR code below using any UPI app (GPay, PhonePe, Paytm, etc.) to pay the membership fee+Registration fee (Rs. 600).
               After payment, upload the screenshot as proof.
             </p>
 
