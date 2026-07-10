@@ -336,6 +336,7 @@ function NewMember() {
                   <option value="ECE">ECE — Electronics & Comm.</option>
                   <option value="EE">EE — Electrical Engineering</option>
                   <option value="ME">ME — Mechanical Engineering</option>
+                  <option value="FET">FET — Food Engineering and Technology</option>
                   <option value="Forestry">Forestry</option>
                   <option value="Physics">Physics</option>
                   <option value="Maths">Mathematics</option>
